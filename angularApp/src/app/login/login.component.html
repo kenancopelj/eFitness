@@ -1,0 +1,76 @@
+<!--<div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="col-md-9 col-lg-6 col-xl-6 my-lg-5 py-lg-5">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
+  </div>
+  <div class="col-md-8 col-lg-6 col-xl-5 offset-xl-1 my-lg-5 py-lg-5">
+    <form>
+
+      &lt;!&ndash; Username input &ndash;&gt;
+      <div class="form-outline mb-3">
+       &lt;!&ndash;<label class="form-label" for="txtKorisnickoIme" style="margin-left: 0px;">Korisnicko ime</label>&ndash;&gt;
+        <input id="txtKorisnickoIme" [(ngModel)]="txtKorisnickoIme" class="form-control">
+        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div>
+          <div class="form-notch-trailing">
+
+          </div>
+        </div>
+      </div>
+
+      &lt;!&ndash; Password input &ndash;&gt;
+      <div class="form-outline mb-3">
+        &lt;!&ndash;<label class="form-label" for="txtLozinka"  style="margin-left: 0px;">Lozinka</label>&ndash;&gt;
+        <input id="txtLozinka" [(ngModel)]="txtLozinka" class="form-control" type="password">
+        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+      <div class="text-center text-lg-start mt-4 pt-2">
+        <button type="button" (click)="btnLogin()" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+        <p class="small fw-bold mt-2 pt-1 mb-0">Nemate account? <a href="#" class="link-danger"> Registruj se</a></p>
+      </div>
+
+    </form>
+  </div>
+</div>-->
+
+<!--<p>login works!</p>
+
+<div class="mb-3 row">
+  <label for="txtKorisnickoIme" class="col-sm-2 col-form-label">Korisnicko ime</label>
+  <div class="col-sm-3">
+    <input id="txtKorisnickoIme" [(ngModel)]="txtKorisnickoIme" class="form-control">
+  </div>
+</div>
+
+<div class="mb-3 row">
+  <label for="txtLozinka" class="col-sm-2 col-form-label">Lozinka</label>
+  <div class="col-sm-3">
+    <input id="txtLozinka" [(ngModel)]="txtLozinka" class="form-control" type="password">
+  </div>
+</div>
+
+
+<button class="btn btn-primary" (click)="btnLogin()">Logiraj se</button>
+<br>
+<a routerLink="/registracija">Registracija</a>-->
+<body>
+<div class="center">
+  <h1>Login</h1>
+  <form method="post">
+    <div class="txt_field">
+      <input type="text" [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone: true}">
+      <span></span>
+      <label>Korisnicko ime</label>
+    </div>
+    <div class="txt_field">
+      <input type="password" [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone: true}">
+      <span></span>
+      <label>Lozinka</label>
+    </div>
+    <input type="submit" value="Login" (click)="btnLogin()">
+    <div class="signup_link">
+      Niste registrovani? <a href="#">Registrujte se!</a>
+    </div>
+  </form>
+</div>
+</body>
+
+

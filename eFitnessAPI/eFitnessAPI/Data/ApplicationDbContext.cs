@@ -1,4 +1,5 @@
 ﻿using eFitnessAPI.Class;
+using eFitnessAPI.Controllers.Autentifikacija;
 using Microsoft.EntityFrameworkCore;
 
 namespace eFitnessAPI.Data
@@ -13,6 +14,7 @@ namespace eFitnessAPI.Data
         public DbSet<KategorijaTreninga> KategorijaTreninga { get; set; }
         public DbSet<VrstaClanarine> VrstaClanarine { get; set; }
         public DbSet<Trener> Trener { get; set; }
+        public DbSet<AutentifikacijaToken> AutentifikacijaToken { get; set; }
         public DbSet<PrijavaGrupniTrening> PrijavaGrupniTrening { get; set; }
         public DbSet<Suplement> Suplement { get; set; }
         public DbSet<Vjezba> Vjezba { get; set; }

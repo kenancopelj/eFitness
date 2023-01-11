@@ -19,11 +19,12 @@ namespace eFitnessAPI.Class
 
         [JsonIgnore]
         public Clan clan => this as Clan;
-        public bool isClan => clan != null;
 
         [JsonIgnore]
         public Osoblje osoblje => this as Osoblje;
+        public bool isClan => clan != null;
         public bool isOsoblje => osoblje != null;
+        public bool isAdmin { get; set; }
     }
 
     

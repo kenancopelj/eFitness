@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230109142452_dodavanje_tabela")]
-    partial class dodavanjetabela
+    [Migration("20230111191953_novamigracija")]
+    partial class novamigracija
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,8 @@ namespace eFitnessAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("clan_id")
-                        .HasColumnType("int");
+                    b.Property<bool>("aktivna")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("datumIsteka")
                         .HasColumnType("datetime2");
@@ -46,9 +46,6 @@ namespace eFitnessAPI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("id");
-
-                    b.HasIndex("clan_id")
-                        .IsUnique();
 
                     b.HasIndex("vrsta_clanarine_id");
 
@@ -107,8 +104,9 @@ namespace eFitnessAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<int>("naziv")
-                        .HasColumnType("int");
+                    b.Property<string>("naziv")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 
@@ -299,9 +297,41 @@ namespace eFitnessAPI.Migrations
                     b.ToTable("VrstaClanarine");
                 });
 
+            modelBuilder.Entity("eFitnessAPI.Controllers.Autentifikacija.AutentifikacijaToken", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+
+                    b.Property<int>("KorisnickiNalogId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ipAdresa")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("vrijednost")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("vrijemeEvidentiranja")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("KorisnickiNalogId");
+
+                    b.ToTable("AutentifikacijaToken");
+                });
+
             modelBuilder.Entity("eFitnessAPI.Class.Clan", b =>
                 {
                     b.HasBaseType("eFitnessAPI.Class.Korisnik");
+
+                    b.Property<int>("clanarina_id")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("datumRodjenja")
                         .HasColumnType("datetime2");
@@ -320,6 +350,8 @@ namespace eFitnessAPI.Migrations
                     b.Property<string>("spol")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("clanarina_id");
 
                     b.ToTable("Clan");
                 });
@@ -362,19 +394,11 @@ namespace eFitnessAPI.Migrations
 
             modelBuilder.Entity("eFitnessAPI.Class.Clanarina", b =>
                 {
-                    b.HasOne("eFitnessAPI.Class.Clan", "clan")
-                        .WithOne("clanarina")
-                        .HasForeignKey("eFitnessAPI.Class.Clanarina", "clan_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("eFitnessAPI.Class.VrstaClanarine", "vrstaClanarine")
                         .WithMany()
                         .HasForeignKey("vrsta_clanarine_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("clan");
 
                     b.Navigation("vrstaClanarine");
                 });
@@ -469,13 +493,32 @@ namespace eFitnessAPI.Migrations
                     b.Navigation("kategorijaVjezbe");
                 });
 
+            modelBuilder.Entity("eFitnessAPI.Controllers.Autentifikacija.AutentifikacijaToken", b =>
+                {
+                    b.HasOne("eFitnessAPI.Class.Korisnik", "korisnickiNalog")
+                        .WithMany()
+                        .HasForeignKey("KorisnickiNalogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("korisnickiNalog");
+                });
+
             modelBuilder.Entity("eFitnessAPI.Class.Clan", b =>
                 {
+                    b.HasOne("eFitnessAPI.Class.Clanarina", "clanarina")
+                        .WithMany()
+                        .HasForeignKey("clanarina_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("eFitnessAPI.Class.Korisnik", null)
                         .WithOne()
                         .HasForeignKey("eFitnessAPI.Class.Clan", "id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("clanarina");
                 });
 
             modelBuilder.Entity("eFitnessAPI.Class.Osoblje", b =>
@@ -493,12 +536,6 @@ namespace eFitnessAPI.Migrations
                         .WithOne()
                         .HasForeignKey("eFitnessAPI.Class.Trener", "id")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("eFitnessAPI.Class.Clan", b =>
-                {
-                    b.Navigation("clanarina")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

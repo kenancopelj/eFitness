@@ -8,13 +8,16 @@ import { NavComponent } from './nav/nav.component';
 import { HomeComponent } from './home/home.component';
 import {FormsModule} from "@angular/forms";
 import { ShopComponent } from './shop/shop.component';
+import { LoginComponent } from './login/login.component';
+import {AutorizacijaLoginProvjera} from "./_guards/autorizacija-login-provjera.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    ShopComponent
+    ShopComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,9 @@ import { ShopComponent } from './shop/shop.component';
 
 
   ],
-  providers: [],
+  providers: [
+    AutorizacijaLoginProvjera
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
