@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230111192236_nova")]
-    partial class nova
+    [Migration("20230112232103_druga")]
+    partial class druga
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -291,6 +291,9 @@ namespace eFitnessAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
+                    b.Property<int>("cijena")
+                        .HasColumnType("int");
+
                     b.Property<string>("naziv")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -342,9 +345,6 @@ namespace eFitnessAPI.Migrations
                     b.Property<string>("ime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("jeLiClan")
-                        .HasColumnType("bit");
 
                     b.Property<string>("prezime")
                         .IsRequired()

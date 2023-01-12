@@ -10,7 +10,7 @@ namespace eFitnessAPI.Class
         public string prezime { get; set; }
         public string spol { get; set; }
         public DateTime datumRodjenja { get; set; }
-        public bool jeLiClan { get; set; }
+        
         [ForeignKey(nameof(clanarina))]
         public int clanarina_id { get; set; }
         public Clanarina clanarina { get; set; }

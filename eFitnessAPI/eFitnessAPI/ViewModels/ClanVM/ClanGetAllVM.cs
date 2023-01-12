@@ -6,6 +6,5 @@
         public string prezime { get; set; }
         public string spol { get; set; }
         public DateTime datumRodjenja { get; set; }
-        public bool jel_clan { get; set; }
     }
 }

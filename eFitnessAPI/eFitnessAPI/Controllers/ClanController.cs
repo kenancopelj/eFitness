@@ -26,7 +26,6 @@ namespace eFitnessAPI.Controllers
                     ime=x.ime,
                     prezime=x.prezime,
                     datumRodjenja=x.datumRodjenja,
-                    jel_clan=x.jeLiClan,
                     spol=x.spol
                 })
                 .ToList();
@@ -47,7 +46,6 @@ namespace eFitnessAPI.Controllers
 
             if (clan != null)
             {
-                clan.jeLiClan = x.jel_clan;
                 clan.datumRodjenja = x.datum_rodjenja;
                 clan.ime = x.ime;
                 clan.prezime = x.prezime;

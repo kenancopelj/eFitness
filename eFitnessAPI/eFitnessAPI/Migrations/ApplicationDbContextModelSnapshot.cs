@@ -288,6 +288,9 @@ namespace eFitnessAPI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
+                    b.Property<int>("cijena")
+                        .HasColumnType("int");
+
                     b.Property<string>("naziv")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -339,9 +342,6 @@ namespace eFitnessAPI.Migrations
                     b.Property<string>("ime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("jeLiClan")
-                        .HasColumnType("bit");
 
                     b.Property<string>("prezime")
                         .IsRequired()

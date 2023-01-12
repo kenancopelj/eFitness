@@ -1,6 +1,5 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
-using eFitnessAPI.ViewModels.ClanarinaVM;
 using eFitnessAPI.ViewModels.VrstaClanarineVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,10 +8,10 @@ namespace eFitnessAPI.Controllers
 {
     [Route("[controller]/[action]")]
     [ApiController]
-    public class VrstaVjezbeController : ControllerBase
+    public class VrstaClanarineController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
-        public VrstaVjezbeController(ApplicationDbContext dbContext)
+        public VrstaClanarineController(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
@@ -21,9 +20,10 @@ namespace eFitnessAPI.Controllers
         public ActionResult GetAll()
         {
             var podaci = dbContext.VrstaClanarine.
-                Select(x => new VrstaVjezbeGetAllVM
+                Select(x => new VrstaClanarineVM
                 {
-                   naziv=x.naziv
+                    naziv = x.naziv,
+                    cijena=x.cijena
                 })
                 .ToList();
 
@@ -31,11 +31,12 @@ namespace eFitnessAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Add([FromBody] VrstaVjezbeAddVM x)
+        public ActionResult Add([FromBody] VrstaClanarineVM x)
         {
             var novi = new VrstaClanarine()
             {
-                naziv = x.naziv
+                naziv = x.naziv,
+                cijena=x.cijena
             };
             dbContext.VrstaClanarine.Add(novi);
             dbContext.SaveChanges();
@@ -44,12 +45,13 @@ namespace eFitnessAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult Update([FromBody] VrstaVjezbeAddVM x, int id)
+        public ActionResult Update([FromBody] VrstaClanarineVM x, int id)
         {
             var objekat = dbContext.VrstaClanarine.Find(id);
             if (objekat != null)
             {
                 objekat.naziv = x.naziv;
+                objekat.cijena = x.cijena;
             }
             else
                 return BadRequest("pogresan ID");
