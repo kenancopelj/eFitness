@@ -1,3 +1,4 @@
+<!--
 
 <html lang="en">
 <head>
@@ -104,3 +105,67 @@
 
 </body>
 </html>
+-->
+
+<!--Hero-->
+
+<div class="container col-xxl-8 px-4 py-5">
+  <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+    <div class="col-10 col-sm-8 col-lg-6">
+      <img src="assets/hero.svg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy" width="700" height="500">
+    </div>
+    <div class="col-lg-6">
+      <h1 class="display-5 fw-bold lh-1 mb-3">Niste još učlanjeni?</h1>
+      <p class="lead">Fitnes je najmasovniji oblik korištenja slobodnog vremena u Europi s više od 56 miliona članova u 2016. godini i zaradom od 26.3 milijarde eura. Postanite jedan od nas!</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a (click)="redirekcijaNaShop()"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Učlanite se!</button></a>
+        <a (click)="redirekcijaNaShop()"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Pogledajte ponude</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Suplementi-->
+
+<div class="container px-4 py-5" id="custom-cards">
+  <h2 class="pb-2 border-bottom">Kupite neki od suplemenata iz naše ponude</h2>
+
+  <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+    <div class="col" style="height: 400px;">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('assets/kreatin.webp'); background-size: cover;">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+        </div>
+      </div>
+    </div>
+
+    <div class="col" style="height: 400px;">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('assets/protein.jpg'); background-size: cover;">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+        </div>
+      </div>
+    </div>
+
+    <div class="col" style="height: 400px;">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('assets/preworkout.jpg'); background-size: cover;">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Footer-->
+
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a routerLink="home" class="nav-link px-2 text-muted">Početna</a></li>
+      <li class="nav-item"><a routerLink="shop" class="nav-link px-2 text-muted">Shop</a></li>
+      <li class="nav-item"><a routerLink="clanarine" class="nav-link px-2 text-muted">Članarine</a></li>
+      <li class="nav-item"><a routerLink="grupniTrening" class="nav-link px-2 text-muted">Grupni trening</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Kontakt</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2023 Kenan Čopelj, Adin Maksumić</p>
+  </footer>
+</div>
+

@@ -10,6 +10,9 @@ import {FormsModule} from "@angular/forms";
 import { ShopComponent } from './shop/shop.component';
 import { LoginComponent } from './login/login.component';
 import {AutorizacijaLoginProvjera} from "./_guards/autorizacija-login-provjera.service";
+import { ClanarineComponent } from './clanarine/clanarine.component';
+import { GrupniTreningComponent } from './grupni-trening/grupni-trening.component';
+import { KorpaComponent } from './korpa/korpa.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import {AutorizacijaLoginProvjera} from "./_guards/autorizacija-login-provjera.s
     NavComponent,
     HomeComponent,
     ShopComponent,
-    LoginComponent
+    LoginComponent,
+    ClanarineComponent,
+    GrupniTreningComponent,
+    KorpaComponent
   ],
   imports: [
     BrowserModule,

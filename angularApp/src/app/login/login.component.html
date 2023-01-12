@@ -51,7 +51,7 @@
 <button class="btn btn-primary" (click)="btnLogin()">Logiraj se</button>
 <br>
 <a routerLink="/registracija">Registracija</a>-->
-<body>
+<!--<body>
 <div class="center">
   <h1>Login</h1>
   <form method="post">
@@ -71,6 +71,23 @@
     </div>
   </form>
 </div>
-</body>
+</body>-->
+<div class="container d-flex justify-content-center ">
+<form class="needs-validation" novalidate="">
+  <div class="row">
+    <div class="col-12">
+      <label class="form-label">Korisnicko ime</label>
+      <input type="text" class="form-control" id="firstName" [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone:true}">
+    </div>
 
+    <div class="col-12">
+      <label class="form-label">Lozinka</label>
+      <input type="password" class="form-control" [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone:true}">
+    </div>
+  </div>
 
+  <hr class="my-4">
+
+  <button (click)="btnLogin()" class="w-50 btn btn-primary btn-lg" style="height: 50px;" type="submit">Potvrda</button>
+</form>
+</div>

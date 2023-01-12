@@ -20,7 +20,7 @@
 <!--do ovdje-->
 
 
-<nav  class="navbar navbar-expand-lg navbar-light bg-light" >
+<!--<nav  class="navbar navbar-expand-lg navbar-light bg-light" >
   <div class="container-fluid">
     <a class="navbar-brand" href="#"><img src="assets/logo.png" id="logo"></a>
 
@@ -62,4 +62,42 @@
 </nav>
 
 
-<router-outlet></router-outlet>
+
+
+<router-outlet></router-outlet>-->
+
+<!--Navigacija-->
+
+<div class="container">
+  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+      <img src="assets/logo.png" alt="" srcset="" width="50px" height="50px">
+    </a>
+
+    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+      <li><a routerLink="home" class="nav-link px-2 link-dark">Početna</a></li>
+      <li><a routerLink="shop" class="nav-link px-2 link-dark">Shop</a></li>
+      <li><a routerLink="clanarine" class="nav-link px-2 link-dark">Članarine</a></li>
+      <li><a routerLink="grupniTrening" class="nav-link px-2 link-dark">Grupni trening</a></li>
+      <li><a routerLink="korpa" class="nav-link px-2 link-dark">Kontakt</a></li>
+      <li class="nav-item dropdown" *ngIf="loginInfo().isLogiran" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarLogiraniKorisnikLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img class="profilna-slika" id="user" src="assets/user.png"> {{loginInfo().autentifikacijaToken.korisnickiNalog.korisnickoIme}}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarLogiraniKorisnikLink">
+          <li><a class="dropdown-item" routerLink="/postavke-profila">Postavke profila</a></li>
+          <li><a class="dropdown-item" (click)="logoutButton()">Odjava</a></li>
+        </ul>
+      </li>
+    </ul>
+
+
+
+    <div class="col-md-3 text-end"  *ngIf="!loginInfo().isLogiran">
+      <a routerLink="login"><button type="button" class="btn btn-outline-primary me-2">Login</button></a>
+      <button type="button" class="btn btn-primary">Registracija</button>
+    </div>
+
+
+  </header>
+</div>

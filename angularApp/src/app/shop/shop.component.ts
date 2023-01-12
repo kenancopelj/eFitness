@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shop',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class ShopComponent {
 
+  constructor(private router : Router) {
+  }
+
+  prebaciNaKorpu() {
+   this.router.navigateByUrl("/korpa")
+  }
 }
