@@ -15,6 +15,7 @@ namespace eFitnessAPI.Class
         [ForeignKey(nameof(kategorija))]
         public int kategorija_id { get; set; }
         public KategorijaSuplementa kategorija { get; set; }
-        public byte[] slika_base64 { get; set; }
+        public byte[]? slika_suplement_bytes { get; set; }
+        public string? slika_suplement_fs { get; set; }
     }
 }

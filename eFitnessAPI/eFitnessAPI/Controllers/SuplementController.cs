@@ -1,5 +1,6 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
+using eFitnessAPI.Helper;
 using eFitnessAPI.ViewModels.ClanarinaVM;
 using eFitnessAPI.ViewModels.SuplementVM;
 using Microsoft.AspNetCore.Http;
@@ -43,10 +44,18 @@ namespace eFitnessAPI.Controllers
                 rokTrajanja = x.rokTrajanja,
                 opis = x.opis,
                 cijena = x.cijena,
-                kategorija_id = x.kategorija_id
+                kategorija_id = x.kategorija_id,
+            
             };
             dbContext.Suplement.Add(novi);
             dbContext.SaveChanges();
+
+            if (!string.IsNullOrEmpty(x.slika_suplementa_base64))
+            {
+                byte[] nova_slika = x.slika_suplementa_base64.parseBase64();
+                Fajlovi.Snimi(nova_slika, Config.SlikeFolder + novi.id + ".png");
+            }
+
 
             return Ok(novi);
         }
@@ -82,6 +91,20 @@ namespace eFitnessAPI.Controllers
                 return BadRequest("pogresan ID");
 
             return Ok();
+        }
+
+        [HttpGet("{suplementID}")]
+        public ActionResult GetSlikaSuplementa(int suplementID)
+        {
+            Suplement suplement = dbContext.Suplement.Find(suplementID);
+
+            byte[] slika = Fajlovi.Ucitaj(Config.SlikeFolder + suplement.id + ".png");
+            
+            if (slika == null || slika.Length == 0)
+            {
+                slika = Fajlovi.Ucitaj(Config.SlikeFolder + "empty.png");
+            }
+            return File(slika, "image/png");
         }
 
     }

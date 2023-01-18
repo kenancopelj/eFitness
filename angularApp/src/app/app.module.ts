@@ -14,6 +14,7 @@ import { ClanarineComponent } from './clanarine/clanarine.component';
 import { GrupniTreningComponent } from './grupni-trening/grupni-trening.component';
 import { KorpaComponent } from './korpa/korpa.component';
 import { NovaClanarinaComponent } from './nova-clanarina/nova-clanarina.component';
+import { SuplementComponent } from './suplement/suplement.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NovaClanarinaComponent } from './nova-clanarina/nova-clanarina.componen
     ClanarineComponent,
     GrupniTreningComponent,
     KorpaComponent,
-    NovaClanarinaComponent
+    NovaClanarinaComponent,
+    SuplementComponent
   ],
   imports: [
     BrowserModule,
