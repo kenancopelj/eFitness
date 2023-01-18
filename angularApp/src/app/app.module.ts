@@ -13,6 +13,7 @@ import {AutorizacijaLoginProvjera} from "./_guards/autorizacija-login-provjera.s
 import { ClanarineComponent } from './clanarine/clanarine.component';
 import { GrupniTreningComponent } from './grupni-trening/grupni-trening.component';
 import { KorpaComponent } from './korpa/korpa.component';
+import { NovaClanarinaComponent } from './nova-clanarina/nova-clanarina.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { KorpaComponent } from './korpa/korpa.component';
     LoginComponent,
     ClanarineComponent,
     GrupniTreningComponent,
-    KorpaComponent
+    KorpaComponent,
+    NovaClanarinaComponent
   ],
   imports: [
     BrowserModule,

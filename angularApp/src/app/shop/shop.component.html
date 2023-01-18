@@ -3,8 +3,7 @@
 
 <div class="container" style="height: 50px;">
   <div class="row">
-
-    <div class="col-10">
+    <div class="col-9">
       <form class="w-100 me-3" role="search">
         <input type="search" class="form-control" placeholder="Unesite naziv suplementa..." aria-label="Search">
       </form>
@@ -15,7 +14,7 @@
       </a>
     </div>
     <div class="col">
-      <button *ngIf="loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" class="btn btn-sm btn-outline-primary">Dodaj novi</button>
+      <button *ngIf="loginInfo().autentifikacijaToken != null && loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" class="btn btn-sm btn-outline-primary">Dodaj novi</button>
     </div>
   </div>
 
@@ -47,38 +46,8 @@
 
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
+              <div class="container">
+                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="100%" style="">
                 <div class="card-body">
                   <h4>Gold standard WHEY</h4>
                   <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -92,97 +61,6 @@
               </div>
             </div>
 
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card shadow-sm">
-                <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="320">
-                <div class="card-body">
-                  <h4>Gold standard WHEY</h4>
-                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-success">Dodaj u korpu</button>
-                      <button type="button" class="btn btn-sm btn-outline-success">19.99KM</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

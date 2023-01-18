@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
+import {LoginInformacije} from "../_helpers/login-informacije";
+import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 
 @Component({
   selector: 'app-clanarine',
@@ -9,6 +11,8 @@ import {MojConfig} from "../moj-konfig";
   styleUrls: ['./clanarine.component.css']
 })
 export class ClanarineComponent implements OnInit{
+  vrsteClanarina: any = [];
+  odabraniClan: any;
 
   constructor(private router : Router, private httpKlijent : HttpClient) {
   }
@@ -21,7 +25,13 @@ export class ClanarineComponent implements OnInit{
     this.fetchVrsteClanarina();
   }
 
-  fetchVrsteClanarina() {
+  loginInfo():LoginInformacije {
+    return AutentifikacijaHelper.getLoginInfo();
+  }
 
+  fetchVrsteClanarina() {
+    this.httpKlijent.get(MojConfig.adresa_servera+"/VrstaClanarine/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.vrsteClanarina = x;
+    },(err)=>alert(err.error));
   }
 }

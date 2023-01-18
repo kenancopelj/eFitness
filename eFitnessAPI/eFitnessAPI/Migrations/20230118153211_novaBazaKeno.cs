@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eFitnessAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class nova : Migration
+    public partial class novaBazaKeno : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,7 +72,8 @@ namespace eFitnessAPI.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    cijena = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +90,8 @@ namespace eFitnessAPI.Migrations
                     rokTrajanja = table.Column<DateTime>(type: "datetime2", nullable: false),
                     opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     cijena = table.Column<double>(type: "float", nullable: false),
-                    kategorijaid = table.Column<int>(name: "kategorija_id", type: "int", nullable: false)
+                    kategorijaid = table.Column<int>(name: "kategorija_id", type: "int", nullable: false),
+                    slikabase64 = table.Column<byte[]>(name: "slika_base64", type: "varbinary(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -262,7 +264,6 @@ namespace eFitnessAPI.Migrations
                     prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     spol = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     datumRodjenja = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    jeLiClan = table.Column<bool>(type: "bit", nullable: false),
                     clanarinaid = table.Column<int>(name: "clanarina_id", type: "int", nullable: false)
                 },
                 constraints: table =>

@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230112232103_druga")]
-    partial class druga
+    [Migration("20230118153211_novaBazaKeno")]
+    partial class novaBazaKeno
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -253,6 +253,10 @@ namespace eFitnessAPI.Migrations
 
                     b.Property<DateTime>("rokTrajanja")
                         .HasColumnType("datetime2");
+
+                    b.Property<byte[]>("slika_base64")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("id");
 
