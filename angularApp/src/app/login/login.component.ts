@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
@@ -10,14 +10,16 @@ import {MojConfig} from "../moj-konfig";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements  OnInit{
 
   txtLozinka: any;
   txtKorisnickoIme: any;
+  suplementi: any=[];
 
   constructor(private httpKlijent: HttpClient, private router: Router) {
   }
   ngOnInit(): void {
+    this.fetchSuplemente();
   }
 
   btnLogin() {
@@ -39,4 +41,9 @@ export class LoginComponent {
       });
   }
 
+  fetchSuplemente() {
+    this.httpKlijent.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.suplementi=x;
+    },(err) => alert(err.error));
+  }
 }

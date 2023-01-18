@@ -72,7 +72,7 @@
   </form>
 </div>
 </body>-->
-<div class="container d-flex justify-content-center ">
+<!--<div class="container d-flex justify-content-center ">
 <form class="needs-validation" novalidate="">
   <div class="row">
     <div class="col-12">
@@ -90,4 +90,20 @@
 
   <button (click)="btnLogin()" class="w-50 btn btn-primary btn-lg" style="height: 50px;" type="submit">Potvrda</button>
 </form>
-</div>
+</div>-->
+
+<body class="text-center">
+<form class="form-signin">
+  <img class="mb-4" src="assets/logo.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
+         [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone:true}">
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
+         [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone:true}">
+  <div class="checkbox mb-3">
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="btnLogin()">Login</button>
+</form>
+
+
+</body>

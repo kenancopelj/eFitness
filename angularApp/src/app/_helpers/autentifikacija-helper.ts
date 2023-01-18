@@ -19,6 +19,7 @@ export class AutentifikacijaHelper {
       let loginInformacije:LoginInformacije = JSON.parse(x);
       if (loginInformacije==null)
         return new LoginInformacije();
+     // console.log(loginInformacije);
       return loginInformacije;
     }
     catch (e)
