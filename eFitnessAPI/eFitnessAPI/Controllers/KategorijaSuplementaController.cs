@@ -23,6 +23,7 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.KategorijaSuplementa
                 .Select(x => new KategorijaSuplementaGetAllVM
                 {
+                    id=x.id,
                     naziv_kategorije=x.naziv
                 }).ToList();
 

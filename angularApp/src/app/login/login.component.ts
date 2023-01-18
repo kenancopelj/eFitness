@@ -32,13 +32,18 @@ export class LoginComponent implements  OnInit{
         if (x.isLogiran) {
           AutentifikacijaHelper.setLoginInfo(x)
           this.router.navigateByUrl("/home");
-
+          alert("loginran");
         }
         else
         {
           AutentifikacijaHelper.setLoginInfo(null)
+
         }
-      });
+
+      },
+        (err)=>alert(err.error)
+      );
+
   }
 
   fetchSuplemente() {

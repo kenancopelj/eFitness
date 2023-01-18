@@ -14,7 +14,7 @@
       </a>
     </div>
     <div class="col">
-      <button *ngIf="loginInfo().autentifikacijaToken != null && loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" class="btn btn-sm btn-outline-primary">Dodaj novi</button>
+      <button *ngIf="loginInfo().autentifikacijaToken != null && loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" (click)="noviSuplementi()" class="btn btn-sm btn-outline-primary">Dodaj novi</button>
     </div>
   </div>
 
@@ -82,3 +82,6 @@
     <p class="text-center text-muted">© 2023 Kenan Čopelj, Adin Maksumić</p>
   </footer>
 </div>
+
+
+<app-suplement [noviSuplement]="odabraniSuplement"></app-suplement>

@@ -11,4 +11,8 @@ export class NovaClanarinaComponent implements OnInit{
 
   ngOnInit(): void {
   }
+
+  spasiPromjene() {
+
+  }
 }

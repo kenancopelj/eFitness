@@ -1,4 +1,4 @@
-<div
+<!--<div
   class="modal fade show"
   id="exampleModalLive"
   tabindex="-1"
@@ -10,34 +10,34 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">{{urediStudent.name}}</h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="urediStudent.prikazi=false"></button>
+        <h5 class="modal-title" id="exampleModalLiveLabel">{{novaClanarina.name}}</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="novaClanarina.prikazi=false"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
           <label class="form-label">Ime</label>
-          <input class="form-control" type="text" placeholder="Ime" [(ngModel)]="urediStudent.ime"/>
+          <input class="form-control" type="text" placeholder="Ime" [(ngModel)]="novaClanarina.ime"/>
         </div>
         <div class="mb-3">
           <label class="form-label">Prezime</label>
-          <input class="form-control" type="text" placeholder="Prezime" [(ngModel)]="urediStudent.prezime"/>
+          <input class="form-control" type="text" placeholder="Prezime" [(ngModel)]="novaClanarina.prezime"/>
         </div>
         <div class="mb-3">
           <label class="form-label">Br. indeksa</label>
-          <input class="form-control" type="text" placeholder="Br. indeksa" [(ngModel)]="urediStudent.broj_indeksa"/>
+          <input class="form-control" type="text" placeholder="Br. indeksa" [(ngModel)]="novaClanarina.broj_indeksa"/>
         </div>
         <div class="mb-3">
           <label class="form-label">Opština rođenja</label>
-          <select class="form-control" placeholder="Opština rođenja" [(ngModel)]="urediStudent.opstina_rodjenja_id">
+          <select class="form-control" placeholder="Opština rođenja" [(ngModel)]="novaClanarina.opstina_rodjenja_id">
             <option *ngFor="let opstina of opstine" value="{{opstina.id}}">{{opstina.opis}}</option>
           </select>
         </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="urediStudent.prikazi=false">Close</button>
+        <button type="button" class="btn btn-secondary" (click)="novaClanarina.prikazi=false">Close</button>
         <button type="button" class="btn btn-primary" (click)="spasiPromjene()">Save changes</button>
       </div>
     </div>
   </div>
-</div>
+</div>-->

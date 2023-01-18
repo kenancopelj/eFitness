@@ -54,6 +54,7 @@ namespace eFitnessAPI.Controllers
             {
                 byte[] nova_slika = x.slika_suplementa_base64.parseBase64();
                 Fajlovi.Snimi(nova_slika, Config.SlikeFolder + novi.id + ".png");
+                
             }
 
 
@@ -102,7 +103,7 @@ namespace eFitnessAPI.Controllers
             
             if (slika == null || slika.Length == 0)
             {
-                slika = Fajlovi.Ucitaj(Config.SlikeFolder + "empty.png");
+                slika = Fajlovi.Ucitaj(Config.SlikeFolder + "prva.png");
             }
             return File(slika, "image/png");
         }

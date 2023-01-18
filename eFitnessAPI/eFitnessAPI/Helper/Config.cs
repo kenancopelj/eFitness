@@ -6,6 +6,6 @@
 
         public static string Slike => "profile_images/";
         public static string SlikeURL => AplikacijURL + Slike;
-        public static string SlikeFolder => "wwwroot/" + Slike;
+        public static string SlikeFolder => "slike/" + Slike;
     }
 }

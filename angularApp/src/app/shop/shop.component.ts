@@ -12,6 +12,9 @@ import {MojConfig} from "../moj-konfig";
 })
 export class ShopComponent implements OnInit{
   kategorijeSuplemenata: any = [];
+  suplementi: any=[];
+  odabraniSuplement: any;
+
 
   constructor(private router : Router, private httpKlijent:HttpClient) {
   }
@@ -25,12 +28,31 @@ export class ShopComponent implements OnInit{
 
   ngOnInit(): void {
     this.fetchKategorijeSuplemenata();
+    this.fetchSuplementi();
   }
 
   fetchKategorijeSuplemenata() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaSuplementa/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.kategorijeSuplemenata=x;
     },(err)=>alert(err.error));
+  }
+
+  fetchSuplementi() {
+    this.httpKlijent.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.suplementi=x;
+    },(err)=>alert(err.error));
+  }
+
+  noviSuplementi(){
+    this.odabraniSuplement={
+      id:0,
+      naziv:"",
+      kategorija_id:1,
+      cijena:0,
+      rokTrajanja:new Date(),
+      slika_suplement_base64:"",
+      prikazi:true,
+    }
   }
 
 }

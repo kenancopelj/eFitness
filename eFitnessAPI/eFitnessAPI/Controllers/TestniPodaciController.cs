@@ -38,6 +38,15 @@ namespace eFitnessAPI.Controllers
             var  clan= new List<Clan>();
             var osoblje = new List<Osoblje>();
             var clanarina = new List<Clanarina>();
+            var kategorijeSup = new List<KategorijaSuplementa>();
+
+
+
+            kategorijeSup.Add(new KategorijaSuplementa { naziv = "Protein" });
+            kategorijeSup.Add(new KategorijaSuplementa { naziv = "Kreatin" });
+            kategorijeSup.Add(new KategorijaSuplementa { naziv = "Aminokiseline" });
+            kategorijeSup.Add(new KategorijaSuplementa { naziv = "Preworkout" });
+
 
 
 
@@ -55,11 +64,11 @@ namespace eFitnessAPI.Controllers
             clan.Add(new Clan { korisnikoIme = "kenancop", lozinka = "test", slika = Config.SlikeURL + "empty.png", ime = "Kenan", prezime = "Copelj", spol = "Muski", datumRodjenja = DateTime.Now, clanarina = clanarina[1] });
 
             osoblje.Add(new Osoblje { korisnikoIme = "edina", lozinka = "test", slika = Config.SlikeURL + "empty.png", ime = "Edina", prezime = "neznam", spol = "Zenski",datumRodjenja=DateTime.Now, datumZaposlenja=DateTime.Now, isAdmin=true });
-            
 
 
-            
 
+
+            dbContext.AddRange(kategorijeSup);
             dbContext.AddRange(osoblje);
             dbContext.AddRange(clan);
             dbContext.AddRange(clanarina);
