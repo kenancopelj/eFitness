@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
 import {SuplementGetAllVm} from "./suplement-get-all-vm";
 
@@ -35,6 +35,7 @@ export class SuplementComponent implements OnInit {
 
 
   generisi_preview() {
+
     // @ts-ignore
     var file = document.getElementById("slika-input").files[0];
     if (file) {
@@ -42,6 +43,7 @@ export class SuplementComponent implements OnInit {
       let this2=this;
       reader.onload = function () {
         this2.noviSuplement.slika_suplement_base64 = reader.result.toString();
+
       }
 
       reader.readAsDataURL(file);

@@ -1,7 +1,7 @@
 export class SuplementGetAllVm{
   id:number;
   naziv:string;
-  rokTrajanja:string;
+  rokTrajanja:Date;
   opis:string;
   cijena:number;
   kategorija_id:number;
