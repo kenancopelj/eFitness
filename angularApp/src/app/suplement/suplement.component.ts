@@ -30,13 +30,9 @@ export class SuplementComponent implements OnInit {
     });
   }
 
-  get_slika_base64_FS(s: SuplementGetAllVm) {
-    return "data:image/png;base64,"+ s.slika_suplement_base64;
-  }
 
-  get_slika_novi_request_FS(s: SuplementGetAllVm) {
-    return `${MojConfig.adresa_servera}/Suplement/GetSlikaSuplement/${s.id}`;
-  }
+
+
 
   generisi_preview() {
     // @ts-ignore
@@ -45,7 +41,7 @@ export class SuplementComponent implements OnInit {
       var reader = new FileReader();
       let this2=this;
       reader.onload = function () {
-        this2.noviSuplement.slika_korisnika_nova_base64 = reader.result.toString();
+        this2.noviSuplement.slika_suplement_base64 = reader.result.toString();
       }
 
       reader.readAsDataURL(file);

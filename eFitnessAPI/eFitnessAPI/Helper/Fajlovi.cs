@@ -9,12 +9,11 @@
             fs.Write(nova_slika, 0, nova_slika.Length);
         }
 
-        public static byte[] Ucitaj(string filename)
+        public static byte[] Ucitaj(string path)
         {
             try
             {
-                byte[] bytes = File.ReadAllBytes(filename);
-                return bytes;
+                return System.IO.File.ReadAllBytes(path);
             }
             catch (Exception e)
             {

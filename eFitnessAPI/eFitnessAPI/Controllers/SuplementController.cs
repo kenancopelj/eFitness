@@ -53,13 +53,15 @@ namespace eFitnessAPI.Controllers
             if (!string.IsNullOrEmpty(x.slika_suplementa_base64))
             {
                 byte[] nova_slika = x.slika_suplementa_base64.parseBase64();
-                Fajlovi.Snimi(nova_slika, Config.SlikeFolder + novi.id + ".png");
+                Fajlovi.Snimi(nova_slika, "slike/" + novi.id + ".png");
                 
             }
 
 
             return Ok(novi);
         }
+        
+       
 
         [HttpPut("{id}")]
         public ActionResult Update([FromBody] SuplemetAddVM x, int id)
@@ -97,15 +99,21 @@ namespace eFitnessAPI.Controllers
         [HttpGet("{suplementID}")]
         public ActionResult GetSlikaSuplementa(int suplementID)
         {
-            Suplement suplement = dbContext.Suplement.Find(suplementID);
+            //Suplement suplement = dbContext.Suplement.Find(suplementID);
 
-            byte[] slika = Fajlovi.Ucitaj(Config.SlikeFolder + suplement.id + ".png");
-            
-            if (slika == null || slika.Length == 0)
-            {
-                slika = Fajlovi.Ucitaj(Config.SlikeFolder + "prva.png");
-            }
-            return File(slika, "image/png");
+            //byte[] slika = Fajlovi.Ucitaj(Config.SlikeFolder + suplement.id + ".png");
+
+            //if (slika == null || slika.Length == 0)
+            //{
+            //    slika = Fajlovi.Ucitaj(Config.SlikeFolder + "prva.png");
+            //}
+            //return File(slika, "image/png");
+
+
+            byte[] bajtovi_slike = Fajlovi.Ucitaj("slike/" + suplementID + ".png")
+                                   ?? Fajlovi.Ucitaj("slike/prva.png");
+
+            return File(bajtovi_slike, "image/png");
         }
 
     }
