@@ -1,5 +1,5 @@
   <div class="container">
-    <button *ngIf="loginInfo().autentifikacijaToken != null && loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" class="btn btn-sm btn-outline-primary">Dodaj novi</button>
+    <button *ngIf="loginInfo().autentifikacijaToken != null && loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" class="btn btn-sm btn-outline-primary" (click)="napraviNovu()" >Dodaj novi</button>
   </div>
 <div class="container d-flex p-2">
   <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
@@ -36,4 +36,4 @@
   </div>
 </div>
 </div>
-  <app-nova-clanarina [novaClanarina]="odabraniClan" ></app-nova-clanarina>
+  <app-nova-clanarina [novaClanarina]="novaClanarina" (ucitaj)="this.fetchVrsteClanarina()" ></app-nova-clanarina>

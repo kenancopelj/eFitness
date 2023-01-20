@@ -12,7 +12,7 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 })
 export class ClanarineComponent implements OnInit{
   vrsteClanarina: any = [];
-  odabraniClan: any;
+  novaClanarina: any=[];
 
   constructor(private router : Router, private httpKlijent : HttpClient) {
   }
@@ -33,5 +33,13 @@ export class ClanarineComponent implements OnInit{
     this.httpKlijent.get(MojConfig.adresa_servera+"/VrstaClanarine/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.vrsteClanarina = x;
     },(err)=>alert(err.error));
+  }
+
+  napraviNovu() {
+    this.novaClanarina={
+      prikazi:true,
+      naziv:"",
+      cijena:0
+    }
   }
 }

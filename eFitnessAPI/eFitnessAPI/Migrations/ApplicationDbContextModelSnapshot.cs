@@ -251,12 +251,6 @@ namespace eFitnessAPI.Migrations
                     b.Property<DateTime>("rokTrajanja")
                         .HasColumnType("datetime2");
 
-                    b.Property<byte[]>("slika_suplement_bytes")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("slika_suplement_fs")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("id");
 
                     b.HasIndex("kategorija_id");

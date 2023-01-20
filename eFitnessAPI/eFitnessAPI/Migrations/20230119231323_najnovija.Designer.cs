@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230118164106_novaaa")]
-    partial class novaaa
+    [Migration("20230119231323_najnovija")]
+    partial class najnovija
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -253,12 +253,6 @@ namespace eFitnessAPI.Migrations
 
                     b.Property<DateTime>("rokTrajanja")
                         .HasColumnType("datetime2");
-
-                    b.Property<byte[]>("slika_suplement_bytes")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("slika_suplement_fs")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("id");
 

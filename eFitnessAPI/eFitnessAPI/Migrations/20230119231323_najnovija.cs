@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eFitnessAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class novaBazaKeno : Migration
+    public partial class najnovija : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -90,8 +90,7 @@ namespace eFitnessAPI.Migrations
                     rokTrajanja = table.Column<DateTime>(type: "datetime2", nullable: false),
                     opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     cijena = table.Column<double>(type: "float", nullable: false),
-                    kategorijaid = table.Column<int>(name: "kategorija_id", type: "int", nullable: false),
-                    slikabase64 = table.Column<byte[]>(name: "slika_base64", type: "varbinary(max)", nullable: false)
+                    kategorijaid = table.Column<int>(name: "kategorija_id", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
