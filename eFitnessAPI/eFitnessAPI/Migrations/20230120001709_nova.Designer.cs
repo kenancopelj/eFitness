@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230119231323_najnovija")]
-    partial class najnovija
+    [Migration("20230120001709_nova")]
+    partial class nova
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -50,9 +50,9 @@ namespace eFitnessAPI.Controllers
             dbContext.Suplement.Add(novi);
             dbContext.SaveChanges();
 
-            if (!string.IsNullOrEmpty(x.slika_suplementa_base64))
+            if (!string.IsNullOrEmpty(x.slika_suplementa_base63))
             {
-                byte[] nova_slika = x.slika_suplementa_base64.parseBase64();
+                byte[] nova_slika = x.slika_suplementa_base63.parseBase64();
                 Fajlovi.Snimi(nova_slika, "slike/" + novi.id + ".png");
                 
             }

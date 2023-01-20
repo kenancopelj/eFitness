@@ -12,7 +12,7 @@ import {SuplementGetAllVm} from "./suplement-get-all-vm";
 export class SuplementComponent implements OnInit {
   @Input()noviSuplement:any;
   kategorije: any=[];
-  slikaUrl:any;
+
   constructor(private router : Router, private httpKlijent:HttpClient) {
   }
 
@@ -38,8 +38,8 @@ export class SuplementComponent implements OnInit {
       var reader = new FileReader();
       let this2=this;
       reader.onload = function () {
-        this2.noviSuplement.slika_suplement_base64 = reader.result.toString();
-        this2.slikaUrl=reader.result.toString();
+        this2.noviSuplement.slika_suplement_base63 = reader.result.toString();
+
       }
 
       reader.readAsDataURL(file);
@@ -47,9 +47,9 @@ export class SuplementComponent implements OnInit {
   }
 
   dodajNovu() {
-    this.noviSuplement.slika_suplement_base64=this.slikaUrl;
-    console.log(this.slikaUrl);
-    this.httpKlijent.post(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
+
+    console.log(this.noviSuplement.slika_suplement_base64);
+    this.httpKlijent.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
       this.noviSuplement=null;
     },(err)=>alert(err.error));
   }

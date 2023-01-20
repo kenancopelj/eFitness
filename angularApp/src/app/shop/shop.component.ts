@@ -4,6 +4,7 @@ import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {HttpClient} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
+import {SuplementGetAllVm} from "../suplement/suplement-get-all-vm";
 
 @Component({
   selector: 'app-shop',
@@ -12,8 +13,8 @@ import {MojConfig} from "../moj-konfig";
 })
 export class ShopComponent implements OnInit{
   kategorijeSuplemenata: any = [];
-  suplementi: any=[];
-  odabraniSuplement: any;
+  suplementi: any;
+  odabraniSuplement: SuplementGetAllVm;
 
 
   constructor(private router : Router, private httpKlijent:HttpClient) {
@@ -48,10 +49,11 @@ export class ShopComponent implements OnInit{
       id:0,
       naziv:"",
       kategorija_id:1,
+      opis:"",
       cijena:0,
       rokTrajanja:new Date(),
-      slika_suplement_base64:"",
-      prikazi:true,
+      slika_suplement_base63:"",
+
     }
   }
 

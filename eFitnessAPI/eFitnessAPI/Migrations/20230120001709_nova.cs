@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eFitnessAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class najnovija : Migration
+    public partial class nova : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
