@@ -5,6 +5,6 @@ export class SuplementGetAllVm{
   opis:string;
   cijena:number;
   kategorija_id:number;
-  slika_suplement_base63:string="";
+  slika_suplementa_base63:string="";
 
 }

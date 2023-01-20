@@ -52,7 +52,7 @@ export class ShopComponent implements OnInit{
       opis:"",
       cijena:0,
       rokTrajanja:new Date(),
-      slika_suplement_base63:"",
+      slika_suplementa_base63:"",
 
     }
   }

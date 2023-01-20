@@ -38,7 +38,7 @@ export class SuplementComponent implements OnInit {
       var reader = new FileReader();
       let this2=this;
       reader.onload = function () {
-        this2.noviSuplement.slika_suplement_base63 = reader.result.toString();
+        this2.noviSuplement.slika_suplementa_base63 = reader.result.toString();
 
       }
 
@@ -48,7 +48,7 @@ export class SuplementComponent implements OnInit {
 
   dodajNovu() {
 
-    console.log(this.noviSuplement.slika_suplement_base64);
+    console.log(this.noviSuplement.slika_suplementa_base63);
     this.httpKlijent.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
       this.noviSuplement=null;
     },(err)=>alert(err.error));
