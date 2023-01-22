@@ -1,5 +1,7 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
+using eFitnessAPI.Helper;
+using eFitnessAPI.Migrations;
 using eFitnessAPI.ViewModels.GrupniTreningVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +24,7 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.GrupniTrening
                 .Select(x => new GrupniTreningGetAllVM
                 {
+                    id=x.id,
                     kategorija_id= x.kategorija_id,
                     naziv_kategorije=x.kategorija.naziv,
                     vrijeme_odrzavanja=x.vrijemeOdrzavanja
@@ -40,6 +43,12 @@ namespace eFitnessAPI.Controllers
 
             dbContext.Add(noviTrening);
             dbContext.SaveChanges();
+
+            if (!string.IsNullOrEmpty(x.slika_suplementa_base63))
+            {
+                byte[] nova_slika = x.slika_suplementa_base63.parseBase64();
+                Fajlovi.Snimi(nova_slika, "slikeGrupniTrening/" + noviTrening.id + ".png");
+            }
 
             return Ok(noviTrening);
         }
@@ -60,6 +69,16 @@ namespace eFitnessAPI.Controllers
                 return BadRequest("Pogresan ID");
 
             return Ok();
+        }
+
+        [HttpGet("{treningID}")]
+        public ActionResult GetSlikaGrupnogTreninga(int treningID)
+        {
+
+            byte[] bajtovi_slike = Fajlovi.Ucitaj("slikeGrupniTrening/" + treningID + ".png")
+                                   ?? Fajlovi.Ucitaj("slikeGrupniTrening/prva.png");
+
+            return File(bajtovi_slike, "image/png");
         }
 
     }

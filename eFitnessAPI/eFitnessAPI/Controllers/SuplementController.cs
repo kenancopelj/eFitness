@@ -24,11 +24,12 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.Suplement.
                 Select(x => new SuplementGetAllVM
                 {
+                    id=x.id,
                     naziv = x.naziv,
                     rokTrajanja = x.rokTrajanja,
                     opis = x.opis,
                     cijena = x.cijena,
-                    kategorija_id=x.kategorija_id
+                    kategorija_id=x.kategorija_id,
                 })
                 .ToList();
 

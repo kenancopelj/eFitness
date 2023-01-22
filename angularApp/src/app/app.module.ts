@@ -15,6 +15,7 @@ import { GrupniTreningComponent } from './grupni-trening/grupni-trening.componen
 import { KorpaComponent } from './korpa/korpa.component';
 import { NovaClanarinaComponent } from './nova-clanarina/nova-clanarina.component';
 import { SuplementComponent } from './suplement/suplement.component';
+import { NoviTreningComponent } from './novi-trening/novi-trening.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SuplementComponent } from './suplement/suplement.component';
     GrupniTreningComponent,
     KorpaComponent,
     NovaClanarinaComponent,
-    SuplementComponent
+    SuplementComponent,
+    NoviTreningComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,41 @@
+<div
+  class="modal fade show"
+  id="exampleModalLive"
+  tabindex="-1"
+  aria-labelledby="exampleModalLiveLabel"
+  aria-modal="true"
+  role="dialog"
+  style="display: block"
+  *ngIf="this.napraviNovi!=null"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Dodaj novi suplement</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="napraviNovi=null"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Kategorija suplementa</label>
+          <select class="form-control"  [(ngModel)]="napraviNovi.kategorija_id">
+            <option *ngFor="let kategorija of this.kategorijeTreninga" value="{{kategorija.id}}">{{kategorija.naziv_kategorije}}</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Opis</label>
+          <input class="form-control" type="date" placeholder="Datum" [(ngModel)]="napraviNovi.vrijeme_odrzavanja"/>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Nova slika</label>
+          <input class="form-control" id="slika-input" type="file"  accept="image/*" (change)="generisi_preview()" />
+          <img  style="max-width: 100%; height: 200px"  src="{{napraviNovi.slika_suplementa_base63}}">
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" (click)="napraviNovi=null">Close</button>
+        <button type="button" class="btn btn-primary" (click)="dodajNovi()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

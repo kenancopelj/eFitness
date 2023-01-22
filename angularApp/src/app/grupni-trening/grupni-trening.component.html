@@ -1,5 +1,8 @@
 <!--Glavni-->
 <div class="container col-xxl-8 px-4 py-5">
+    <div class="container">
+      <button *ngIf="loginInfo().autentifikacijaToken != null && loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" (click)="NapraviNoviTrening()" class="btn btn-sm btn-outline-primary">Dodaj novi</button>
+    </div>
   <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
     <div class="col-lg-6">
       <h1 class="display-5 fw-bold lh-1 mb-3">Grupni treninzi</h1>
@@ -19,18 +22,14 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
+        <div class="col" *ngFor="let x of this.grupniTreninzi">
           <div class="container">
-            <img src="assets/protein.jpg" alt="" srcset="" width="100%" height="100%" style="">
+            <img src="{{getSlikaById(x.id)}}" alt="" srcset="" width="100%" height="100%" style="">
             <div class="card-body">
-              <h4 class="text-center">Naziv treninga</h4>
+              <h4 class="text-center">{{x.naziv_kategorije}}</h4>
               <div class="col d-flex my-4">
                 <img class="px-5" src="assets/date.png">
-                <p class="card-text">Datum treninga</p>
-              </div>
-              <div class="col d-flex my-4">
-                <img class="px-5" src="assets/trener.png">
-                <p class="card-text">Trener</p>
+                <p class="card-text">{{x.vrijeme_odrzavanja}}</p>
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group w-100">
@@ -58,3 +57,8 @@
         <p class="text-center text-muted">© 2023 Kenan Čopelj, Adin Maksumić</p>
       </footer>
     </div>
+  </div>
+</div>
+
+
+<app-novi-trening [napraviNovi]="noviTrening" (ucitajTreninge)="this.fetchGrupneTreninge()"></app-novi-trening>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
@@ -12,7 +12,7 @@ import {SuplementGetAllVm} from "./suplement-get-all-vm";
 export class SuplementComponent implements OnInit {
   @Input()noviSuplement:any;
   kategorije: any=[];
-
+  @Output() ucitaj = new EventEmitter<void>();
   constructor(private router : Router, private httpKlijent:HttpClient) {
   }
 
@@ -26,10 +26,6 @@ export class SuplementComponent implements OnInit {
     });
   }
 
-
-
-
-
   generisi_preview() {
 
     // @ts-ignore
@@ -41,16 +37,19 @@ export class SuplementComponent implements OnInit {
         this2.noviSuplement.slika_suplementa_base63 = reader.result.toString();
 
       }
-
       reader.readAsDataURL(file);
     }
   }
 
-  dodajNovu() {
 
+  dodajNovu() {
     console.log(this.noviSuplement.slika_suplementa_base63);
     this.httpKlijent.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
       this.noviSuplement=null;
+      this.ucitaj.emit();
     },(err)=>alert(err.error));
   }
+
+
+
 }

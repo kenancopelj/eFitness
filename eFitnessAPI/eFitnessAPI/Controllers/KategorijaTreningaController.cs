@@ -1,5 +1,7 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
+using eFitnessAPI.Helper;
+using eFitnessAPI.Migrations;
 using eFitnessAPI.ViewModels.KategorijaSuplementaVM;
 using eFitnessAPI.ViewModels.KategorijaTreningaVM;
 using Microsoft.AspNetCore.Http;
@@ -23,6 +25,7 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.KategorijaTreninga
                 .Select(x => new KategorijaTreningaGetAllVM
                 {
+                    id=x.id,
                     naziv_kategorije=x.naziv
                 }).ToList();
 
@@ -39,6 +42,8 @@ namespace eFitnessAPI.Controllers
 
             dbContext.Add(novaKategorija);
             dbContext.SaveChanges();
+
+            
 
             return Ok(novaKategorija);
         }

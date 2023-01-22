@@ -15,6 +15,7 @@ export class ShopComponent implements OnInit{
   kategorijeSuplemenata: any = [];
   suplementi: any;
   odabraniSuplement: SuplementGetAllVm;
+  kategorijaID: any=0;
 
 
   constructor(private router : Router, private httpKlijent:HttpClient) {
@@ -30,6 +31,12 @@ export class ShopComponent implements OnInit{
   ngOnInit(): void {
     this.fetchKategorijeSuplemenata();
     this.fetchSuplementi();
+  }
+
+  getSuplementiPodaci(){
+    if(this.kategorijaID!=0)
+      return this.suplementi.filter(x=>x.kategorija_id==this.kategorijaID);
+    return this.suplementi;
   }
 
   fetchKategorijeSuplemenata() {
@@ -57,4 +64,17 @@ export class ShopComponent implements OnInit{
     }
   }
 
+  getSlikaById(x: number  ) {
+    return `${MojConfig.adresa_servera}/Suplement/GetSlikaSuplementa/${x}`;
+  }
+
+  obrisiSuplementById(id:number) {
+    this.httpKlijent.delete(MojConfig.adresa_servera+"/Suplement/Remove/"+id,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.fetchSuplementi();
+    },(err)=>alert(err.error));
+  }
+
+  urediSuplementById(id) {
+
+  }
 }
