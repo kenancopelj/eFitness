@@ -4,6 +4,6 @@
     {
         public string korisnicko_ime { get; set; }
         public string lozinka { get; set; }
-        public string slika { get; set; }
+        public string slika_korisnika_base63 { get; set; }
     }
 }

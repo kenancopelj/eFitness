@@ -5,6 +5,8 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {MojConfig} from "../moj-konfig";
 
+declare function porukaSuccess(a: string):any;
+declare function porukaError(a: string):any;
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -32,7 +34,7 @@ export class LoginComponent implements  OnInit{
         if (x.isLogiran) {
           AutentifikacijaHelper.setLoginInfo(x)
           this.router.navigateByUrl("/home");
-          alert("loginran");
+          porukaSuccess("Uspješan login");
         }
         else
         {
@@ -41,7 +43,7 @@ export class LoginComponent implements  OnInit{
         }
 
       },
-        (err)=>alert(err.error)
+        (err)=>porukaError(err.error)
       );
 
   }
@@ -49,6 +51,6 @@ export class LoginComponent implements  OnInit{
   fetchSuplemente() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.suplementi=x;
-    },(err) => alert(err.error));
+    },(err) => porukaError(err.error));
   }
 }

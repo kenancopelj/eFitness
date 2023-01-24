@@ -1,7 +1,10 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
+using eFitnessAPI.Helper;
 using eFitnessAPI.ViewModels;
 using eFitnessAPI.ViewModels.KorisnikVM;
+using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
+using FIT_Api_Examples.Modul0_Autentifikacija.Controllers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +18,29 @@ namespace eFitnessAPI.Controllers
         public KorisnikController(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public ActionResult GetTrenutni()
+        {
+            var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+
+            return Ok(new
+            {
+                id=trenutniKorisnik.id,
+                korisnickoIme = trenutniKorisnik.korisnikoIme,
+                lozinka = trenutniKorisnik.lozinka,
+            });
+        }
+
+        [HttpGet("{treningID}")]
+        public ActionResult GetSlikaKorisnika(int korisnikId)
+        {
+
+            byte[] bajtovi_slike = Fajlovi.Ucitaj("slikeKorisnika/" + korisnikId + ".png")
+                                   ?? Fajlovi.Ucitaj("slikeKorisnika/prva.png");
+
+            return File(bajtovi_slike, "image/png");
         }
 
 
@@ -38,11 +64,17 @@ namespace eFitnessAPI.Controllers
             {
                 korisnikoIme = x.korisnicko_ime,
                 lozinka = x.lozinka,
-                slika = x.slika
+                slika = x.slika_korisnika_base63
             };
 
             dbContext.Korisnik.Add(noviKorisnik);
             dbContext.SaveChanges();
+
+            if (!string.IsNullOrEmpty(x.slika_korisnika_base63))
+            {
+                byte[] nova_slika = x.slika_korisnika_base63.parseBase64();
+                Fajlovi.Snimi(nova_slika, "slikeKorisnika/" + noviKorisnik.id + ".png");
+            }
 
             return Ok(noviKorisnik);
         }
@@ -55,7 +87,7 @@ namespace eFitnessAPI.Controllers
             {
                 korisnik.korisnikoIme = x.korisnicko_ime;
                 korisnik.lozinka = x.lozinka;
-                korisnik.slika = x.slika;
+                korisnik.slika = x.slika_korisnika_base63;
             }
             dbContext.SaveChanges();
 

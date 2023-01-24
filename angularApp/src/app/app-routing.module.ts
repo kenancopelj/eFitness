@@ -6,6 +6,8 @@ import {LoginComponent} from "./login/login.component";
 import {ClanarineComponent} from "./clanarine/clanarine.component";
 import {GrupniTreningComponent} from "./grupni-trening/grupni-trening.component";
 import {KorpaComponent} from "./korpa/korpa.component";
+import {RegistracijaComponent} from "./registracija/registracija.component";
+import {PostavkeProfilaComponent} from "./postavke-profila/postavke-profila.component";
 
 
 const routes: Routes = [
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'clanarine',component:ClanarineComponent},
   {path:'grupniTrening',component:GrupniTreningComponent},
-  {path:'korpa',component:KorpaComponent}
+  {path:'korpa',component:KorpaComponent},
+  {path:'registracija',component:RegistracijaComponent},
+  {path:'postavke-profila',component:PostavkeProfilaComponent}
 ];
 
 @NgModule({

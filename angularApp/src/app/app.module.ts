@@ -16,6 +16,8 @@ import { KorpaComponent } from './korpa/korpa.component';
 import { NovaClanarinaComponent } from './nova-clanarina/nova-clanarina.component';
 import { SuplementComponent } from './suplement/suplement.component';
 import { NoviTreningComponent } from './novi-trening/novi-trening.component';
+import { RegistracijaComponent } from './registracija/registracija.component';
+import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { NoviTreningComponent } from './novi-trening/novi-trening.component';
     KorpaComponent,
     NovaClanarinaComponent,
     SuplementComponent,
-    NoviTreningComponent
+    NoviTreningComponent,
+    RegistracijaComponent,
+    PostavkeProfilaComponent
   ],
   imports: [
     BrowserModule,

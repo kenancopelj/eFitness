@@ -1,0 +1,45 @@
+<div class="container d-flex">
+<div class="container py-5 w-25">
+  <img src="{{this.getSlikaById(trenutniKorisnik.id)}}" class="img-thumbnail" alt="..." width="400px" height="400px">
+  <div class="container py-5">
+    <div class="container">
+    <label style="text-align: center">Promijenite profilnu sliku</label>
+    </div>
+    <div class="container pt-3">
+    <input class="form-control" id="slika-input" type="file"  accept="image/*"  />
+    <img  style="max-width: 100%; height: 200px"  src="">
+    </div>
+  </div>
+</div>
+
+
+<div class="container py-5">
+  <label  class="form-label">Korisničko ime</label>
+  <div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">@</span>
+  <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.korisnickoIme" placeholder="Korisničko ime" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+
+  <label  class="form-label">Lozinka</label>
+<div class="input-group mb-3 d-flex">
+  <input disabled id="password" type="password" [value]="trenutniKorisnik.lozinka" class="form-control" placeholder="Lozinka"  aria-label="Recipient's username" aria-describedby="basic-addon2">
+    <a (click)="otkrijPassword()"><img src="assets/password-eye.png" width="30px" height="30px" style="margin-left: 5px"></a>
+</div>
+  <button type="button" class="btn btn-outline-primary">Uredi</button>
+</div>
+</div>
+
+<!--Footer-->
+
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a routerLink="home" class="nav-link px-2 text-muted">Početna</a></li>
+      <li class="nav-item"><a routerLink="shop" class="nav-link px-2 text-muted">Shop</a></li>
+      <li class="nav-item"><a routerLink="clanarine" class="nav-link px-2 text-muted">Članarine</a></li>
+      <li class="nav-item"><a routerLink="grupniTrening" class="nav-link px-2 text-muted">Grupni trening</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Kontakt</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2023 Kenan Čopelj, Adin Maksumić</p>
+  </footer>
+</div>

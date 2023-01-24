@@ -5,6 +5,9 @@ import {MojConfig} from "../moj-konfig";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {LoginInformacije} from "../_helpers/login-informacije";
 
+declare function porukaSuccess(a: string):any;
+declare function porukaError(a: string):any;
+
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -22,6 +25,7 @@ export class NavComponent {
       .subscribe((x: any) => {
         this.router.navigateByUrl("/login");
       });
+    porukaSuccess("Uspješan logout!")
   }
 
   loginInfo():LoginInformacije {
