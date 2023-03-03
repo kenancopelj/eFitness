@@ -15,6 +15,7 @@ declare function porukaError(a: string):any;
 })
 export class PostavkeProfilaComponent implements OnInit{
   trenutniKorisnik: any=[];
+  odabraniKorisnik: any;
 
   constructor(private httpKlijent : HttpClient, private router : Router) {
   }
@@ -36,4 +37,5 @@ export class PostavkeProfilaComponent implements OnInit{
     let tip = btn.getAttribute('type');
     tip == 'password' ? btn.setAttribute('type','text'):btn.setAttribute('type','password');
   }
+
 }

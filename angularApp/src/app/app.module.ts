@@ -33,7 +33,7 @@ import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.co
     SuplementComponent,
     NoviTreningComponent,
     RegistracijaComponent,
-    PostavkeProfilaComponent
+    PostavkeProfilaComponent,
   ],
   imports: [
     BrowserModule,

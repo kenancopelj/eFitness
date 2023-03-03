@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'grupniTrening',component:GrupniTreningComponent},
   {path:'korpa',component:KorpaComponent},
   {path:'registracija',component:RegistracijaComponent},
-  {path:'postavke-profila',component:PostavkeProfilaComponent}
+  {path:'postavke-profila',component:PostavkeProfilaComponent},
 ];
 
 @NgModule({
