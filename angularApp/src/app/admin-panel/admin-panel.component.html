@@ -1,32 +1,129 @@
-<div class="list-group w-auto">
-  <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-    <img src="https://github.com/twbs.png" alt="twbs" class="rounded-circle flex-shrink-0" width="32" height="32">
-    <div class="d-flex gap-2 w-100 justify-content-between">
-      <div>
-        <h6 class="mb-0">List group item heading</h6>
-        <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+<div class="container">
+  <div class="py-5 text-center">
+    <svg width="50" height="50" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 6C7.65685 6 9 4.65685 9 3C9 1.34315 7.65685 0 6 0C4.34315 0 3 1.34315 3 3C3 4.65685 4.34315 6 6 6ZM8 3C8 4.10457 7.10457 5 6 5C4.89543 5 4 4.10457 4 3C4 1.89543 4.89543 1 6 1C7.10457 1 8 1.89543 8 3Z" fill="black"/>
+      <path d="M12 11C12 12 11 12 11 12H1C1 12 0 12 0 11C0 10 1 7 6 7C11 7 12 10 12 11ZM11 10.9965C10.9986 10.7497 10.8462 10.0104 10.1679 9.33211C9.51563 8.67985 8.2891 8 5.99999 8C3.71088 8 2.48435 8.67985 1.8321 9.33211C1.15375 10.0104 1.00142 10.7497 1 10.9965H11Z" fill="black"/>
+    </svg>
+    <h2>Admin panel</h2>
+  </div>
+  <div class="list-group w-auto">
+    <a (click)="Redirekcija('korisnici-panel')" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 6C7.65685 6 9 4.65685 9 3C9 1.34315 7.65685 0 6 0C4.34315 0 3 1.34315 3 3C3 4.65685 4.34315 6 6 6ZM8 3C8 4.10457 7.10457 5 6 5C4.89543 5 4 4.10457 4 3C4 1.89543 4.89543 1 6 1C7.10457 1 8 1.89543 8 3Z" fill="black"/>
+        <path d="M12 11C12 12 11 12 11 12H1C1 12 0 12 0 11C0 10 1 7 6 7C11 7 12 10 12 11ZM11 10.9965C10.9986 10.7497 10.8462 10.0104 10.1679 9.33211C9.51563 8.67985 8.2891 8 5.99999 8C3.71088 8 2.48435 8.67985 1.8321 9.33211C1.15375 10.0104 1.00142 10.7497 1 10.9965H11Z" fill="black"/>
+      </svg>
+
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Korisnici</h6>
+          <p class="mb-0 opacity-75">Upravljanje svim korisnicima.</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645L10.3536 7.64645C10.5488 7.84171 10.5488 8.15829 10.3536 8.35355L4.35355 14.3536C4.15829 14.5488 3.84171 14.5488 3.64645 14.3536C3.45118 14.1583 3.45118 13.8417 3.64645 13.6464L9.29289 8L3.64645 2.35355C3.45118 2.15829 3.45118 1.84171 3.64645 1.64645Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.64645 1.64645C7.84171 1.45118 8.15829 1.45118 8.35355 1.64645L14.3536 7.64645C14.5488 7.84171 14.5488 8.15829 14.3536 8.35355L8.35355 14.3536C8.15829 14.5488 7.84171 14.5488 7.64645 14.3536C7.45118 14.1583 7.45118 13.8417 7.64645 13.6464L13.2929 8L7.64645 2.35355C7.45118 2.15829 7.45118 1.84171 7.64645 1.64645Z" fill="black"/>
+        </svg>
+
       </div>
-      <small class="opacity-50 text-nowrap">now</small>
-    </div>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-    <img src="https://github.com/twbs.png" alt="twbs" class="rounded-circle flex-shrink-0" width="32" height="32">
-    <div class="d-flex gap-2 w-100 justify-content-between">
-      <div>
-        <h6 class="mb-0">Another title here</h6>
-        <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps to a new line.</p>
+    </a>
+    <a (click)="Redirekcija('suplementi-panel')" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" viewBox="0 0 14 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 1C8.38071 1 9.5 2.11929 9.5 3.5V4H4.5V3.5C4.5 2.11929 5.61929 1 7 1ZM10.5 4V3.5C10.5 1.567 8.933 0 7 0C5.067 0 3.5 1.567 3.5 3.5V4H0V14C0 15.1046 0.895431 16 2 16H12C13.1046 16 14 15.1046 14 14V4H10.5ZM1 5H13V14C13 14.5523 12.5523 15 12 15H2C1.44772 15 1 14.5523 1 14V5Z" fill="black"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Suplementi</h6>
+          <p class="mb-0 opacity-75">Upravljanje svim suplementima.</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645L10.3536 7.64645C10.5488 7.84171 10.5488 8.15829 10.3536 8.35355L4.35355 14.3536C4.15829 14.5488 3.84171 14.5488 3.64645 14.3536C3.45118 14.1583 3.45118 13.8417 3.64645 13.6464L9.29289 8L3.64645 2.35355C3.45118 2.15829 3.45118 1.84171 3.64645 1.64645Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.64645 1.64645C7.84171 1.45118 8.15829 1.45118 8.35355 1.64645L14.3536 7.64645C14.5488 7.84171 14.5488 8.15829 14.3536 8.35355L8.35355 14.3536C8.15829 14.5488 7.84171 14.5488 7.64645 14.3536C7.45118 14.1583 7.45118 13.8417 7.64645 13.6464L13.2929 8L7.64645 2.35355C7.45118 2.15829 7.45118 1.84171 7.64645 1.64645Z" fill="black"/>
+        </svg>
       </div>
-      <small class="opacity-50 text-nowrap">3d</small>
-    </div>
-  </a>
-  <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-    <img src="https://github.com/twbs.png" alt="twbs" class="rounded-circle flex-shrink-0" width="32" height="32">
-    <div class="d-flex gap-2 w-100 justify-content-between">
-      <div>
-        <h6 class="mb-0">Third heading</h6>
-        <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+    </a>
+    <a (click)="Redirekcija('treninzi-panel')" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 14C15 14 16 14 16 13C16 12 15 9 11 9C7 9 6 12 6 13C6 14 7 14 7 14H15ZM7.02235 13C7.01888 12.9996 7.01403 12.999 7.00815 12.998C7.00538 12.9975 7.00266 12.997 7.00001 12.9965C7.00146 12.7325 7.16687 11.9669 7.75926 11.2758C8.31334 10.6294 9.28269 10 11 10C12.7173 10 13.6867 10.6294 14.2407 11.2758C14.8331 11.9669 14.9985 12.7325 15 12.9965C14.9973 12.997 14.9946 12.9975 14.9919 12.998C14.986 12.999 14.9811 12.9996 14.9777 13H7.02235Z" fill="black"/>
+        <path d="M11 7C12.1046 7 13 6.10457 13 5C13 3.89543 12.1046 3 11 3C9.89543 3 9 3.89543 9 5C9 6.10457 9.89543 7 11 7ZM14 5C14 6.65685 12.6569 8 11 8C9.34315 8 8 6.65685 8 5C8 3.34315 9.34315 2 11 2C12.6569 2 14 3.34315 14 5Z" fill="black"/>
+        <path d="M6.93593 9.27996C6.56813 9.16232 6.15954 9.07679 5.70628 9.03306C5.48195 9.01141 5.24668 9 5 9C1 9 0 12 0 13C0 13.6667 0.333333 14 1 14H5.21636C5.07556 13.7159 5 13.3791 5 13C5 11.9897 5.37724 10.958 6.08982 10.0962C6.33327 9.80174 6.61587 9.52713 6.93593 9.27996ZM4.92004 10.0005C4.32256 10.9136 4 11.9547 4 13H1C1 12.7393 1.16424 11.97 1.75926 11.2758C2.30468 10.6395 3.25249 10.0197 4.92004 10.0005Z" fill="black"/>
+        <path d="M1.5 5.5C1.5 3.84315 2.84315 2.5 4.5 2.5C6.15685 2.5 7.5 3.84315 7.5 5.5C7.5 7.15685 6.15685 8.5 4.5 8.5C2.84315 8.5 1.5 7.15685 1.5 5.5ZM4.5 3.5C3.39543 3.5 2.5 4.39543 2.5 5.5C2.5 6.60457 3.39543 7.5 4.5 7.5C5.60457 7.5 6.5 6.60457 6.5 5.5C6.5 4.39543 5.60457 3.5 4.5 3.5Z" fill="black"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Grupni treninzi</h6>
+          <p class="mb-0 opacity-75">Upravljanje svim grupnim treninzima.</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645L10.3536 7.64645C10.5488 7.84171 10.5488 8.15829 10.3536 8.35355L4.35355 14.3536C4.15829 14.5488 3.84171 14.5488 3.64645 14.3536C3.45118 14.1583 3.45118 13.8417 3.64645 13.6464L9.29289 8L3.64645 2.35355C3.45118 2.15829 3.45118 1.84171 3.64645 1.64645Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.64645 1.64645C7.84171 1.45118 8.15829 1.45118 8.35355 1.64645L14.3536 7.64645C14.5488 7.84171 14.5488 8.15829 14.3536 8.35355L8.35355 14.3536C8.15829 14.5488 7.84171 14.5488 7.64645 14.3536C7.45118 14.1583 7.45118 13.8417 7.64645 13.6464L13.2929 8L7.64645 2.35355C7.45118 2.15829 7.45118 1.84171 7.64645 1.64645Z" fill="black"/>
+        </svg>
       </div>
-      <small class="opacity-50 text-nowrap">1w</small>
-    </div>
-  </a>
+    </a>
+    <a  class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 14C15 14 16 14 16 13C16 12 15 9 11 9C7 9 6 12 6 13C6 14 7 14 7 14H15ZM7.02235 13C7.01888 12.9996 7.01403 12.999 7.00815 12.998C7.00538 12.9975 7.00266 12.997 7.00001 12.9965C7.00146 12.7325 7.16687 11.9669 7.75926 11.2758C8.31334 10.6294 9.28269 10 11 10C12.7173 10 13.6867 10.6294 14.2407 11.2758C14.8331 11.9669 14.9985 12.7325 15 12.9965C14.9973 12.997 14.9946 12.9975 14.9919 12.998C14.986 12.999 14.9811 12.9996 14.9777 13H7.02235Z" fill="black"/>
+        <path d="M11 7C12.1046 7 13 6.10457 13 5C13 3.89543 12.1046 3 11 3C9.89543 3 9 3.89543 9 5C9 6.10457 9.89543 7 11 7ZM14 5C14 6.65685 12.6569 8 11 8C9.34315 8 8 6.65685 8 5C8 3.34315 9.34315 2 11 2C12.6569 2 14 3.34315 14 5Z" fill="black"/>
+        <path d="M6.93593 9.27996C6.56813 9.16232 6.15954 9.07679 5.70628 9.03306C5.48195 9.01141 5.24668 9 5 9C1 9 0 12 0 13C0 13.6667 0.333333 14 1 14H5.21636C5.07556 13.7159 5 13.3791 5 13C5 11.9897 5.37724 10.958 6.08982 10.0962C6.33327 9.80174 6.61587 9.52713 6.93593 9.27996ZM4.92004 10.0005C4.32256 10.9136 4 11.9547 4 13H1C1 12.7393 1.16424 11.97 1.75926 11.2758C2.30468 10.6395 3.25249 10.0197 4.92004 10.0005Z" fill="black"/>
+        <path d="M1.5 5.5C1.5 3.84315 2.84315 2.5 4.5 2.5C6.15685 2.5 7.5 3.84315 7.5 5.5C7.5 7.15685 6.15685 8.5 4.5 8.5C2.84315 8.5 1.5 7.15685 1.5 5.5ZM4.5 3.5C3.39543 3.5 2.5 4.39543 2.5 5.5C2.5 6.60457 3.39543 7.5 4.5 7.5C5.60457 7.5 6.5 6.60457 6.5 5.5C6.5 4.39543 5.60457 3.5 4.5 3.5Z" fill="black"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Grupni treninzi</h6>
+          <p class="mb-0 opacity-75">Upravljanje svim grupnim treninzima.</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645L10.3536 7.64645C10.5488 7.84171 10.5488 8.15829 10.3536 8.35355L4.35355 14.3536C4.15829 14.5488 3.84171 14.5488 3.64645 14.3536C3.45118 14.1583 3.45118 13.8417 3.64645 13.6464L9.29289 8L3.64645 2.35355C3.45118 2.15829 3.45118 1.84171 3.64645 1.64645Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.64645 1.64645C7.84171 1.45118 8.15829 1.45118 8.35355 1.64645L14.3536 7.64645C14.5488 7.84171 14.5488 8.15829 14.3536 8.35355L8.35355 14.3536C8.15829 14.5488 7.84171 14.5488 7.64645 14.3536C7.45118 14.1583 7.45118 13.8417 7.64645 13.6464L13.2929 8L7.64645 2.35355C7.45118 2.15829 7.45118 1.84171 7.64645 1.64645Z" fill="black"/>
+        </svg>
+      </div>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 14C15 14 16 14 16 13C16 12 15 9 11 9C7 9 6 12 6 13C6 14 7 14 7 14H15ZM7.02235 13C7.01888 12.9996 7.01403 12.999 7.00815 12.998C7.00538 12.9975 7.00266 12.997 7.00001 12.9965C7.00146 12.7325 7.16687 11.9669 7.75926 11.2758C8.31334 10.6294 9.28269 10 11 10C12.7173 10 13.6867 10.6294 14.2407 11.2758C14.8331 11.9669 14.9985 12.7325 15 12.9965C14.9973 12.997 14.9946 12.9975 14.9919 12.998C14.986 12.999 14.9811 12.9996 14.9777 13H7.02235Z" fill="black"/>
+        <path d="M11 7C12.1046 7 13 6.10457 13 5C13 3.89543 12.1046 3 11 3C9.89543 3 9 3.89543 9 5C9 6.10457 9.89543 7 11 7ZM14 5C14 6.65685 12.6569 8 11 8C9.34315 8 8 6.65685 8 5C8 3.34315 9.34315 2 11 2C12.6569 2 14 3.34315 14 5Z" fill="black"/>
+        <path d="M6.93593 9.27996C6.56813 9.16232 6.15954 9.07679 5.70628 9.03306C5.48195 9.01141 5.24668 9 5 9C1 9 0 12 0 13C0 13.6667 0.333333 14 1 14H5.21636C5.07556 13.7159 5 13.3791 5 13C5 11.9897 5.37724 10.958 6.08982 10.0962C6.33327 9.80174 6.61587 9.52713 6.93593 9.27996ZM4.92004 10.0005C4.32256 10.9136 4 11.9547 4 13H1C1 12.7393 1.16424 11.97 1.75926 11.2758C2.30468 10.6395 3.25249 10.0197 4.92004 10.0005Z" fill="black"/>
+        <path d="M1.5 5.5C1.5 3.84315 2.84315 2.5 4.5 2.5C6.15685 2.5 7.5 3.84315 7.5 5.5C7.5 7.15685 6.15685 8.5 4.5 8.5C2.84315 8.5 1.5 7.15685 1.5 5.5ZM4.5 3.5C3.39543 3.5 2.5 4.39543 2.5 5.5C2.5 6.60457 3.39543 7.5 4.5 7.5C5.60457 7.5 6.5 6.60457 6.5 5.5C6.5 4.39543 5.60457 3.5 4.5 3.5Z" fill="black"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Grupni treninzi</h6>
+          <p class="mb-0 opacity-75">Upravljanje svim grupnim treninzima.</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645L10.3536 7.64645C10.5488 7.84171 10.5488 8.15829 10.3536 8.35355L4.35355 14.3536C4.15829 14.5488 3.84171 14.5488 3.64645 14.3536C3.45118 14.1583 3.45118 13.8417 3.64645 13.6464L9.29289 8L3.64645 2.35355C3.45118 2.15829 3.45118 1.84171 3.64645 1.64645Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.64645 1.64645C7.84171 1.45118 8.15829 1.45118 8.35355 1.64645L14.3536 7.64645C14.5488 7.84171 14.5488 8.15829 14.3536 8.35355L8.35355 14.3536C8.15829 14.5488 7.84171 14.5488 7.64645 14.3536C7.45118 14.1583 7.45118 13.8417 7.64645 13.6464L13.2929 8L7.64645 2.35355C7.45118 2.15829 7.45118 1.84171 7.64645 1.64645Z" fill="black"/>
+        </svg>
+      </div>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 14C15 14 16 14 16 13C16 12 15 9 11 9C7 9 6 12 6 13C6 14 7 14 7 14H15ZM7.02235 13C7.01888 12.9996 7.01403 12.999 7.00815 12.998C7.00538 12.9975 7.00266 12.997 7.00001 12.9965C7.00146 12.7325 7.16687 11.9669 7.75926 11.2758C8.31334 10.6294 9.28269 10 11 10C12.7173 10 13.6867 10.6294 14.2407 11.2758C14.8331 11.9669 14.9985 12.7325 15 12.9965C14.9973 12.997 14.9946 12.9975 14.9919 12.998C14.986 12.999 14.9811 12.9996 14.9777 13H7.02235Z" fill="black"/>
+        <path d="M11 7C12.1046 7 13 6.10457 13 5C13 3.89543 12.1046 3 11 3C9.89543 3 9 3.89543 9 5C9 6.10457 9.89543 7 11 7ZM14 5C14 6.65685 12.6569 8 11 8C9.34315 8 8 6.65685 8 5C8 3.34315 9.34315 2 11 2C12.6569 2 14 3.34315 14 5Z" fill="black"/>
+        <path d="M6.93593 9.27996C6.56813 9.16232 6.15954 9.07679 5.70628 9.03306C5.48195 9.01141 5.24668 9 5 9C1 9 0 12 0 13C0 13.6667 0.333333 14 1 14H5.21636C5.07556 13.7159 5 13.3791 5 13C5 11.9897 5.37724 10.958 6.08982 10.0962C6.33327 9.80174 6.61587 9.52713 6.93593 9.27996ZM4.92004 10.0005C4.32256 10.9136 4 11.9547 4 13H1C1 12.7393 1.16424 11.97 1.75926 11.2758C2.30468 10.6395 3.25249 10.0197 4.92004 10.0005Z" fill="black"/>
+        <path d="M1.5 5.5C1.5 3.84315 2.84315 2.5 4.5 2.5C6.15685 2.5 7.5 3.84315 7.5 5.5C7.5 7.15685 6.15685 8.5 4.5 8.5C2.84315 8.5 1.5 7.15685 1.5 5.5ZM4.5 3.5C3.39543 3.5 2.5 4.39543 2.5 5.5C2.5 6.60457 3.39543 7.5 4.5 7.5C5.60457 7.5 6.5 6.60457 6.5 5.5C6.5 4.39543 5.60457 3.5 4.5 3.5Z" fill="black"/>
+      </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">Grupni treninzi</h6>
+          <p class="mb-0 opacity-75">Upravljanje svim grupnim treninzima.</p>
+        </div>
+        <svg width="32" height="32" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M3.64645 1.64645C3.84171 1.45118 4.15829 1.45118 4.35355 1.64645L10.3536 7.64645C10.5488 7.84171 10.5488 8.15829 10.3536 8.35355L4.35355 14.3536C4.15829 14.5488 3.84171 14.5488 3.64645 14.3536C3.45118 14.1583 3.45118 13.8417 3.64645 13.6464L9.29289 8L3.64645 2.35355C3.45118 2.15829 3.45118 1.84171 3.64645 1.64645Z" fill="black"/>
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M7.64645 1.64645C7.84171 1.45118 8.15829 1.45118 8.35355 1.64645L14.3536 7.64645C14.5488 7.84171 14.5488 8.15829 14.3536 8.35355L8.35355 14.3536C8.15829 14.5488 7.84171 14.5488 7.64645 14.3536C7.45118 14.1583 7.45118 13.8417 7.64645 13.6464L13.2929 8L7.64645 2.35355C7.45118 2.15829 7.45118 1.84171 7.64645 1.64645Z" fill="black"/>
+        </svg>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a routerLink="home" class="nav-link px-2 text-muted">Početna</a></li>
+      <li class="nav-item"><a routerLink="shop" class="nav-link px-2 text-muted">Shop</a></li>
+      <li class="nav-item"><a routerLink="clanarine" class="nav-link px-2 text-muted">Članarine</a></li>
+      <li class="nav-item"><a routerLink="grupniTrening" class="nav-link px-2 text-muted">Grupni trening</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Kontakt</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2023 Kenan Čopelj, Adin Maksumić</p>
+  </footer>
 </div>

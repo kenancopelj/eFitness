@@ -7,6 +7,6 @@
         public DateTime rokTrajanja { get; set; }
         public string opis { get; set; }
         public double cijena { get; set; }
-        public int kategorija_id { get; set; }
+        public string kategorija { get; set; }
     }
 }

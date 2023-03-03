@@ -29,7 +29,7 @@ namespace eFitnessAPI.Controllers
                     rokTrajanja = x.rokTrajanja,
                     opis = x.opis,
                     cijena = x.cijena,
-                    kategorija_id=x.kategorija_id,
+                    kategorija=x.kategorija.naziv
                 })
                 .ToList();
 

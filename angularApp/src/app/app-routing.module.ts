@@ -9,6 +9,9 @@ import {KorpaComponent} from "./korpa/korpa.component";
 import {RegistracijaComponent} from "./registracija/registracija.component";
 import {PostavkeProfilaComponent} from "./postavke-profila/postavke-profila.component";
 import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
+import {KorisniciPanelComponent} from "./korisnici-panel/korisnici-panel.component";
+import {SuplementiPanelComponent} from "./suplementi-panel/suplementi-panel.component";
+import {TreninziPanelComponent} from "./treninzi-panel/treninzi-panel.component";
 
 
 const routes: Routes = [
@@ -21,7 +24,10 @@ const routes: Routes = [
   {path:'korpa',component:KorpaComponent},
   {path:'registracija',component:RegistracijaComponent},
   {path:'postavke-profila',component:PostavkeProfilaComponent},
-  {path:'admin-panel',component:AdminPanelComponent}
+  {path:'admin-panel',component:AdminPanelComponent},
+  {path:'korisnici-panel',component:KorisniciPanelComponent},
+  {path:'suplementi-panel',component:SuplementiPanelComponent},
+  {path:'treninzi-panel',component:TreninziPanelComponent}
 ];
 
 @NgModule({

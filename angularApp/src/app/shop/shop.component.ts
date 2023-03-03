@@ -24,9 +24,6 @@ export class ShopComponent implements OnInit{
   prebaciNaKorpu() {
    this.router.navigateByUrl("/korpa")
   }
-  loginInfo():LoginInformacije {
-    return AutentifikacijaHelper.getLoginInfo();
-  }
 
   ngOnInit(): void {
     this.fetchKategorijeSuplemenata();

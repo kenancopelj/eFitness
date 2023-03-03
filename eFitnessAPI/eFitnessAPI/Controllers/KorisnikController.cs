@@ -50,6 +50,7 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.Korisnik
                 .Select(x => new KorisnikGetAllVM
                 {
+                    id=x.id,
                     korisnicko_ime=x.korisnikoIme,
                     slika=x.slika
                 })

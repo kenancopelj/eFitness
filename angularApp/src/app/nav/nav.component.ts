@@ -37,6 +37,6 @@ export class NavComponent {
   }
 
   redirectNaAdminPanel() {
-    
+    this.router.navigateByUrl("/admin-panel");
   }
 }
