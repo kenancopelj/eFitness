@@ -35,4 +35,8 @@ export class NavComponent {
   redirectNaLogin() {
     this.router.navigateByUrl("/login");
   }
+
+  redirectNaAdminPanel() {
+    
+  }
 }

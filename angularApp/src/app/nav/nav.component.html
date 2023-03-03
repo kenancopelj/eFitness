@@ -88,7 +88,7 @@
         <ul class="dropdown-menu" aria-labelledby="navbarLogiraniKorisnikLink">
           <li><a class="dropdown-item" routerLink="/postavke-profila">Postavke profila</a></li>
           <li class="nav-item dropdown" *ngIf="loginInfo().autentifikacijaToken.korisnickiNalog.isAdmin" >
-            <li><a class="dropdown-item">Admin panel</a></li>
+            <li><a class="dropdown-item" (click)="redirectNaAdminPanel()">Admin panel</a></li>
           <li><a class="dropdown-item" (click)="logoutButton()">Odjava</a></li>
         </ul>
       </li>

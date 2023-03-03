@@ -8,6 +8,7 @@ import {GrupniTreningComponent} from "./grupni-trening/grupni-trening.component"
 import {KorpaComponent} from "./korpa/korpa.component";
 import {RegistracijaComponent} from "./registracija/registracija.component";
 import {PostavkeProfilaComponent} from "./postavke-profila/postavke-profila.component";
+import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:'korpa',component:KorpaComponent},
   {path:'registracija',component:RegistracijaComponent},
   {path:'postavke-profila',component:PostavkeProfilaComponent},
+  {path:'admin-panel',component:AdminPanelComponent}
 ];
 
 @NgModule({

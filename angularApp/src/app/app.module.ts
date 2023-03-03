@@ -18,6 +18,7 @@ import { SuplementComponent } from './suplement/suplement.component';
 import { NoviTreningComponent } from './novi-trening/novi-trening.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PostavkeProfilaComponent } from './postavke-profila/postavke-profila.co
     NoviTreningComponent,
     RegistracijaComponent,
     PostavkeProfilaComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,
