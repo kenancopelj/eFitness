@@ -24,7 +24,7 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor="let x of this.grupniTreninzi">
           <div class="container">
-            <img src="{{getSlikaById(x.id)}}" alt="" srcset="" width="100%" height="100%" style="">
+            <img src="{{getSlikaById(x.id)}}" alt="" srcset="" width="100%" height="100%">
             <div class="card-body">
               <h4 class="text-center">{{x.naziv_kategorije}}</h4>
               <div class="col d-flex my-4">
@@ -43,20 +43,8 @@
       </div>
     </div>
 
-    <!--Footer-->
 
-    <div class="container mt-5">
-      <footer class="py-3 my-4">
-        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a routerLink="home" class="nav-link px-2 text-muted">Početna</a></li>
-          <li class="nav-item"><a routerLink="shop" class="nav-link px-2 text-muted">Shop</a></li>
-          <li class="nav-item"><a routerLink="clanarine" class="nav-link px-2 text-muted">Članarine</a></li>
-          <li class="nav-item"><a routerLink="grupniTrening" class="nav-link px-2 text-muted">Grupni trening</a></li>
-          <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Kontakt</a></li>
-        </ul>
-        <p class="text-center text-muted">© 2023 Kenan Čopelj, Adin Maksumić</p>
-      </footer>
-    </div>
+    
   </div>
 </div>
 
