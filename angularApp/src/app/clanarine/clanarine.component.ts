@@ -13,20 +13,25 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 export class ClanarineComponent implements OnInit{
   vrsteClanarina: any = [];
   novaClanarina: any=[];
-
+  
   constructor(private router : Router, private httpKlijent : HttpClient) {
   }
-
+  
   redirekcijaNaSuplemente() {
     this.router.navigateByUrl("/shop")
   }
-
+  
   ngOnInit(): void {
     this.fetchVrsteClanarina();
   }
-
+  
   loginInfo():LoginInformacije {
     return AutentifikacijaHelper.getLoginInfo();
+  }
+
+  novoUclanjenje(idClanarine: number) {
+    console.log(idClanarine)
+    this.router.navigate(['/novo-uclanjenje',{queryParams: {id: idClanarine}}]);
   }
 
   fetchVrsteClanarina() {

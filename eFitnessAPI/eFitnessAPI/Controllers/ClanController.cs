@@ -36,6 +36,8 @@ namespace eFitnessAPI.Controllers
         public ActionResult Add([FromBody] ClanAddVM x)
         {
 
+
+
             return Ok();
         }
 

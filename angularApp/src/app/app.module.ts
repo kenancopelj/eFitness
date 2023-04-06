@@ -23,6 +23,7 @@ import { KorisniciPanelComponent } from './korisnici-panel/korisnici-panel.compo
 import { SuplementiPanelComponent } from './suplementi-panel/suplementi-panel.component';
 import { TreninziPanelComponent } from './treninzi-panel/treninzi-panel.component';
 import { FooterComponent } from './footer/footer.component';
+import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FooterComponent } from './footer/footer.component';
     SuplementiPanelComponent,
     TreninziPanelComponent,
     FooterComponent,
+    NovoUclanjenjeComponent,
   ],
   imports: [
     BrowserModule,

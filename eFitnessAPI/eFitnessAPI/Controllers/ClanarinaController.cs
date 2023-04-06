@@ -1,6 +1,7 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
 using eFitnessAPI.ViewModels.ClanarinaVM;
+using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
@@ -39,8 +40,14 @@ namespace eFitnessAPI.Controllers
         [HttpPost]
         public ActionResult Add([FromBody] ClanarinaAddVM x)
         {
+            if (!HttpContext.GetLoginInfo().isLogiran)
+                return BadRequest("Nije logiran");
+
+            var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+
             var novi = new Clanarina()
             {
+                korisnik_id = trenutniKorisnik.id,
                 datumIsteka = x.datumIsteka,
                 datumKreiranja = x.datumKreiranja,
                 vrsta_clanarine_id = x.vrsta_clanarine_id,
@@ -55,7 +62,15 @@ namespace eFitnessAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult Update([FromBody] ClanarinaAddVM x,int id)
         {
-            var objekat = dbContext.Clanarina.Find(id);
+            if (!HttpContext.GetLoginInfo().isLogiran)
+                return BadRequest("Nije logiran");
+
+            var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+
+            var objekat = dbContext.Clanarina
+                .Where(x=> trenutniKorisnik.id == x.korisnik_id && id==x.id )
+                .First();
+
             if (objekat != null)
             {
                 objekat.datumKreiranja = x.datumKreiranja;

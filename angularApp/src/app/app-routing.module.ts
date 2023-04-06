@@ -12,6 +12,7 @@ import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 import {KorisniciPanelComponent} from "./korisnici-panel/korisnici-panel.component";
 import {SuplementiPanelComponent} from "./suplementi-panel/suplementi-panel.component";
 import {TreninziPanelComponent} from "./treninzi-panel/treninzi-panel.component";
+import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   {path:'admin-panel',component:AdminPanelComponent},
   {path:'korisnici-panel',component:KorisniciPanelComponent},
   {path:'suplementi-panel',component:SuplementiPanelComponent},
-  {path:'treninzi-panel',component:TreninziPanelComponent}
+  {path:'treninzi-panel',component:TreninziPanelComponent},
+  {path:'novo-uclanjenje',component:NovoUclanjenjeComponent}
 ];
 
 @NgModule({

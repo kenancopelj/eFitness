@@ -22,6 +22,7 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.VrstaClanarine.
                 Select(x => new VrstaClanarineVM
                 {
+                    Id = x.id,
                     naziv = x.naziv,
                     cijena=x.cijena
                 })
