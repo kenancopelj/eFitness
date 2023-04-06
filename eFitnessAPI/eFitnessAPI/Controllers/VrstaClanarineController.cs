@@ -31,6 +31,21 @@ namespace eFitnessAPI.Controllers
             return Ok(podaci);
         }
 
+        [HttpGet("{clanarinaId}")]
+        public ActionResult GetById(int clanarinaId)
+        {
+            var podaci = dbContext.VrstaClanarine
+                .Where(x=>x.id == clanarinaId)
+                .Select(x => new VrstaClanarineVM
+                {
+                   naziv = x.naziv,
+                   cijena= x.cijena
+                })
+                .FirstOrDefault();
+
+            return Ok(podaci);
+        }
+
         [HttpPost]
         public ActionResult Add([FromBody] VrstaClanarineVM x)
         {

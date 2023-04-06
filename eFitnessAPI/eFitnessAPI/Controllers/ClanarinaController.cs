@@ -43,15 +43,13 @@ namespace eFitnessAPI.Controllers
             if (!HttpContext.GetLoginInfo().isLogiran)
                 return BadRequest("Nije logiran");
 
-            var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
-
             var novi = new Clanarina()
             {
-                korisnik_id = trenutniKorisnik.id,
+                //korisnik_id = x.korisnik_id,
                 datumIsteka = x.datumIsteka,
-                datumKreiranja = x.datumKreiranja,
+                datumKreiranja = DateTime.Now,
                 vrsta_clanarine_id = x.vrsta_clanarine_id,
-                aktivna = x.aktivna
+                aktivna = true
             };
             dbContext.Clanarina.Add(novi);
             dbContext.SaveChanges();
@@ -68,7 +66,7 @@ namespace eFitnessAPI.Controllers
             var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
 
             var objekat = dbContext.Clanarina
-                .Where(x=> trenutniKorisnik.id == x.korisnik_id && id==x.id )
+                //.Where(x=> trenutniKorisnik.id == x.korisnik_id && id==x.id )
                 .First();
 
             if (objekat != null)

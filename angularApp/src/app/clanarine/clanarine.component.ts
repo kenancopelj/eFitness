@@ -31,7 +31,7 @@ export class ClanarineComponent implements OnInit{
 
   novoUclanjenje(idClanarine: number) {
     console.log(idClanarine)
-    this.router.navigate(['/novo-uclanjenje',{queryParams: {id: idClanarine}}]);
+    this.router.navigate(['/novo-uclanjenje',idClanarine])
   }
 
   fetchVrsteClanarina() {

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eFitnessAPI.Data;
 
@@ -11,9 +12,11 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230406202358_korisnikUClanarinu")]
+    partial class korisnikUClanarinu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +42,15 @@ namespace eFitnessAPI.Migrations
                     b.Property<DateTime>("datumKreiranja")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("korisnik_id")
+                        .HasColumnType("int");
+
                     b.Property<int>("vrsta_clanarine_id")
                         .HasColumnType("int");
 
                     b.HasKey("id");
+
+                    b.HasIndex("korisnik_id");
 
                     b.HasIndex("vrsta_clanarine_id");
 
@@ -394,11 +402,19 @@ namespace eFitnessAPI.Migrations
 
             modelBuilder.Entity("eFitnessAPI.Class.Clanarina", b =>
                 {
+                    b.HasOne("eFitnessAPI.Class.Korisnik", "korisnik")
+                        .WithMany()
+                        .HasForeignKey("korisnik_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("eFitnessAPI.Class.VrstaClanarine", "vrstaClanarine")
                         .WithMany()
                         .HasForeignKey("vrsta_clanarine_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("korisnik");
 
                     b.Navigation("vrstaClanarine");
                 });

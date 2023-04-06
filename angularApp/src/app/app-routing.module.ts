@@ -29,7 +29,7 @@ const routes: Routes = [
   {path:'korisnici-panel',component:KorisniciPanelComponent},
   {path:'suplementi-panel',component:SuplementiPanelComponent},
   {path:'treninzi-panel',component:TreninziPanelComponent},
-  {path:'novo-uclanjenje',component:NovoUclanjenjeComponent}
+  {path:'novo-uclanjenje/:id',component:NovoUclanjenjeComponent}
 ];
 
 @NgModule({

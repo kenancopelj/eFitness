@@ -2,23 +2,50 @@
     <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLiveLabel">Nova članarina</h5>
-            <button type="button" class="btn-close" aria-label="Close" ></button>
+            <h3 class="modal-title" id="exampleModalLiveLabel">Nova članarina</h3>
           </div>
           <div class="modal-body">
-            <div class="mb-3">
-              <label class="form-label">Naziv</label>
-              <input class="form-control" type="text" placeholder="Naziv" />
+            <div class="row">
+            <div class="mb-3 col-12">
+              <label class="form-label">Vrsta clanarine</label>
+              <input disabled [(ngModel)]="this.clanarinaNaziv"  class="form-control" type="text"/>
             </div>
-            <div class="mb-3">
-              <label class="form-label">Cijena</label>
-              <input class="form-control" type="text" placeholder="Cijena"/>
-            </div>
-    
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          
+          <div class="row">
+            <div class="mb-3 col-12">
+              <label class="form-label">Cijena</label>
+              <input disabled [(ngModel)]="this.clanarinaCijena"  class="form-control" type="text"/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-12">
+              <h5>Podaci o kartici</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mb-3 col-12">
+              <label class="form-label">Ime korisnika kartice</label>
+              <input class="form-control" type="text" placeholder="Ime i prezime"/>
+            </div>
+            <div class="mb-3 col-12">
+              <label class="form-label">Broj kartice</label>
+              <input class="form-control" type="text" placeholder="XXXXXXXXXXXXX"/>
+            </div>
+            <div class="mb-3 col-6">
+              <label class="form-label">Datum isteka</label>
+              <input class="form-control" type="date" data-date-format="mm-yyyy" placeholder="Datum isteka"/>
+            </div>
+            <div class="mb-3 col-6">
+              <label class="form-label">CVC broj</label>
+              <input class="form-control" type="text" placeholder="CVC"/>
+            </div>
+          </div>
+          
+        </div>
+          <div class="modal-footer buttons">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">Odustani</button>
+            <button type="button" class="btn btn-primary" (click)="Spasi()" >Potvrdi</button>
           </div>
         </div>
       </div>

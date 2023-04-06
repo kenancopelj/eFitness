@@ -2,6 +2,7 @@
 using eFitnessAPI.Data;
 using eFitnessAPI.ViewModels.ClanVM;
 using eFitnessAPI.ViewModels.KorisnikVM;
+using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -35,7 +36,8 @@ namespace eFitnessAPI.Controllers
         [HttpPost]
         public ActionResult Add([FromBody] ClanAddVM x)
         {
-
+            var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+           
 
 
             return Ok();

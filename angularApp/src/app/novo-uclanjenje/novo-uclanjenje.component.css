@@ -1,0 +1,6 @@
+.buttons button:nth-child(2){
+    margin-left: 2px;
+}
+.modal-title{
+    padding-bottom: 3rem !important;
+}

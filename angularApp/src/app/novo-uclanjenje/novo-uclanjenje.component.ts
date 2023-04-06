@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MojConfig } from '../moj-konfig';
+import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 
 @Component({
   selector: 'app-novo-uclanjenje',
@@ -8,15 +10,43 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./novo-uclanjenje.component.css']
 })
 export class NovoUclanjenjeComponent implements OnInit {
-
+  
   constructor(private router: Router,private route: ActivatedRoute,private httpKlijent : HttpClient)
   {}
-
+  
+  korisnikId: any;
   clanarinaId : any;
-
+  clanarinaNaziv :any;
+  clanarinaCijena :any;
+  
   ngOnInit(): void {
     this.clanarinaId = this.route.snapshot.paramMap.get('id');
     console.log(this.clanarinaId)
+    this.getVrstaClanarineById(this.clanarinaId);
+    this.korisnikId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;
+    console.log(this.korisnikId)
+  }
+
+  getVrstaClanarineById(clanarinaId: any) {
+    this.httpKlijent.get(MojConfig.adresa_servera+`/VrstaClanarine/GetById/${clanarinaId}`,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.clanarinaNaziv = x.naziv;
+      this.clanarinaCijena = x.cijena;
+      console.log(x)
+    },(err)=>alert(err.error));
+  }
+
+  Spasi() {
+    const novaClanarina = {
+      vrsta_clanarine_id : this.clanarinaCijena,
+      korisnik_id:this.korisnikId,
+      datumIsteka : new Date()
+    };
+    this.httpKlijent.post(`${MojConfig.adresa_servera}/Clanarina/Add`,novaClanarina,MojConfig.http_opcije()).subscribe((x:any)=>{
+        this.closeModal();
+    },(err)=>alert(err.error));
+  }
+  closeModal() {
+    this.router.navigateByUrl("/clanarine");
   }
 
 
