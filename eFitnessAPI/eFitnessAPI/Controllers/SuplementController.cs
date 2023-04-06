@@ -18,6 +18,9 @@ namespace eFitnessAPI.Controllers
             this.dbContext = dbContext;
         }
 
+
+
+
         [HttpGet]
         public ActionResult GetAll()
         {
