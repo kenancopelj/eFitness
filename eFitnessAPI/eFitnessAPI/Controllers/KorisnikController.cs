@@ -50,6 +50,8 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.Korisnik
                 .Select(x => new KorisnikGetAllVM
                 {
+                    ime=x.Ime,
+                    prezime=x.Prezime,
                     id=x.id,
                     korisnicko_ime=x.korisnikoIme,
                     slika=x.slika
@@ -89,10 +91,40 @@ namespace eFitnessAPI.Controllers
             var korisnik = dbContext.Korisnik.Find(id);
             if (korisnik != null)
             {
+                korisnik.Ime = x.Ime;
+                korisnik.Prezime = x.Prezime;
                 korisnik.korisnikoIme = x.korisnicko_ime;
                 korisnik.lozinka = x.lozinka;
                 korisnik.slika = x.slika_korisnika_base63;
             }
+
+
+            if (!string.IsNullOrEmpty(x.slika_korisnika_base63))
+            {
+                byte[] nova_slika = x.slika_korisnika_base63.parseBase64();
+                Fajlovi.Snimi(nova_slika, "slikeKorisnika/" + korisnik.id + ".png");
+            }
+
+            dbContext.SaveChanges();
+
+            return Ok(korisnik);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult UpdateKaoAdmin([FromBody] KorisnikUpdateKaoAdminVM x, int id)
+        {
+            var korisnik = dbContext.Korisnik.Find(id);
+            if (korisnik != null)
+            {
+                korisnik.Ime = x.Ime;
+                korisnik.Prezime = x.Prezime;
+                korisnik.korisnikoIme = x.korisnicko_ime;
+                
+            }
+
+
+            
+
             dbContext.SaveChanges();
 
             return Ok(korisnik);
