@@ -18,10 +18,6 @@ export class NovoUclanjenjeComponent implements OnInit {
   clanarinaId : any;
   clanarinaNaziv :any;
   clanarinaCijena :any;
-  clanIme:any;
-  clanPrezime :any;
-  clanSpol: any;
-  clanDatumRodjenja : any;
   
   ngOnInit(): void {
     this.clanarinaId = this.route.snapshot.paramMap.get('id');
@@ -44,10 +40,6 @@ export class NovoUclanjenjeComponent implements OnInit {
       vrsta_clanarine_id : this.clanarinaId,
       korisnik_id:this.korisnikId,
       datumIsteka : new Date(new Date().getFullYear(),new Date().getMonth()+1, new Date().getDay()),
-      ime : this.clanIme,
-      prezime : this.clanPrezime,
-      datumRodjenja : this.clanDatumRodjenja,
-      spol : +this.clanSpol
     };
     this.httpKlijent.post(`${MojConfig.adresa_servera}/Clanarina/Add`,novaClanarina,MojConfig.http_opcije()).subscribe((x:any)=>{
         this.closeModal();

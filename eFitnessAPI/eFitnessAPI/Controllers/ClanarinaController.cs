@@ -29,7 +29,13 @@ namespace eFitnessAPI.Controllers
                     datumIsteka = x.datumIsteka,
                     datumKreiranja = x.datumKreiranja,
                     vrsta_clanarine_id = x.vrsta_clanarine_id,
-                    aktivna = x.aktivna
+                    aktivna = x.aktivna,
+                    korisnikDto = new KorisnikDto
+                    {
+                        korisnikId = x.korisnik_id,
+                        Ime = x.korisnik.Ime,
+                        Prezime = x.korisnik.Prezime
+                    }
                 })
                 .ToList();
 
@@ -43,31 +49,18 @@ namespace eFitnessAPI.Controllers
             if (!HttpContext.GetLoginInfo().isLogiran)
                 return BadRequest("Nije logiran");
 
-            //var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+            var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
 
-            //var novaClanarina = new Clanarina()
-            //{
-            //    datumIsteka = x.datumIsteka,
-            //    datumKreiranja = DateTime.Now,
-            //    vrsta_clanarine_id = 1,
-            //    aktivna = true
-            //};
-            //dbContext.Clanarina.Add(novaClanarina);
-            //dbContext.SaveChanges();
-    
-            
-            //var noviClan = new Clan
-            //{
-            //    //id = x.korisnik_id,
-            //    Ime = x.ime,
-            //    Prezime = x.prezime,
-            //    spol_id = x.spolId,
-            //    datumRodjenja = x.datumRodjenja,
-            //    clanarina_id = novaClanarina.id
-            //};
-
-            //dbContext.Clan.Add(noviClan);
-            //dbContext.SaveChanges();
+            var novaClanarina = new Clanarina()
+            {
+                datumIsteka = x.datumIsteka,
+                datumKreiranja = DateTime.Now,
+                vrsta_clanarine_id = x.vrsta_clanarine_id,
+                korisnik_id = x.korisnik_id,
+                aktivna = true
+            };
+            dbContext.Clanarina.Add(novaClanarina);
+            dbContext.SaveChanges();
 
             return Ok();
         }

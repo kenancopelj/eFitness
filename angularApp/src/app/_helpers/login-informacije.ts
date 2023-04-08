@@ -16,6 +16,8 @@ export interface AutentifikacijaToken {
 
 export interface Korisnik {
   id:                 number;
+  ime:                string;
+  prezime:            string;
   korisnickoIme:      string;
   slika_korisnika:    string;
   isAdmin:            boolean;

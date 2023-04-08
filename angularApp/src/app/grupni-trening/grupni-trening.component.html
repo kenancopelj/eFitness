@@ -20,11 +20,12 @@
 <div class="col">
   <div class="album py-5 bg-light">
     <div class="container">
-
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor="let x of this.grupniTreninzi">
           <div class="container">
-            <img src="{{getSlikaById(x.id)}}" alt="" srcset="" width="100%" height="100%">
+            <div class="detalji-img">
+            <img src="{{getSlikaById(x.id)}}" alt="" srcset="" width="200" height="200">
+            </div>
             <div class="card-body">
               <h4 class="text-center">{{x.naziv_kategorije}}</h4>
               <div class="col d-flex my-4">
@@ -33,7 +34,7 @@
               </div>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group w-100">
-                  <button type="button" class="btn btn-sm btn-outline-primary">Prijavi se</button>
+                  <button type="button" class="btn btn-sm btn-outline-primary" (click)="Prijava(x.id)">Prijavi se</button>
                 </div>
               </div>
             </div>

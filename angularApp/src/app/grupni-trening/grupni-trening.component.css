@@ -1,0 +1,26 @@
+.slika-treninga{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detalji{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.detalji img{
+    border-radius: 24px;
+}
+.prijavi-se{
+    display: flex;
+    justify-content: center;
+}
+.content{
+    border-radius: 12px;
+    box-shadow: 10px 10px 14px -11px #000;
+}
+.detalji-img{
+    display: flex;
+    justify-content: center;
+}
