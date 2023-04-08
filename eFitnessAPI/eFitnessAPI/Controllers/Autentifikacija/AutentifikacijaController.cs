@@ -37,7 +37,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             if (logiraniKorisnik == null)
             {
                 //pogresan username i password
-                return new LoginInformacije(null);
+                return BadRequest("Pogrešan username ili password");
             }
 
             //2- generisati random string

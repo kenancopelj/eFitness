@@ -46,7 +46,7 @@ export class GrupniTreningComponent implements OnInit{
       datumPrijave : new Date()
     }
     this.httpKlijent.post(MojConfig.adresa_servera+"/PrijavaGrupnihTreninga/Add",body,MojConfig.http_opcije()).subscribe((x:any)=>{
-      this.notificationService.showSuccess('Uspješna prijava','Uspjeh')
+      this.notificationService.showSuccess('Uspješna prijava','Success')
    },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
 

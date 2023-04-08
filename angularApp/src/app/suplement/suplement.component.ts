@@ -49,7 +49,7 @@ export class SuplementComponent implements OnInit {
   dodajNovu() {
     console.log(this.noviSuplement.slika_suplementa_base63);
     this.httpKlijent.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
-      this.notificationService.showSuccess('Suplement uspješno dodan','')
+      this.notificationService.showSuccess('Suplement uspješno dodan','Success')
       this.noviSuplement=null;
       this.ucitaj.emit();
     },(err)=>this.notificationService.showError(err.error,'Greška'));

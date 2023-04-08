@@ -42,7 +42,7 @@ export class KorisniciPanelComponent implements OnInit{
     let id = x.id;
     console.log(id);
     this.httpKlijent.delete(MojConfig.adresa_servera+"/Korisnik/Remove/"+id,MojConfig.http_opcije()).subscribe((x=>{
-      porukaSuccess("Uspješno izbrisan korisnik");
+      this.notificationService.showSuccess("Uspješno izbrisan korisnik","Success");
       this.getPodaci();
     }),
     (err)=>this.notificationService.showError(err.error,'Greška')

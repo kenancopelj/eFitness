@@ -52,7 +52,7 @@ export class RegistracijaComponent implements OnInit{
           if (x.isLogiran) {
             AutentifikacijaHelper.setLoginInfo(x)
             this.router.navigateByUrl("/home");
-            this.notificationService.showSuccess("Uspješan login",'');
+            this.notificationService.showSuccess("Uspješan login",'Success');
           }
           else
           {

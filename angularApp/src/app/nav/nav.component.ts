@@ -29,7 +29,7 @@ export class NavComponent {
       .subscribe((x: any) => {
         this.router.navigateByUrl("/login");
       });
-    this.notificationService.showSuccess("Uspješan logout!",'')
+    this.notificationService.showSuccess("Uspješan logout!",'Success')
   }
 
   loginInfo():LoginInformacije {

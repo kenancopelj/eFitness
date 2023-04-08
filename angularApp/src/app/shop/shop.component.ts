@@ -5,6 +5,8 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {HttpClient} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
 import {SuplementGetAllVm} from "../suplement/suplement-get-all-vm";
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-shop',
@@ -18,7 +20,12 @@ export class ShopComponent implements OnInit{
   kategorijaID: any=0;
 
 
-  constructor(private router : Router, private httpKlijent:HttpClient) {
+  constructor(
+  private router : Router,
+  private httpKlijent:HttpClient,
+  private spinner : NgxSpinnerService,
+  private notificationService : NotificationService
+  ) {
   }
 
   prebaciNaKorpu() {
@@ -39,13 +46,13 @@ export class ShopComponent implements OnInit{
   fetchKategorijeSuplemenata() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaSuplementa/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.kategorijeSuplemenata=x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
   fetchSuplementi() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.suplementi=x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
   noviSuplementi(){
@@ -67,8 +74,9 @@ export class ShopComponent implements OnInit{
 
   obrisiSuplementById(id:number) {
     this.httpKlijent.delete(MojConfig.adresa_servera+"/Suplement/Remove/"+id,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.notificationService.showInfo('Suplement obrisan','Info')
       this.fetchSuplementi();
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
   urediSuplementById(id) {

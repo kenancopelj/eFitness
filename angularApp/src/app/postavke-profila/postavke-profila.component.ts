@@ -32,7 +32,7 @@ export class PostavkeProfilaComponent implements OnInit{
   getClanarine(){
     this.httpKlijent.get(`${MojConfig.adresa_servera}/GetByKorisnik`,MojConfig.http_opcije()).subscribe((x:any)=>{
       this.clanarineKorisnika = x;
-    })
+    },(err)=>this.notificationService.showInfo('Trenutno nemate aktivnih članarina','Info'))
   }
 
   getSlikaById(x: number  ) {
