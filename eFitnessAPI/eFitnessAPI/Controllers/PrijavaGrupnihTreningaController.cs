@@ -23,7 +23,7 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.PrijavaGrupniTrening.
                 Select(x => new PrijavaGrupnihTreningaGetAllVM
                 {
-                    clan_id=x.clan_id,
+                    korisnik_id=x.korisnik_id,
                     grupni_trening_id=x.grupni_trening_id,
                     datumPrijave=x.datumPrijave
                 })
@@ -38,7 +38,7 @@ namespace eFitnessAPI.Controllers
         {
             var novi = new PrijavaGrupniTrening()
             {
-                clan_id = x.clan_id,
+                korisnik_id = x.clan_id,
                 grupni_trening_id = x.grupni_trening_id,
                 datumPrijave = x.datumPrijave
             };
@@ -51,17 +51,16 @@ namespace eFitnessAPI.Controllers
         [HttpPut("{id}")]
         public ActionResult Update([FromBody] PrijavaGrupnihTreningaAddVM x, int id)
         {
-            var objekat = dbContext.PrijavaGrupniTrening.Find(id);
-            if (objekat != null)
-            {
-                objekat.clan_id = x.clan_id;
-                objekat.grupni_trening_id = x.grupni_trening_id;
-                objekat.datumPrijave = x.datumPrijave;
-            }
-            else
-                return BadRequest("pogresan ID");
-            dbContext.SaveChanges();
-            return Ok(objekat);
+            //var objekat = dbContext.PrijavaGrupniTrening.Find(id);
+            //if (objekat != null)
+            //{
+            //    objekat.grupni_trening_id = x.grupni_trening_id;
+            //    objekat.datumPrijave = x.datumPrijave;
+            //}
+            //else
+            //    return BadRequest("pogresan ID");
+            //dbContext.SaveChanges();
+            return Ok("Nije jos gotovo");
         }
 
         [HttpDelete("{id}")]

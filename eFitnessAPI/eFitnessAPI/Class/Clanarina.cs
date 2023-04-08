@@ -15,9 +15,10 @@ namespace eFitnessAPI.Class
         public int vrsta_clanarine_id { get; set; }
         public VrstaClanarine vrstaClanarine { get; set; }
         public bool aktivna { get; set; }
-        //[ForeignKey(nameof(korisnik))]
-        //public int korisnik_id { get; set; }
-        //public Korisnik korisnik { get; set; }
+
+        [ForeignKey(nameof(korisnik))]
+        public int korisnik_id { get; set; }
+        public Korisnik korisnik { get; set; }
 
     }
 }

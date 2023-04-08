@@ -8,7 +8,6 @@ namespace eFitnessAPI.Data
     {
         public DbSet<Korisnik> Korisnik { get; set; }
         public DbSet<Osoblje> Osoblje { get; set; }
-        public DbSet<Clan> Clan { get; set; }
         public DbSet<Clanarina> Clanarina { get; set; }
         public DbSet<GrupniTrening> GrupniTrening { get; set; }
         public DbSet<KategorijaTreninga> KategorijaTreninga { get; set; }

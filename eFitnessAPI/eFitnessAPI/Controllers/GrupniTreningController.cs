@@ -1,7 +1,6 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
 using eFitnessAPI.Helper;
-using eFitnessAPI.Migrations;
 using eFitnessAPI.ViewModels.GrupniTreningVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

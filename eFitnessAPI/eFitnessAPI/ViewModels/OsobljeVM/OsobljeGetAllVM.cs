@@ -6,6 +6,6 @@
         public string prezime { get; set; }
         public DateTime datumRodjenja { get; set; }
         public DateTime datumZaposlenja { get; set; }
-        public string spol { get; set; }
+        public int spolId { get; set; }
     }
 }

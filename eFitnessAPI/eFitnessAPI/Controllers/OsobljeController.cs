@@ -23,11 +23,11 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.Osoblje.
                 Select(x => new OsobljeGetAllVM
                 {
-                    ime = x.ime,
-                    prezime = x.prezime,
-                    datumRodjenja = x.datumRodjenja,
+                    ime = x.Ime,
+                    prezime = x.Prezime,
+                    datumRodjenja = x.DatumRodjenja,
                     datumZaposlenja = x.datumZaposlenja,
-                    spol = x.spol
+                    spolId = x.spol_id
                 })
                 .ToList();
             return Ok(podaci);
@@ -38,11 +38,10 @@ namespace eFitnessAPI.Controllers
         {
             var novi = new Osoblje()
             {
-                ime = x.ime,
-                prezime = x.prezime,
-                datumRodjenja = x.datumRodjenja,
+                Ime = x.ime,
+                Prezime = x.prezime,
                 datumZaposlenja = x.datumZaposlenja,
-                spol = x.spol
+                spol_id = x.spolId
             };
             dbContext.Osoblje.Add(novi);
             dbContext.SaveChanges();
@@ -56,11 +55,10 @@ namespace eFitnessAPI.Controllers
             var objekat = dbContext.Osoblje.Find(id);
             if (objekat != null)
             {
-                objekat.ime = x.ime;
-                objekat.prezime = x.prezime;
-                objekat.datumRodjenja = x.datumRodjenja;
+                objekat.Ime = x.ime;
+                objekat.Prezime = x.prezime;
+                objekat.DatumRodjenja = x.datumRodjenja;
                 objekat.datumZaposlenja = x.datumZaposlenja;
-                objekat.spol = x.spol;
             }
             else
                 return BadRequest("pogresan ID");

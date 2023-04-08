@@ -9,8 +9,8 @@
 
         public static byte[] parseBase64(this string base64)
         {
-            base64 = base64.Split(',')[1];
-            return Convert.FromBase64String(base64);
+                base64 = base64.Split(',')[1];
+                return Convert.FromBase64String(base64);
         }
     }
 }

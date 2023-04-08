@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eFitnessAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class nova : Migration
+    public partial class najnovija : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,6 +57,8 @@ namespace eFitnessAPI.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     korisnikoIme = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     lozinka = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     slika = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     isAdmin = table.Column<bool>(type: "bit", nullable: false)
@@ -64,6 +66,19 @@ namespace eFitnessAPI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Korisnik", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Spol",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Spol", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -100,7 +115,7 @@ namespace eFitnessAPI.Migrations
                         column: x => x.kategorijaid,
                         principalTable: "KategorijaSuplementa",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -120,7 +135,7 @@ namespace eFitnessAPI.Migrations
                         column: x => x.kategorijaid,
                         principalTable: "KategorijaTreninga",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,7 +155,7 @@ namespace eFitnessAPI.Migrations
                         column: x => x.kategorijaid,
                         principalTable: "KategorijaVjezbe",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,7 +177,7 @@ namespace eFitnessAPI.Migrations
                         column: x => x.KorisnickiNalogId,
                         principalTable: "Korisnik",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,11 +185,9 @@ namespace eFitnessAPI.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false),
-                    ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    datumRodjenja = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    datumZaposlenja = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    spol = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DatumRodjenja = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    spolid = table.Column<int>(name: "spol_id", type: "int", nullable: false),
+                    datumZaposlenja = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,7 +197,13 @@ namespace eFitnessAPI.Migrations
                         column: x => x.id,
                         principalTable: "Korisnik",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Osoblje_Spol_spol_id",
+                        column: x => x.spolid,
+                        principalTable: "Spol",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -196,17 +215,77 @@ namespace eFitnessAPI.Migrations
                     datumKreiranja = table.Column<DateTime>(type: "datetime2", nullable: false),
                     datumIsteka = table.Column<DateTime>(type: "datetime2", nullable: false),
                     vrstaclanarineid = table.Column<int>(name: "vrsta_clanarine_id", type: "int", nullable: false),
-                    aktivna = table.Column<bool>(type: "bit", nullable: false)
+                    aktivna = table.Column<bool>(type: "bit", nullable: false),
+                    korisnikid = table.Column<int>(name: "korisnik_id", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Clanarina", x => x.id);
                     table.ForeignKey(
+                        name: "FK_Clanarina_Korisnik_korisnik_id",
+                        column: x => x.korisnikid,
+                        principalTable: "Korisnik",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
                         name: "FK_Clanarina_VrstaClanarine_vrsta_clanarine_id",
                         column: x => x.vrstaclanarineid,
                         principalTable: "VrstaClanarine",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PrijavaGrupniTrening",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    korisnikid = table.Column<int>(name: "korisnik_id", type: "int", nullable: false),
+                    grupnitreningid = table.Column<int>(name: "grupni_trening_id", type: "int", nullable: false),
+                    datumPrijave = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PrijavaGrupniTrening", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_PrijavaGrupniTrening_GrupniTrening_grupni_trening_id",
+                        column: x => x.grupnitreningid,
+                        principalTable: "GrupniTrening",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_PrijavaGrupniTrening_Korisnik_korisnik_id",
+                        column: x => x.korisnikid,
+                        principalTable: "Korisnik",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.NoAction);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Favorites",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    korisnikid = table.Column<int>(name: "korisnik_id", type: "int", nullable: false),
+                    vjezbaid = table.Column<int>(name: "vjezba_id", type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Favorites", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_Favorites_Korisnik_korisnik_id",
+                        column: x => x.korisnikid,
+                        principalTable: "Korisnik",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_Favorites_Vjezba_vjezba_id",
+                        column: x => x.vjezbaid,
+                        principalTable: "Vjezba",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -227,13 +306,13 @@ namespace eFitnessAPI.Migrations
                         column: x => x.osobljeid,
                         principalTable: "Osoblje",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_ObjavaSuplementa_Suplement_suplement_id",
                         column: x => x.suplementid,
                         principalTable: "Suplement",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -251,88 +330,7 @@ namespace eFitnessAPI.Migrations
                         column: x => x.id,
                         principalTable: "Osoblje",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Clan",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false),
-                    ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    spol = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    datumRodjenja = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    clanarinaid = table.Column<int>(name: "clanarina_id", type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Clan", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Clan_Clanarina_clanarina_id",
-                        column: x => x.clanarinaid,
-                        principalTable: "Clanarina",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Clan_Korisnik_id",
-                        column: x => x.id,
-                        principalTable: "Korisnik",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Favorites",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    clanid = table.Column<int>(name: "clan_id", type: "int", nullable: false),
-                    vjezbaid = table.Column<int>(name: "vjezba_id", type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Favorites", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_Favorites_Clan_clan_id",
-                        column: x => x.clanid,
-                        principalTable: "Clan",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Favorites_Vjezba_vjezba_id",
-                        column: x => x.vjezbaid,
-                        principalTable: "Vjezba",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PrijavaGrupniTrening",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    clanid = table.Column<int>(name: "clan_id", type: "int", nullable: false),
-                    grupnitreningid = table.Column<int>(name: "grupni_trening_id", type: "int", nullable: false),
-                    datumPrijave = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PrijavaGrupniTrening", x => x.id);
-                    table.ForeignKey(
-                        name: "FK_PrijavaGrupniTrening_Clan_clan_id",
-                        column: x => x.clanid,
-                        principalTable: "Clan",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PrijavaGrupniTrening_GrupniTrening_grupni_trening_id",
-                        column: x => x.grupnitreningid,
-                        principalTable: "GrupniTrening",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
@@ -341,9 +339,9 @@ namespace eFitnessAPI.Migrations
                 column: "KorisnickiNalogId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Clan_clanarina_id",
-                table: "Clan",
-                column: "clanarina_id");
+                name: "IX_Clanarina_korisnik_id",
+                table: "Clanarina",
+                column: "korisnik_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clanarina_vrsta_clanarine_id",
@@ -351,9 +349,9 @@ namespace eFitnessAPI.Migrations
                 column: "vrsta_clanarine_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Favorites_clan_id",
+                name: "IX_Favorites_korisnik_id",
                 table: "Favorites",
-                column: "clan_id");
+                column: "korisnik_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Favorites_vjezba_id",
@@ -376,14 +374,19 @@ namespace eFitnessAPI.Migrations
                 column: "suplement_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PrijavaGrupniTrening_clan_id",
-                table: "PrijavaGrupniTrening",
-                column: "clan_id");
+                name: "IX_Osoblje_spol_id",
+                table: "Osoblje",
+                column: "spol_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PrijavaGrupniTrening_grupni_trening_id",
                 table: "PrijavaGrupniTrening",
                 column: "grupni_trening_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PrijavaGrupniTrening_korisnik_id",
+                table: "PrijavaGrupniTrening",
+                column: "korisnik_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Suplement_kategorija_id",
@@ -403,6 +406,9 @@ namespace eFitnessAPI.Migrations
                 name: "AutentifikacijaToken");
 
             migrationBuilder.DropTable(
+                name: "Clanarina");
+
+            migrationBuilder.DropTable(
                 name: "Favorites");
 
             migrationBuilder.DropTable(
@@ -415,13 +421,13 @@ namespace eFitnessAPI.Migrations
                 name: "Trener");
 
             migrationBuilder.DropTable(
+                name: "VrstaClanarine");
+
+            migrationBuilder.DropTable(
                 name: "Vjezba");
 
             migrationBuilder.DropTable(
                 name: "Suplement");
-
-            migrationBuilder.DropTable(
-                name: "Clan");
 
             migrationBuilder.DropTable(
                 name: "GrupniTrening");
@@ -436,16 +442,13 @@ namespace eFitnessAPI.Migrations
                 name: "KategorijaSuplementa");
 
             migrationBuilder.DropTable(
-                name: "Clanarina");
-
-            migrationBuilder.DropTable(
                 name: "KategorijaTreninga");
 
             migrationBuilder.DropTable(
                 name: "Korisnik");
 
             migrationBuilder.DropTable(
-                name: "VrstaClanarine");
+                name: "Spol");
         }
     }
 }

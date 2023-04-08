@@ -6,6 +6,25 @@
           </div>
           <div class="modal-body">
             <div class="row">
+              <div class="mb-3 col-6">
+                <label class="form-label">Ime</label>
+                <input  [(ngModel)]="this.clanIme"  class="form-control" type="text"/>
+              </div>
+              <div class="mb-3 col-6">
+                <label class="form-label">Prezime</label>
+                <input  [(ngModel)]="this.clanPrezime"  class="form-control" type="text"/>
+              </div>
+              <div class="mb-3 col-6">
+                <label class="form-label">Spol</label>
+                <select [(ngModel)]="this.clanSpol" class="form-select" aria-label="Default select example">
+                  <option value="1">M</option>
+                  <option value="2">Ž</option>
+                </select>
+              </div>
+              <div class="mb-3 col-6">
+                <label class="form-label">Datum rođenja</label>
+                <input  [(ngModel)]="this.clanDatumRodjenja"  class="form-control" type="date"/>
+              </div>
             <div class="mb-3 col-12">
               <label class="form-label">Vrsta clanarine</label>
               <input disabled [(ngModel)]="this.clanarinaNaziv"  class="form-control" type="text"/>

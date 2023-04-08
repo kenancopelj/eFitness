@@ -19,7 +19,7 @@ namespace eFitnessAPI.Controllers
         [HttpGet("{id}")]
         public ActionResult GetByClan(int id) 
         {
-            var podaci = dbContext.Favorites.Where(x => x.clan.id == id)
+            var podaci = dbContext.Favorites.Where(x => x.korisnik_id == id)
                 .ToList();
 
             return Ok(podaci);
@@ -30,7 +30,7 @@ namespace eFitnessAPI.Controllers
         {
             var noviFavorite = new Favorites
             {
-                clan_id=x.clanID,
+                korisnik_id=x.clanID,
                 vjezba_id=x.vjezbaID
             };
 
@@ -42,7 +42,7 @@ namespace eFitnessAPI.Controllers
         [HttpDelete]
         public ActionResult Remove([FromBody] FavoritesAddVM x)
         {
-            var favorite = dbContext.Favorites.Where(f => f.clan_id == x.clanID && f.vjezba_id == x.vjezbaID).First();
+            var favorite = dbContext.Favorites.Where(f => f.korisnik_id == x.clanID && f.vjezba_id == x.vjezbaID).First();
             if (favorite != null)
             {
                 dbContext.Remove(favorite);

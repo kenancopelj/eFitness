@@ -6,10 +6,10 @@ namespace eFitnessAPI.Class
     [Table("Osoblje")]
     public class Osoblje : Korisnik
     {
-        public string ime { get; set; }
-        public string prezime { get; set; }
-        public DateTime datumRodjenja { get; set; }
+        public DateTime DatumRodjenja { get; set; }
+        [ForeignKey(nameof(spol))]
+        public int spol_id { get; set; }
+        public Spol spol { get; set; }
         public DateTime datumZaposlenja { get; set; }
-        public string spol { get; set; }
     }
 }

@@ -8,9 +8,9 @@ namespace eFitnessAPI.Class
     {
         [Key]
         public int id { get; set; }
-        [ForeignKey(nameof(clan))]
-        public int clan_id { get; set; }
-        public Clan clan { get; set; }
+        [ForeignKey(nameof(korisnik))]
+        public int korisnik_id { get; set; }
+        public Korisnik korisnik { get; set; }
         [ForeignKey(nameof(grupniTrening))]
         public int grupni_trening_id { get; set; }
         public GrupniTrening grupniTrening { get; set; }

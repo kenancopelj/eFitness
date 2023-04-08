@@ -1,7 +1,6 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
 using eFitnessAPI.Helper;
-using eFitnessAPI.Migrations;
 using eFitnessAPI.ViewModels.KategorijaSuplementaVM;
 using eFitnessAPI.ViewModels.KategorijaTreningaVM;
 using Microsoft.AspNetCore.Http;

@@ -63,9 +63,12 @@ namespace eFitnessAPI.Controllers
         {
             var noviKorisnik = new Korisnik()
             {
+                Ime = x.Ime,
+                Prezime = x.Prezime,
                 korisnikoIme = x.korisnicko_ime,
                 lozinka = x.lozinka,
-                slika = x.slika_korisnika_base63
+                slika = x.slika_korisnika_base63,
+                isAdmin = x.isAdmin                
             };
 
             dbContext.Korisnik.Add(noviKorisnik);
