@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-novi-trening',
@@ -13,8 +14,11 @@ export class NoviTreningComponent implements OnInit{
   @Output() ucitajTreninge = new EventEmitter<void>();
   kategorijeTreninga: any;
 
-  constructor(private httpKlijent:HttpClient, private router : Router) {
-  }
+  constructor(
+    private httpKlijent:HttpClient,
+    private router : Router,
+    private notificationService : NotificationService
+    ){}
 
   ngOnInit(): void {
     this.fetchKategorijeTreninga();
@@ -23,7 +27,7 @@ export class NoviTreningComponent implements OnInit{
   fetchKategorijeTreninga() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaTreninga/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.kategorijeTreninga=x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
   generisi_preview() {
@@ -42,8 +46,9 @@ export class NoviTreningComponent implements OnInit{
 
   dodajNovi() {
     this.httpKlijent.post(MojConfig.adresa_servera+"/GrupniTrening/Add",this.napraviNovi,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.notificationService.showSuccess('Uspješno dodano','Success')
       this.napraviNovi=null;
       this.ucitajTreninge.emit();
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 }

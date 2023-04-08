@@ -6,6 +6,7 @@ import {MojConfig} from "../moj-konfig";
 import {KorisnikVM} from "./novi-korisnik-vm";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
+import { NotificationService } from '../notification.service';
 
 
 declare function porukaSuccess(a: string):any;
@@ -22,8 +23,11 @@ export class RegistracijaComponent implements OnInit{
   noviKorisnik : KorisnikVM=new KorisnikVM();
 
   korisnici:any=[];
-  constructor(private httpKlijent : HttpClient, private router : Router) {
-  }
+  constructor(
+  private httpKlijent : HttpClient,
+  private router : Router,
+  private notificationService : NotificationService
+  ){}
   ngOnInit(): void {
     this.fetchKorisnici();
   }
@@ -32,9 +36,9 @@ export class RegistracijaComponent implements OnInit{
       if(this.Validiraj())
       {
           this.httpKlijent.post<KorisnikVM>(MojConfig.adresa_servera+"/Korisnik/Add",this.noviKorisnik,MojConfig.http_opcije()).subscribe((x:any)=>{
-            porukaSuccess("Uspješna registracija!");
+            this.notificationService.showSuccess("Uspješna registracija!",'');
             this.LogirajSe(this.noviKorisnik);
-          },(err)=>alert(err.error));
+          },(err)=>this.notificationService.showError(err.error,'Greška'));
       }
   }
 
@@ -48,7 +52,7 @@ export class RegistracijaComponent implements OnInit{
           if (x.isLogiran) {
             AutentifikacijaHelper.setLoginInfo(x)
             this.router.navigateByUrl("/home");
-            porukaSuccess("Uspješan login");
+            this.notificationService.showSuccess("Uspješan login",'');
           }
           else
           {
@@ -56,7 +60,7 @@ export class RegistracijaComponent implements OnInit{
           }
 
         },
-        (err)=>porukaError(err.error)
+        (err)=>this.notificationService.showError(err.error,'Greška')
       );
   }
 
@@ -67,7 +71,7 @@ export class RegistracijaComponent implements OnInit{
   NePostoji() {
     for (let i=0; i< this.korisnici.length; i++)
       if (this.korisnici[i].korisnicko_ime == this.txtKorisnickoIme) {
-        porukaError("Vec postoji ovo korisnicko ime");
+        this.notificationService.showError("Vec postoji ovo korisnicko ime",'Greška');
         return true;
       }
     return false;
@@ -91,7 +95,7 @@ export class RegistracijaComponent implements OnInit{
   fetchKorisnici() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/Korisnik/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.korisnici=x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
 }

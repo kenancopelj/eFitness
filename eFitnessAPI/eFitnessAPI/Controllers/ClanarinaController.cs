@@ -41,6 +41,19 @@ namespace eFitnessAPI.Controllers
 
             return Ok(podaci);
         }
+        [HttpGet]
+        public ActionResult GetByKorisnik()
+        {
+            if (!HttpContext.GetLoginInfo().isLogiran)
+                return BadRequest("Nije logiran");
+
+            var korisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+
+            var podaci = dbContext.Clanarina.Where(x => x.korisnik_id == korisnik.id).ToList();
+
+            return Ok(podaci);
+
+        }
 
 
         [HttpPost]
@@ -50,6 +63,9 @@ namespace eFitnessAPI.Controllers
                 return BadRequest("Nije logiran");
 
             var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
+
+            if (dbContext.Clanarina.Any(c => c.korisnik_id == x.korisnik_id && c.aktivna))
+                return BadRequest("Već ste učlanjeni");
 
             var novaClanarina = new Clanarina()
             {

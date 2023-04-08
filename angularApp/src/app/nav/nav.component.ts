@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {LoginInformacije} from "../_helpers/login-informacije";
+import { NotificationService } from '../notification.service';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -15,8 +16,11 @@ declare function porukaError(a: string):any;
 })
 export class NavComponent {
 
-  constructor(private httpKlijent: HttpClient, private router: Router) {
-  }
+  constructor(
+  private httpKlijent: HttpClient,
+  private router: Router,
+  private notificationService : NotificationService
+  ){}
 
   logoutButton() {
     AutentifikacijaHelper.setLoginInfo(null);
@@ -25,7 +29,7 @@ export class NavComponent {
       .subscribe((x: any) => {
         this.router.navigateByUrl("/login");
       });
-    porukaSuccess("Uspješan logout!")
+    this.notificationService.showSuccess("Uspješan logout!",'')
   }
 
   loginInfo():LoginInformacije {

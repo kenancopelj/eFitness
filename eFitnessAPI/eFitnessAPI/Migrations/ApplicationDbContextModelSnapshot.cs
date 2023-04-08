@@ -215,11 +215,11 @@ namespace eFitnessAPI.Migrations
 
             modelBuilder.Entity("eFitnessAPI.Class.PrijavaGrupniTrening", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("datumPrijave")
                         .HasColumnType("datetime2");
@@ -230,7 +230,7 @@ namespace eFitnessAPI.Migrations
                     b.Property<int>("korisnik_id")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("grupni_trening_id");
 

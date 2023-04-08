@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230408161733_najnovija")]
-    partial class najnovija
+    [Migration("20230408210550_prijavaGrupni")]
+    partial class prijavaGrupni
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -218,11 +218,11 @@ namespace eFitnessAPI.Migrations
 
             modelBuilder.Entity("eFitnessAPI.Class.PrijavaGrupniTrening", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("datumPrijave")
                         .HasColumnType("datetime2");
@@ -233,7 +233,7 @@ namespace eFitnessAPI.Migrations
                     b.Property<int>("korisnik_id")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("grupni_trening_id");
 

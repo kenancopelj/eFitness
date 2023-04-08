@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
+import { NotificationService } from '../notification.service';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -16,7 +17,7 @@ export class KorisniciPanelComponent implements OnInit{
   odabraniKorisnik: any = null;
 
 
-  constructor(private httpKlijent : HttpClient, private router : Router) {
+  constructor(private httpKlijent : HttpClient, private router : Router, private notificationService : NotificationService) {
   }
 
   ngOnInit(): void {
@@ -32,9 +33,9 @@ export class KorisniciPanelComponent implements OnInit{
   SpasiPromjene() {
   this.httpKlijent.put(MojConfig.adresa_servera+"/Korisnik/UpdateKaoAdmin/"+this.odabraniKorisnik.id,this.odabraniKorisnik,MojConfig.http_opcije()).subscribe((x=>{
     this.odabraniKorisnik = null;
-    porukaSuccess("Uspješno ažuriran korisnik");
+    this.notificationService.showSuccess("Uspješno ažuriran korisnik",'Uspjeh');
   }),
-  (err)=>porukaError(err.error))
+  (err)=>this.notificationService.showError(err.error,'Greška'))
   }
 
   Obrisi(x:any){
@@ -42,8 +43,9 @@ export class KorisniciPanelComponent implements OnInit{
     console.log(id);
     this.httpKlijent.delete(MojConfig.adresa_servera+"/Korisnik/Remove/"+id,MojConfig.http_opcije()).subscribe((x=>{
       porukaSuccess("Uspješno izbrisan korisnik");
+      this.getPodaci();
     }),
-    (err)=>porukaError(err.error)
+    (err)=>this.notificationService.showError(err.error,'Greška')
     )
   }
 }

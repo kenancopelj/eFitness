@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
 import {SuplementGetAllVm} from "./suplement-get-all-vm";
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-suplement',
@@ -13,8 +14,11 @@ export class SuplementComponent implements OnInit {
   @Input()noviSuplement:any;
   kategorije: any=[];
   @Output() ucitaj = new EventEmitter<void>();
-  constructor(private router : Router, private httpKlijent:HttpClient) {
-  }
+  constructor(
+  private router : Router,
+  private httpKlijent:HttpClient,
+  private notificationService : NotificationService
+  ){}
 
   ngOnInit(): void {
     this.getKategorijeSuplementa();
@@ -45,9 +49,10 @@ export class SuplementComponent implements OnInit {
   dodajNovu() {
     console.log(this.noviSuplement.slika_suplementa_base63);
     this.httpKlijent.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.notificationService.showSuccess('Suplement uspješno dodan','')
       this.noviSuplement=null;
       this.ucitaj.emit();
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
 

@@ -7,7 +7,7 @@ namespace eFitnessAPI.Class
     public class PrijavaGrupniTrening
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [ForeignKey(nameof(korisnik))]
         public int korisnik_id { get; set; }
         public Korisnik korisnik { get; set; }

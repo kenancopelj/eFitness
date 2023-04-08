@@ -29,6 +29,22 @@
 </div>
 </div>
 
+<div class="container">
+  <div class="col-12">
+    <h4>Moje članarine</h4>
+    <div class="col-12" *ngIf="this.clanarineKorisnika == null">
+      <p>Trenutno nemate aktivnih članarina</p>
+    </div>
+    <div class="col-12" *ngIf="this.clanarineKorisnika != null">
+      <div class="mb-3 col-12">
+        <label class="form-label">Vrsta clanarine</label>
+        <input disabled [(ngModel)]="this.clanarineKorisnika" class="form-control" type="text"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!--Footer-->
 
 

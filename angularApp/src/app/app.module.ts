@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import { AppComponent } from './app.component';
@@ -24,6 +23,7 @@ import { SuplementiPanelComponent } from './suplementi-panel/suplementi-panel.co
 import { TreninziPanelComponent } from './treninzi-panel/treninzi-panel.component';
 import { FooterComponent } from './footer/footer.component';
 import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -51,8 +51,9 @@ import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.compo
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    BrowserModule,
+    ToastrModule.forRoot()
 
   ],
   providers: [

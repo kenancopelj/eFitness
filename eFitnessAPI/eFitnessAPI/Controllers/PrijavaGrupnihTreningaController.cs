@@ -2,6 +2,7 @@
 using eFitnessAPI.Data;
 using eFitnessAPI.ViewModels.ClanarinaVM;
 using eFitnessAPI.ViewModels.PrijavaGrupnihTreningaVM;
+using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,9 +37,16 @@ namespace eFitnessAPI.Controllers
         [HttpPost]
         public ActionResult Add([FromBody] PrijavaGrupnihTreningaAddVM x)
         {
+            if (!HttpContext.GetLoginInfo().isLogiran)
+                return BadRequest("Niste logirani!");
+
+            if (dbContext.PrijavaGrupniTrening.Any(p => p.korisnik_id == x.korisnik_id && p.grupni_trening_id == x.grupni_trening_id))
+                return BadRequest("Već ste prijavljeni na ovaj trening");
+
+
             var novi = new PrijavaGrupniTrening()
             {
-                korisnik_id = x.clan_id,
+                korisnik_id = x.korisnik_id,
                 grupni_trening_id = x.grupni_trening_id,
                 datumPrijave = x.datumPrijave
             };

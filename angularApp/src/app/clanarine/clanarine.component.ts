@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-clanarine',
@@ -14,8 +15,12 @@ export class ClanarineComponent implements OnInit{
   vrsteClanarina: any = [];
   novaClanarina: any=[];
   
-  constructor(private router : Router, private httpKlijent : HttpClient) {
-  }
+  constructor(
+    private router : Router,
+    private httpKlijent : HttpClient,
+    private notificationService : NotificationService
+    )
+    {}
   
   redirekcijaNaSuplemente() {
     this.router.navigateByUrl("/shop")
@@ -37,7 +42,7 @@ export class ClanarineComponent implements OnInit{
   fetchVrsteClanarina() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/VrstaClanarine/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.vrsteClanarina = x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
 
   napraviNovu() {

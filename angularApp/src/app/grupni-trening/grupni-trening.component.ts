@@ -4,9 +4,10 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
+import { NotificationService } from '../notification.service';
 
-declare function porukaSucces(a:string):any;
-declare function porukeError(a:string):any;
+declare function porukaSuccess(a:string):any;
+declare function porukaError(a:string):any;
 
 @Component({
   selector: 'app-grupni-trening',
@@ -19,13 +20,18 @@ export class GrupniTreningComponent implements OnInit{
   grupniTreninzi: any=[];
   korisnikId : any;
   
-  constructor(private httpKlijent: HttpClient, private router : Router) {
-  }
+  constructor(
+    private httpKlijent: HttpClient,
+    private router : Router,
+    private notificationService : NotificationService
+    )
+    {}
   
   ngOnInit(): void {
     this.fetchKategorijeTreninga();
     this.fetchGrupneTreninge();
-    this.korisnikId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId
+    this.korisnikId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;
+    console.log(this.korisnikId)
   }
   
   loginInfo():LoginInformacije {
@@ -40,8 +46,8 @@ export class GrupniTreningComponent implements OnInit{
       datumPrijave : new Date()
     }
     this.httpKlijent.post(MojConfig.adresa_servera+"/PrijavaGrupnihTreninga/Add",body,MojConfig.http_opcije()).subscribe((x:any)=>{
-      porukaSucces("Uspješna prijava na trening")
-   },(err)=>alert(err.error));
+      this.notificationService.showSuccess('Uspješna prijava','Uspjeh')
+   },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
 
 
@@ -56,7 +62,7 @@ export class GrupniTreningComponent implements OnInit{
   fetchKategorijeTreninga() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaTreninga/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
         this.kategorijeTreninga=x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
 
   getSlikaById(x: number  ) {
@@ -66,6 +72,6 @@ export class GrupniTreningComponent implements OnInit{
   fetchGrupneTreninge() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/GrupniTrening/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.grupniTreninzi=x;
-    },(err)=>alert(err.error));
+    },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
 }

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
+import { NotificationService } from '../notification.service';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -16,11 +17,22 @@ declare function porukaError(a: string):any;
 export class PostavkeProfilaComponent implements OnInit{
   trenutniKorisnik: any=[];
   odabraniKorisnik: any;
+  clanarineKorisnika : any;
 
-  constructor(private httpKlijent : HttpClient, private router : Router) {
-  }
+  constructor(
+  private httpKlijent : HttpClient,
+  private router : Router,
+  private notificationService : NotificationService
+  ){}
   ngOnInit(): void {
     this.fetchTrenutnog();
+    this.getClanarine();
+  }
+
+  getClanarine(){
+    this.httpKlijent.get(`${MojConfig.adresa_servera}/GetByKorisnik`,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.clanarineKorisnika = x;
+    })
   }
 
   getSlikaById(x: number  ) {
@@ -29,7 +41,7 @@ export class PostavkeProfilaComponent implements OnInit{
   fetchTrenutnog() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/Korisnik/GetTrenutni",MojConfig.http_opcije()).subscribe((x:any)=>{
         this.trenutniKorisnik=x;
-    },(err)=>porukaError(err.error()));
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
   otkrijPassword() {

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {MojConfig} from "../moj-konfig";
+import { NotificationService } from '../notification.service';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -18,7 +19,7 @@ export class LoginComponent implements  OnInit{
   txtKorisnickoIme: any;
   suplementi: any=[];
 
-  constructor(private httpKlijent: HttpClient, private router: Router) {
+  constructor(private httpKlijent: HttpClient, private router: Router, private notificationService : NotificationService) {
   }
   ngOnInit(): void {
     this.fetchSuplemente();
@@ -34,7 +35,7 @@ export class LoginComponent implements  OnInit{
         if (x.isLogiran) {
           AutentifikacijaHelper.setLoginInfo(x)
           this.router.navigateByUrl("/home");
-          porukaSuccess("Uspješan login");
+          this.notificationService.showSuccess("Uspješan login",'');
         }
         else
         {
@@ -43,7 +44,7 @@ export class LoginComponent implements  OnInit{
         }
 
       },
-        (err)=>porukaError(err.error)
+        (err)=>this.notificationService.showError(err.error,'Error')
       );
 
   }
@@ -51,6 +52,6 @@ export class LoginComponent implements  OnInit{
   fetchSuplemente() {
     this.httpKlijent.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
       this.suplementi=x;
-    },(err) => porukaError(err.error));
+    },(err) => this.notificationService.showError(err.error,'Greška'));
   }
 }
