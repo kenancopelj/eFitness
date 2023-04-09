@@ -8,7 +8,7 @@
   </div>
 </div>
 
-<div class="container">
+<!-- <div class="container">
   <table class="table">
     <thead class="table-dark">
     <tr>
@@ -30,5 +30,24 @@
     </tbody>
   </table>
 
+</div> -->
+
+<div class="container" *ngIf="this.treninziPodaci.length == 0">
+  <app-loader></app-loader>
 </div>
 
+<div class="w3-container" *ngFor="let x of treninziPodaci; let i=index">
+  <ul class="w3-ul w3-card-4" style="box-shadow:0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 2px 0 rgba(0,0,0,0.19)">
+    <li class="w3-bar">
+      <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right">×</span>
+      <span  class="w3-bar-item w3-button w3-white w3-xlarge w3-right">
+        <img src="../../assets/edit-icon.png" alt="">
+      </span>
+      <img src="../../assets/user.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
+      <div class="w3-bar-item">
+        <span class="w3-large">{{x.naziv_kategorije}}</span><br>
+        <span>{{x.vrijeme_odrzavanja | date}}</span>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -39,7 +39,6 @@
       </div>
     </div>
     <div class="col">
-      <div class="album py-5 bg-light">
         <div class="container">
 
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
@@ -61,6 +60,8 @@
 
           </div>
         </div>
+      <div class="col-12" style="padding-top:20%" *ngIf="this.suplementi==null || this.suplementi.length==0">
+        <app-loader></app-loader>
       </div>
     </div>
   </div>

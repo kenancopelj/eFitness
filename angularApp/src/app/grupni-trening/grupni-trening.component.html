@@ -17,12 +17,12 @@
 
 <!--Grupni treninzi-->
 
-<div class="col">
+<div class="col mx-3 shadow-sm p-3 mb-5 bg-white rounded">
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col" *ngFor="let x of this.grupniTreninzi">
-          <div class="container">
+          <!-- <div class="container">
             <div class="detalji-img">
             <img src="{{getSlikaById(x.id)}}" alt="" srcset="" width="200" height="200">
             </div>
@@ -38,9 +38,33 @@
                 </div>
               </div>
             </div>
+          </div> -->
+          <div class="card-list">
+            <article class="card">
+            <figure class="card-image">
+              <img src="{{getSlikaById(x.id)}}" alt="An orange painted blue, cut in half laying on a blue background" style="background-size: contain;" height="200px" width="100%"/>
+            </figure>
+            <div class="card-header">
+              <a href="/">{{x.naziv_kategorije}}</a>
+              <button class="icon-button" (click)="Prijava(x.id)">
+                +
+              </button>
+            </div>
+            <div class="card-footer">
+              <div class="card-meta card-meta--date">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" display="block" id="Calendar">
+                  <rect x="2" y="4" width="20" height="18" rx="4" />
+                  <path d="M8 2v4" />
+                  <path d="M16 2v4" />
+                  <path d="M2 10h20" />
+                </svg>
+                {{x.vrijeme_odrzavanja | date}}
+              </div>
+            </div>
+          </article>
           </div>
         </div>
-
+        
       </div>
     </div>
 

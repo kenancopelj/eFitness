@@ -33,7 +33,7 @@
   <div class="col-12">
     <h4>Moje članarine</h4>
     <div class="col-12" *ngIf="this.clanarineKorisnika == null">
-      <p>Trenutno nemate aktivnih članarina</p>
+      <app-loader></app-loader>
     </div>
     <div class="col-12" *ngIf="this.clanarineKorisnika != null">
       <div class="mb-3 col-12">

@@ -1,0 +1,5 @@
+.no-data{
+    height: 300px;
+    background: url(../../assets/no-data.svg) no-repeat;
+    background-size: 150px 150px;
+}

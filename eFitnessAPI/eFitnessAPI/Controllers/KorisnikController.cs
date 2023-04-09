@@ -54,7 +54,8 @@ namespace eFitnessAPI.Controllers
                     prezime=x.Prezime,
                     id=x.id,
                     korisnicko_ime=x.korisnikoIme,
-                    slika=x.slika
+                    slika=x.slika,
+                    is_admin = x.isAdmin
                 })
                 .ToList();
             return Ok(podaci);

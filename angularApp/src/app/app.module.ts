@@ -26,6 +26,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     TreninziPanelComponent,
     FooterComponent,
     NovoUclanjenjeComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
