@@ -21,6 +21,7 @@ namespace eFitnessAPI.Data
         public DbSet<Favorites> Favorites { get; set; }
         public DbSet<KategorijaSuplementa> KategorijaSuplementa { get; set; }
         public DbSet<ObjavaSuplementa> ObjavaSuplementa { get; set; }
+        public DbSet<Narudzba> Narudzba { get; set; }
 
 
 

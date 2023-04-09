@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eFitnessAPI.Data;
 
@@ -11,9 +12,11 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230409163126_nova")]
+    partial class nova
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -289,7 +292,7 @@ namespace eFitnessAPI.Migrations
                     b.Property<int>("kategorija_id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("narudzbaID")
+                    b.Property<int>("narudzbaId")
                         .HasColumnType("int");
 
                     b.Property<string>("naziv")
@@ -307,7 +310,7 @@ namespace eFitnessAPI.Migrations
 
                     b.HasIndex("kategorija_id");
 
-                    b.HasIndex("narudzbaID");
+                    b.HasIndex("narudzbaId");
 
                     b.ToTable("Suplement");
                 });
@@ -507,9 +510,13 @@ namespace eFitnessAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("eFitnessAPI.Class.Narudzba", null)
+                    b.HasOne("eFitnessAPI.Class.Narudzba", "Narudzba")
                         .WithMany("Suplementi")
-                        .HasForeignKey("narudzbaID");
+                        .HasForeignKey("narudzbaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Narudzba");
 
                     b.Navigation("kategorija");
                 });

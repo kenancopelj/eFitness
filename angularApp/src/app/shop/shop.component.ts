@@ -18,8 +18,10 @@ export class ShopComponent implements OnInit{
   suplementi: any;
   odabraniSuplement: SuplementGetAllVm;
   kategorijaID: any=0;
-  
-  
+
+  items: any[] = [];
+  cartTotal: number = 0;
+
   constructor(
   private router : Router,
   private httpKlijent:HttpClient,
@@ -27,7 +29,14 @@ export class ShopComponent implements OnInit{
   private notificationService : NotificationService
   ) {
   }
-  
+
+  AddItemToCart(item: any) {
+      this.items.push(item);
+      this.cartTotal += item.cijena;
+      localStorage.setItem('items',JSON.stringify(this.items));
+      localStorage.setItem('cartTotal',JSON.stringify(this.cartTotal));
+  }
+
   prebaciNaKorpu() {
     this.router.navigateByUrl("/korpa")
   }

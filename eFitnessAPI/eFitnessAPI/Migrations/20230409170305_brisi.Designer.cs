@@ -12,8 +12,8 @@ using eFitnessAPI.Data;
 namespace eFitnessAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230408210550_prijavaGrupni")]
-    partial class prijavaGrupni
+    [Migration("20230409170305_brisi")]
+    partial class brisi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,6 +190,25 @@ namespace eFitnessAPI.Migrations
                     b.UseTptMappingStrategy();
                 });
 
+            modelBuilder.Entity("eFitnessAPI.Class.Narudzba", b =>
+                {
+                    b.Property<int>("narudzbaID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("narudzbaID"));
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("VrijemePravljenja")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("narudzbaID");
+
+                    b.ToTable("Narudzba");
+                });
+
             modelBuilder.Entity("eFitnessAPI.Class.ObjavaSuplementa", b =>
                 {
                     b.Property<int>("id")
@@ -273,6 +292,9 @@ namespace eFitnessAPI.Migrations
                     b.Property<int>("kategorija_id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("narudzbaID")
+                        .HasColumnType("int");
+
                     b.Property<string>("naziv")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -287,6 +309,8 @@ namespace eFitnessAPI.Migrations
                     b.HasKey("id");
 
                     b.HasIndex("kategorija_id");
+
+                    b.HasIndex("narudzbaID");
 
                     b.ToTable("Suplement");
                 });
@@ -486,6 +510,10 @@ namespace eFitnessAPI.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("eFitnessAPI.Class.Narudzba", null)
+                        .WithMany("Suplementi")
+                        .HasForeignKey("narudzbaID");
+
                     b.Navigation("kategorija");
                 });
 
@@ -535,6 +563,11 @@ namespace eFitnessAPI.Migrations
                         .HasForeignKey("eFitnessAPI.Class.Trener", "id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("eFitnessAPI.Class.Narudzba", b =>
+                {
+                    b.Navigation("Suplementi");
                 });
 #pragma warning restore 612, 618
         }

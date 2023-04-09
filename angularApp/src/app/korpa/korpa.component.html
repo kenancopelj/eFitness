@@ -14,31 +14,18 @@
           <span class="text-primary">Stanje u korpi</span>
           <span class="badge bg-primary rounded-pill">3</span>
         </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm">
+        <ul  class="list-group mb-3">
+
+          <li  *ngFor="let item of this.storedItems" class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">Naziv proizvoda</h6>
-              <small class="text-muted">Brief description</small>
+              <h6 class="my-0">{{item.naziv}}</h6>
+              <small class="text-muted">{{item.opis}}</small>
             </div>
-            <span class="text-muted">19.99KM</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Second product</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$8</span>
-          </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Third item</h6>
-              <small class="text-muted">Brief description</small>
-            </div>
-            <span class="text-muted">$5</span>
+            <span class="text-muted">{{item.cijena}}</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Ukupno</span>
-            <strong>$20</strong>
+            <strong>{{this.cartTotal}}</strong>
           </li>
         </ul>
       </div>
@@ -139,7 +126,7 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Potvrda</button>
+          <button class="w-100 btn btn-primary btn-lg" (click)="createOrder()" type="submit">Potvrda</button>
         </form>
       </div>
     </div>
