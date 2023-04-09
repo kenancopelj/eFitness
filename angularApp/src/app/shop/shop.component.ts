@@ -18,8 +18,8 @@ export class ShopComponent implements OnInit{
   suplementi: any;
   odabraniSuplement: SuplementGetAllVm;
   kategorijaID: any=0;
-
-
+  
+  
   constructor(
   private router : Router,
   private httpKlijent:HttpClient,
@@ -27,9 +27,9 @@ export class ShopComponent implements OnInit{
   private notificationService : NotificationService
   ) {
   }
-
+  
   prebaciNaKorpu() {
-   this.router.navigateByUrl("/korpa")
+    this.router.navigateByUrl("/korpa")
   }
 
   ngOnInit(): void {
