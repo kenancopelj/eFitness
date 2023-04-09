@@ -1,8 +1,12 @@
 <div class="container">
   <div class="py-5 text-center">
     <svg width="50" height="50" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 6C7.65685 6 9 4.65685 9 3C9 1.34315 7.65685 0 6 0C4.34315 0 3 1.34315 3 3C3 4.65685 4.34315 6 6 6ZM8 3C8 4.10457 7.10457 5 6 5C4.89543 5 4 4.10457 4 3C4 1.89543 4.89543 1 6 1C7.10457 1 8 1.89543 8 3Z" fill="black"/>
-      <path d="M12 11C12 12 11 12 11 12H1C1 12 0 12 0 11C0 10 1 7 6 7C11 7 12 10 12 11ZM11 10.9965C10.9986 10.7497 10.8462 10.0104 10.1679 9.33211C9.51563 8.67985 8.2891 8 5.99999 8C3.71088 8 2.48435 8.67985 1.8321 9.33211C1.15375 10.0104 1.00142 10.7497 1 10.9965H11Z" fill="black"/>
+      <path
+        d="M6 6C7.65685 6 9 4.65685 9 3C9 1.34315 7.65685 0 6 0C4.34315 0 3 1.34315 3 3C3 4.65685 4.34315 6 6 6ZM8 3C8 4.10457 7.10457 5 6 5C4.89543 5 4 4.10457 4 3C4 1.89543 4.89543 1 6 1C7.10457 1 8 1.89543 8 3Z"
+        fill="black" />
+      <path
+        d="M12 11C12 12 11 12 11 12H1C1 12 0 12 0 11C0 10 1 7 6 7C11 7 12 10 12 11ZM11 10.9965C10.9986 10.7497 10.8462 10.0104 10.1679 9.33211C9.51563 8.67985 8.2891 8 5.99999 8C3.71088 8 2.48435 8.67985 1.8321 9.33211C1.15375 10.0104 1.00142 10.7497 1 10.9965H11Z"
+        fill="black" />
     </svg>
     <h2>Korisnici</h2>
   </div>
@@ -30,15 +34,25 @@
 
 </div> -->
 
+<div class="container mb-4">
+  <div class="col-12">
+    <div class="button">
+      <h4>Dodaj novog</h4>
+      <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" >+</span>
+      <hr>
+    </div>
+  </div>
+</div>
 <div class="container" *ngIf="this.korisniciPodaci.length == 0  || this.korisniciPodaci == null">
   <app-loader></app-loader>
 </div>
 
-<div class="w3-container" style="margin-left: 10rem; margin-right: 10rem;" *ngFor="let x of korisniciPodaci; let i=index">
+<div class="w3-container" style="margin-left: 10rem; margin-right: 10rem;"
+  *ngFor="let x of korisniciPodaci; let i=index">
   <ul class="w3-ul w3-card-4" style="box-shadow:0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 2px 0 rgba(0,0,0,0.19)">
     <li class="w3-bar">
       <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="Obrisi(x)">×</span>
-      <span  class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="this.odabraniKorisnik = x">
+      <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="this.odabraniKorisnik = x">
         <img src="../../assets/edit-icon.png" alt="">
       </span>
       <img src="../../assets/user.png" class="w3-bar-item w3-circle w3-hide-small" style="width:85px">
@@ -50,16 +64,8 @@
   </ul>
 </div>
 
-<div
-  class="modal fade show"
-  id="exampleModalLive"
-  tabindex="-1"
-  aria-labelledby="exampleModalLiveLabel"
-  aria-modal="true"
-  role="dialog"
-  style="display: block"
-  *ngIf="this.odabraniKorisnik!= null"
->
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel"
+  aria-modal="true" role="dialog" style="display: block" *ngIf="this.odabraniKorisnik!= null">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -69,15 +75,16 @@
       <div class="modal-body">
         <div class="mb-3">
           <label class="form-label">Ime</label>
-          <input class="form-control" type="text" placeholder="Ime" [(ngModel)]="odabraniKorisnik.ime"/>
+          <input class="form-control" type="text" placeholder="Ime" [(ngModel)]="odabraniKorisnik.ime" />
         </div>
         <div class="mb-3">
           <label class="form-label">Prezime</label>
-          <input class="form-control" type="text" placeholder="Prezime" [(ngModel)]="odabraniKorisnik.prezime"/>
+          <input class="form-control" type="text" placeholder="Prezime" [(ngModel)]="odabraniKorisnik.prezime" />
         </div>
         <div class="mb-3">
           <label class="form-label">Korisnicko ime</label>
-          <input class="form-control" type="text" placeholder="Korisnicko ime" [(ngModel)]="odabraniKorisnik.korisnicko_ime" />
+          <input class="form-control" type="text" placeholder="Korisnicko ime"
+            [(ngModel)]="odabraniKorisnik.korisnicko_ime" />
         </div>
 
 
@@ -89,4 +96,3 @@
     </div>
   </div>
 </div>
-
