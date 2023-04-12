@@ -1,5 +1,7 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
+using eFitnessAPI.Helper;
+using eFitnessAPI.Service.Interfaces;
 using eFitnessAPI.ViewModels.ClanarinaVM;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Http;
@@ -11,8 +13,13 @@ namespace eFitnessAPI.Controllers
     [Route("[controller]/[action]")]
     [ApiController]
     public class ClanarinaController : ControllerBase
+
     {
+        //public readonly IClanarinaService _service;
         private readonly ApplicationDbContext dbContext;
+
+        private readonly IClanarinaService  _service;
+        
         public ClanarinaController(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -21,25 +28,11 @@ namespace eFitnessAPI.Controllers
 
 
         [HttpGet]
-        public ActionResult GetAll()
+        public async Task<Message> GetAll()
         {
-            var podaci = dbContext.Clanarina.
-                Select(x => new ClanarinaGetAllVM
-                {
-                    datumIsteka = x.datumIsteka,
-                    datumKreiranja = x.datumKreiranja,
-                    vrsta_clanarine_id = x.vrsta_clanarine_id,
-                    aktivna = x.aktivna,
-                    korisnikDto = new KorisnikDto
-                    {
-                        korisnikId = x.korisnik_id,
-                        Ime = x.korisnik.Ime,
-                        Prezime = x.korisnik.Prezime
-                    }
-                })
-                .ToList();
-
-            return Ok(podaci);
+            
+            var message = await _service.
+            return 
         }
         [HttpGet]
         public ActionResult GetByKorisnik()

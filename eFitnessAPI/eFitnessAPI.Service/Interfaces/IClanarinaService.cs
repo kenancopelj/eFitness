@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eFitnessAPI.Helper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace eFitnessAPI.Service.Interfaces
 {
-    internal class IClanarinaService
+    public interface IClanarinaService
     {
+        public async Task<Message> 
     }
 }

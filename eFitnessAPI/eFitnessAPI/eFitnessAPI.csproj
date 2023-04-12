@@ -24,4 +24,10 @@
     <Folder Include="slike\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eFitnessAPI.Data\eFitnessAPI.Data.csproj" />
+    <ProjectReference Include="..\eFitnessAPI.Model\eFitnessAPI.Model.csproj" />
+    <ProjectReference Include="..\eFitnessAPI.Service\eFitnessAPI.Service.csproj" />
+  </ItemGroup>
+
 </Project>
