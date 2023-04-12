@@ -1,5 +1,4 @@
-﻿using eFitnessAPI.Helper;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +8,9 @@ namespace eFitnessAPI.Service.Interfaces
 {
     public interface IClanarinaService
     {
-        public async Task<Message> 
+        public Task<Message> GetAll();
+
+        public Task<Message> GetByKorisnik();
+        
     }
 }

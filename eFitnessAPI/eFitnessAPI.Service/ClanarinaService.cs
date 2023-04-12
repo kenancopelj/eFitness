@@ -1,6 +1,8 @@
 ﻿using eFitnessAPI;
 using eFitnessAPI.Data;
 using eFitnessAPI.Service.Interfaces;
+using eFitnessAPI.ViewModels.ClanarinaVM;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +19,30 @@ namespace eFitnessAPI.Service
             this.dbContext = dbContext;
         }
 
-        public
+        public async Task<Message> GetAll()
+        {
+            var podaci = await dbContext.Clanarina.
+                Select(x => new ClanarinaGetAllVM
+                {
+                    datumIsteka = x.datumIsteka,
+                    datumKreiranja = x.datumKreiranja,
+                    vrsta_clanarine_id = x.vrsta_clanarine_id,
+                    aktivna = x.aktivna,
+                    korisnikDto = new KorisnikDto
+                    {
+                        korisnikId = x.korisnik_id,
+                        Ime = x.korisnik.Ime,
+                        Prezime = x.korisnik.Prezime
+                    }
+                })
+                .ToListAsync();
 
-
+            return new Message
+            {
+                Info = "Ok",
+                Data = podaci,
+                Valid = true,
+            };
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
 using eFitnessAPI.Helper;
+using eFitnessAPI.Service;
 using eFitnessAPI.Service.Interfaces;
 using eFitnessAPI.ViewModels.ClanarinaVM;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
@@ -30,9 +31,9 @@ namespace eFitnessAPI.Controllers
         [HttpGet]
         public async Task<Message> GetAll()
         {
-            
-            var message = await _service.
-            return 
+
+            var message = await _service.GetAll();
+            return message;
         }
         [HttpGet]
         public ActionResult GetByKorisnik()
@@ -45,6 +46,9 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.Clanarina.Where(x => x.korisnik_id == korisnik.id).ToList();
 
             return Ok(podaci);
+
+            var message = await _service.GetAll();
+            return message;
 
         }
 
