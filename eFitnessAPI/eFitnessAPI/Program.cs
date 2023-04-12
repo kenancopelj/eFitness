@@ -1,5 +1,10 @@
 using eFitnessAPI.Data;
+using eFitnessAPI.Services;
+using Hangfire;
+using Hangfire.Dashboard.BasicAuthorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.Text;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
@@ -17,8 +22,18 @@ builder.Services.AddCors(options =>
     {
         builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
     });
-
 });
+
+
+builder.Services.AddHangfire(configuration => configuration
+.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
+.UseSimpleAssemblyNameTypeSerializer()
+.UseInMemoryStorage()
+.UseRecommendedSerializerSettings());
+builder.Services.AddHangfireServer();
+
+
+
 
 // Add services to the container.
 
@@ -28,6 +43,34 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+app.MapHangfireDashboard();
+app.UseHangfireDashboard("/hangfire", new DashboardOptions
+{
+    Authorization = new[] { new BasicAuthAuthorizationFilter(new BasicAuthAuthorizationFilterOptions
+    {
+        RequireSsl = false,
+        SslRedirect = false,
+        LoginCaseSensitive = true,
+        Users = new []
+    {
+    new BasicAuthAuthorizationUser
+    {
+        Login = "username",
+        PasswordClear = "password"
+        }
+    }
+    }) }
+});
+
+IRecurringJobManager recurringJobManager;
+IServiceProvider serviceProvider;
+var cancellationToken = new CancellationToken();
+
+RecurringJob.AddOrUpdate<IService>("Run every night//clean files", x =>
+    x.ProvjeriClanarine(cancellationToken), "1 0 * * *", TimeZoneInfo.Utc);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
