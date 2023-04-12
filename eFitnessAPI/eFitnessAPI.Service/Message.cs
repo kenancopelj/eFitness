@@ -8,8 +8,8 @@ namespace eFitnessAPI.Service
 {
     public class Message
     {
-        public string Info { get; set; }
-        public object Data { get; set; }
-        public bool Valid { get; set; }
+        public string? Info { get; set; }
+        public object? Data { get; set; }
+        public bool? Valid { get; set; }
     }
 }
