@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -22,12 +22,6 @@
 
   <ItemGroup>
     <Folder Include="slike\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\eFitnessAPI.Data\eFitnessAPI.Data.csproj" />
-    <ProjectReference Include="..\eFitnessAPI.Model\eFitnessAPI.Model.csproj" />
-    <ProjectReference Include="..\eFitnessAPI.Service\eFitnessAPI.Service.csproj" />
   </ItemGroup>
 
 </Project>

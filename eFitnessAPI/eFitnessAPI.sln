@@ -5,12 +5,6 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFitnessAPI", "eFitnessAPI\eFitnessAPI.csproj", "{69D42D75-9442-4AC9-9053-4BCB066FC9DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFitnessAPI.Model", "eFitnessAPI.Model\eFitnessAPI.Model.csproj", "{7CEA1D85-5B2F-4096-A14A-CC24CD1B01D3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFitnessAPI.Service", "eFitnessAPI.Service\eFitnessAPI.Service.csproj", "{35289DC2-FFF6-4639-BB14-5C0B2CE2DE1A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFitnessAPI.Data", "eFitnessAPI.Data\eFitnessAPI.Data.csproj", "{43AF6184-9163-4E8C-80DD-DB88942F316A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,18 +15,6 @@ Global
 		{69D42D75-9442-4AC9-9053-4BCB066FC9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69D42D75-9442-4AC9-9053-4BCB066FC9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69D42D75-9442-4AC9-9053-4BCB066FC9DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7CEA1D85-5B2F-4096-A14A-CC24CD1B01D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CEA1D85-5B2F-4096-A14A-CC24CD1B01D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CEA1D85-5B2F-4096-A14A-CC24CD1B01D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CEA1D85-5B2F-4096-A14A-CC24CD1B01D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35289DC2-FFF6-4639-BB14-5C0B2CE2DE1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35289DC2-FFF6-4639-BB14-5C0B2CE2DE1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35289DC2-FFF6-4639-BB14-5C0B2CE2DE1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35289DC2-FFF6-4639-BB14-5C0B2CE2DE1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43AF6184-9163-4E8C-80DD-DB88942F316A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43AF6184-9163-4E8C-80DD-DB88942F316A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43AF6184-9163-4E8C-80DD-DB88942F316A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43AF6184-9163-4E8C-80DD-DB88942F316A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,5 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
-using eFitnessAPI.Service.Interfaces;
 using eFitnessAPI.ViewModels.VrstaClanarineVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +11,6 @@ namespace eFitnessAPI.Controllers
     public class VrstaClanarineController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
-        private readonly IVrsteClanarinaService _service;
         public VrstaClanarineController(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;

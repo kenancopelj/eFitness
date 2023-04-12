@@ -8,9 +8,7 @@ namespace eFitnessAPI.Service.Interfaces
 {
     public interface IClanarinaService
     {
-        public Task<Message> GetAll();
-
-        public Task<Message> GetByKorisnik();
+        
         
     }
 }

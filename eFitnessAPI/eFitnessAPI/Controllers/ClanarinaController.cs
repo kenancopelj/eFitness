@@ -1,12 +1,11 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
 using eFitnessAPI.Helper;
-using eFitnessAPI.Service;
-using eFitnessAPI.Service.Interfaces;
 using eFitnessAPI.ViewModels.ClanarinaVM;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 
 namespace eFitnessAPI.Controllers
@@ -16,40 +15,49 @@ namespace eFitnessAPI.Controllers
     public class ClanarinaController : ControllerBase
 
     {
-        //public readonly IClanarinaService _service;
-        private readonly ApplicationDbContext dbContext;
+        private readonly ApplicationDbContext _dbContext;
 
-        private readonly IClanarinaService  _service;
         
         public ClanarinaController(ApplicationDbContext dbContext)
         {
-            this.dbContext = dbContext;
+            _dbContext = dbContext;
         }
 
 
 
         [HttpGet]
-        public async Task<Message> GetAll()
+        public ActionResult GetAll()
         {
 
-            var message = await _service.GetAll();
-            return message;
+            var podaci = _dbContext.Clanarina.
+                Select(x => new ClanarinaGetAllVM
+                {
+                    datumIsteka = x.datumIsteka,
+                    datumKreiranja = x.datumKreiranja,
+                    vrsta_clanarine_id = x.vrsta_clanarine_id,
+                    aktivna = x.aktivna,
+                    korisnikDto = new KorisnikDto
+                    {
+                        korisnikId = x.korisnik_id,
+                        Ime = x.korisnik.Ime,
+                        Prezime = x.korisnik.Prezime
+                    }
+                })
+                .ToList();
+
+            return Ok(podaci);
         }
         [HttpGet]
         public ActionResult GetByKorisnik()
         {
             if (!HttpContext.GetLoginInfo().isLogiran)
-                return BadRequest("Nije logiran");
+                return BadRequest("nije logiran");
 
             var korisnik = HttpContext.GetLoginInfo().korisnickiNalog;
 
-            var podaci = dbContext.Clanarina.Where(x => x.korisnik_id == korisnik.id).ToList();
+            var podaci = _dbContext.Clanarina.Where(x => x.korisnik_id == korisnik.id).ToList();
 
             return Ok(podaci);
-
-            var message = await _service.GetAll();
-            return message;
-
         }
 
 
@@ -61,7 +69,7 @@ namespace eFitnessAPI.Controllers
 
             var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
 
-            if (dbContext.Clanarina.Any(c => c.korisnik_id == x.korisnik_id && c.aktivna))
+            if (_dbContext.Clanarina.Any(c => c.korisnik_id == x.korisnik_id && c.aktivna))
                 return BadRequest("Već ste učlanjeni");
 
             var novaClanarina = new Clanarina()
@@ -72,8 +80,8 @@ namespace eFitnessAPI.Controllers
                 korisnik_id = x.korisnik_id,
                 aktivna = true
             };
-            dbContext.Clanarina.Add(novaClanarina);
-            dbContext.SaveChanges();
+            _dbContext.Clanarina.Add(novaClanarina);
+            _dbContext.SaveChanges();
 
             return Ok();
         }
@@ -86,7 +94,7 @@ namespace eFitnessAPI.Controllers
 
             var trenutniKorisnik = HttpContext.GetLoginInfo().korisnickiNalog;
 
-            var objekat = dbContext.Clanarina
+            var objekat = _dbContext.Clanarina
                 //.Where(x=> trenutniKorisnik.id == x.korisnik_id && id==x.id )
                 .First();
 
@@ -99,18 +107,18 @@ namespace eFitnessAPI.Controllers
             }
             else
                 return BadRequest("pogresan ID");
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
             return Ok(objekat);
         }
 
         [HttpDelete("{id}")]
         public ActionResult Remove(int id)
         {
-            var objekat = dbContext.Clanarina.Find(id);
+            var objekat = _dbContext.Clanarina.Find(id);
             if (objekat != null)
             {
-                dbContext.Clanarina.Remove(objekat);
-                dbContext.SaveChanges();
+                _dbContext.Clanarina.Remove(objekat);
+                _dbContext.SaveChanges();
             }
             else
                 return BadRequest("pogresan ID");
