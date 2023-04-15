@@ -14,6 +14,7 @@ export class MojConfig{
     return {
       headers: {
         'autentifikacija-token': mojtoken,
+
       }
     };
   }

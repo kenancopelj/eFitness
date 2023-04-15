@@ -7,6 +7,7 @@ import {MojConfig} from "../moj-konfig";
 import {SuplementGetAllVm} from "../suplement/suplement-get-all-vm";
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../notification.service';
+import { KorpaServiceService } from '../korpa-service.service';
 
 @Component({
   selector: 'app-shop',
@@ -26,15 +27,15 @@ export class ShopComponent implements OnInit{
   private router : Router,
   private httpKlijent:HttpClient,
   private spinner : NgxSpinnerService,
-  private notificationService : NotificationService
+  private notificationService : NotificationService,
+  private KorpaService : KorpaServiceService
   ) {
+    this.items = this.KorpaService.getItems();
+
   }
 
   AddItemToCart(item: any) {
-      this.items.push(item);
-      this.cartTotal += item.cijena;
-      localStorage.setItem('items',JSON.stringify(this.items));
-      localStorage.setItem('cartTotal',JSON.stringify(this.cartTotal));
+    this.KorpaService.addItem(item);
   }
 
   prebaciNaKorpu() {
