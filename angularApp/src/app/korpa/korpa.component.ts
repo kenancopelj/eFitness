@@ -18,8 +18,6 @@ export class KorpaComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.Suplementi = JSON.parse(localStorage.getItem('items'));
-    this.cartTotal = JSON.parse(localStorage.getItem('cartTotal'));
 
   }
 
@@ -33,7 +31,8 @@ export class KorpaComponent implements OnInit {
 
     // Make a POST request to the backend to create the order
     console.log("create ordre")
-    this.httpKlijent.post(MojConfig.adresa_servera+"/Narudzba/CreateOrder", this.Suplementi, MojConfig.http_opcije())
+
+    this.httpKlijent.post(MojConfig.adresa_servera+"/Narudzba/CreateOrder/placeorder", this.Suplementi, MojConfig.http_opcije())
       .subscribe(response => {
         console.log('Order created successfully!');
         this.notificationService.showSuccess("Uspjesno izvrsena narudzba","Success");

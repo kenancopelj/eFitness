@@ -35,7 +35,8 @@ export class ShopComponent implements OnInit{
   }
 
   AddItemToCart(item: any) {
-    this.KorpaService.addItem(item);
+    const nova = {Name : item.naziv, Price: item.cijena, Quantity: 1}
+    this.KorpaService.addItem(nova);
   }
 
   prebaciNaKorpu() {
@@ -45,6 +46,8 @@ export class ShopComponent implements OnInit{
   ngOnInit(): void {
     this.fetchKategorijeSuplemenata();
     this.fetchSuplementi();
+    this.KorpaService.clearCart();
+    this.items = [];
   }
 
   getSuplementiPodaci(){

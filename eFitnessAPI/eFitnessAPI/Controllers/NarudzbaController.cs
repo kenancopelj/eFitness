@@ -19,15 +19,15 @@ namespace eFitnessAPI.Controllers
         }
 
 
-        [HttpPost]
-        public IActionResult CreateOrder([FromBody] List<Suplement> Suplementi)
+        [HttpPost("placeorder")]
+        public IActionResult CreateOrder([FromBody] List<Item> items)
         {
-            var tot = Suplementi.Sum(x => x.cijena);
+            var tot = items.Sum(x => x.Price);
             var Nar = new Narudzba()
             {
                 Total = tot,
                 VrijemePravljenja = DateTime.Now,
-                Suplementi = Suplementi
+                Suplementi = items
             };
             // Save the order to the database
             dbContext.Narudzba.Add(Nar);
@@ -35,5 +35,6 @@ namespace eFitnessAPI.Controllers
 
             return Ok();
         }
+        
     }
 }
