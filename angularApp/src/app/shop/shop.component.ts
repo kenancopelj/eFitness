@@ -24,6 +24,12 @@ export class ShopComponent implements OnInit{
   items: any[] = [];
   cartTotal: number = 0;
 
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 7;
+  tableSizes: any = [3,6,9,12]
+
+
   constructor(
   private router : Router,
   private httpKlijent:HttpClient,
@@ -34,6 +40,17 @@ export class ShopComponent implements OnInit{
   ) {
     this.items = this.KorpaService.getItems();
 
+  }
+
+  onTableDataChange(event:any){
+    this.page = event;
+    this.getSuplementiPodaci()
+  }
+
+  onTableSizeChange(event:any):void{
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.getSuplementiPodaci();
   }
 
   AddItemToCart(item: any) {

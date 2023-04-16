@@ -28,6 +28,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoaderComponent } from './loader/loader.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { KontaktComponent } from './kontakt/kontakt.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     NovoUclanjenjeComponent,
     LoaderComponent,
     SpinnerComponent,
+    KontaktComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     HttpClientModule,
     BrowserModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxPaginationModule
 
   ],
   providers: [

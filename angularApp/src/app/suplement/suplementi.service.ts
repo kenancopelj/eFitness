@@ -26,4 +26,8 @@ export class SuplementiService {
     return this.http.delete(MojConfig.adresa_servera+"/Suplement/Remove/"+id,MojConfig.http_opcije());
   }
 
+  GetLastThree(){
+    return this.http.get(MojConfig.adresa_servera+"/Suplement/GetLastThree",MojConfig.http_opcije());
+  }
+
 }

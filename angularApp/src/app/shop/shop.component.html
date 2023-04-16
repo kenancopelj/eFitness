@@ -48,7 +48,7 @@
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
             <div class="col" *ngFor="let x of this.getSuplementiPodaci()">
               <div class="container" >
-                <img src="{{this.getSlikaById(x.id)}}" alt="" srcset="" max-width="100%" height="150px">
+                <img src="{{this.getSlikaById(x.id)}}" alt="" srcset="" max-width="100%" height="150px" loading="lazy">
                 <div class="card-body">
                   <h4>{{x.naziv}}</h4>
                   <p class="card-text">{{x.opis}}</p>

@@ -13,6 +13,7 @@ import {KorisniciPanelComponent} from "./korisnici-panel/korisnici-panel.compone
 import {SuplementiPanelComponent} from "./suplementi-panel/suplementi-panel.component";
 import {TreninziPanelComponent} from "./treninzi-panel/treninzi-panel.component";
 import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
+import { KontaktComponent } from './kontakt/kontakt.component';
 
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path:'korisnici-panel',component:KorisniciPanelComponent},
   {path:'suplementi-panel',component:SuplementiPanelComponent},
   {path:'treninzi-panel',component:TreninziPanelComponent},
-  {path:'novo-uclanjenje/:id',component:NovoUclanjenjeComponent}
+  {path:'novo-uclanjenje/:id',component:NovoUclanjenjeComponent},
+  {path:'kontakt',component:KontaktComponent}
 ];
 
 @NgModule({

@@ -39,6 +39,25 @@ namespace eFitnessAPI.Controllers
 
             return Ok(podaci);
         }
+        [HttpGet]
+        public ActionResult GetLastThree()
+        {
+            var podaci = dbContext.Suplement.
+                Select(x => new SuplementGetAllVM
+                {
+                    id = x.id,
+                    naziv = x.naziv,
+                    rokTrajanja = x.rokTrajanja,
+                    opis = x.opis,
+                    cijena = x.cijena,
+                    kategorija_id = x.kategorija_id,
+                    kategorija = x.kategorija
+                })
+                .Take(3)
+                .ToList();
+
+            return Ok(podaci);
+        }
 
         [HttpPost]
         public ActionResult Add([FromBody] SuplemetAddVM x)

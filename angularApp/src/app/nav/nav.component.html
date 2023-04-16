@@ -1,73 +1,3 @@
-<!--<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" *ngIf="loginInfo().isLogiran">
-  <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-    <img src="assets/logo.png" id="logo">
-  </a>
-
-  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" style="display: flex; justify-content: center;">
-    <li><a href="#" class="nav-link px-2 link-secondary" routerLink="home">Početna</a></li>
-    <li><a href="#" class="nav-link px-2 link-dark" routerLink="shop">Shop</a></li>
-    <li><a href="#" class="nav-link px-2 link-dark">Grupni trening</a></li>
-    <li><a href="#" class="nav-link px-2 link-dark" *ngIf="false">Admin</a></li>
-    <li><a href="#" class="nav-link px-2 link-dark">O nama</a></li>
-  </ul>
-
-  <div class="col-md-3 text-end" *ngIf="!loginInfo().isLogiran">
-    <button type="button" class="btn btn-outline-primary me-2" routerLink="login">Login</button>
-    <button type="button" class="btn btn-primary">Registracija</button>
-  </div>
-</header>-->
-
-<!--do ovdje-->
-
-
-<!--<nav  class="navbar navbar-expand-lg navbar-light bg-light" >
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="assets/logo.png" id="logo"></a>
-
-    <div class="navbar" style="margin-left: 6%" >
-      <ul class="navbar-nav">
-        <li  class="nav-item active">
-          <a class="nav-link" routerLink="/home">Početna</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/shop">Shop</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" >O nama</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" >Grupni trening</a>
-        </li>
-
-        <li class="nav-item dropdown" *ngIf="loginInfo().isLogiran" >
-          <a class="nav-link dropdown-toggle" href="#" id="navbarLogiraniKorisnikLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="profilna-slika" id="user" src="assets/user.png"> {{loginInfo().autentifikacijaToken.korisnickiNalog.korisnickoIme}}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarLogiraniKorisnikLink">
-            <li><a class="dropdown-item" routerLink="/postavke-profila">Postavke profila</a></li>
-            <li><a class="dropdown-item" (click)="logoutButton()">Odjava</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <ul class="navbar-nav">
-        <li class="nav-item" *ngIf="!loginInfo().isLogiran" (click)="redirectNaLogin()">
-          <button type="button" class="btn btn-primary">Log in</button>
-        </li>
-      <li class="nav-item" *ngIf="!loginInfo().isLogiran" style="margin-left: 10px;">
-        <button type="button" class="btn btn-primary">Registruj se</button>
-      </li>
-    </ul>
-  </div>
-</nav>
-
-
-
-
-<router-outlet></router-outlet>-->
-
-<!--Navigacija-->
-
 <div class="container">
   <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" >
     <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
@@ -88,7 +18,7 @@
         <a routerLink="grupniTrening" class="nav-link px-2 link-dark">Grupni trening</a>
       </li>
       <li>
-        <a routerLink="korpa" class="nav-link px-2 link-dark">Kontakt</a>
+        <a routerLink="kontakt" class="nav-link px-2 link-dark">Kontakt</a>
       </li>
       <li>
         <a *ngIf="!loginInfo().isLogiran" routerLink="login"><button type="button" class="btn btn-outline-primary mx-3">Login</button></a>
