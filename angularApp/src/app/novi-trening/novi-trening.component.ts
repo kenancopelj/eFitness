@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
 import { NotificationService } from '../notification.service';
+import { TreningService } from './trening.service';
 
 @Component({
   selector: 'app-novi-trening',
@@ -17,7 +18,8 @@ export class NoviTreningComponent implements OnInit{
   constructor(
     private httpKlijent:HttpClient,
     private router : Router,
-    private notificationService : NotificationService
+    private notificationService : NotificationService,
+    private treningService : TreningService
     ){}
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class NoviTreningComponent implements OnInit{
   }
 
   fetchKategorijeTreninga() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaTreninga/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.treningService.GetKategorijeTreninga().subscribe((x:any)=>{
       this.kategorijeTreninga=x;
     },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
@@ -45,7 +47,7 @@ export class NoviTreningComponent implements OnInit{
   }
 
   dodajNovi() {
-    this.httpKlijent.post(MojConfig.adresa_servera+"/GrupniTrening/Add",this.napraviNovi,MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.treningService.Add(this.dodajNovi).subscribe((x:any)=>{
       this.notificationService.showSuccess('Uspješno dodano','Success')
       this.napraviNovi=null;
       this.ucitajTreninge.emit();

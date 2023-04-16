@@ -4,6 +4,7 @@ import {HttpClient,HttpHeaders} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
 import {SuplementGetAllVm} from "./suplement-get-all-vm";
 import { NotificationService } from '../notification.service';
+import { SuplementiService } from './suplementi.service';
 
 @Component({
   selector: 'app-suplement',
@@ -17,7 +18,8 @@ export class SuplementComponent implements OnInit {
   constructor(
   private router : Router,
   private httpKlijent:HttpClient,
-  private notificationService : NotificationService
+  private notificationService : NotificationService,
+  private suplementiService : SuplementiService
   ){}
 
   ngOnInit(): void {
@@ -25,7 +27,7 @@ export class SuplementComponent implements OnInit {
   }
 
   getKategorijeSuplementa():void{
-    this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaSuplementa/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.suplementiService.GetKategorije().subscribe((x:any)=>{
       this.kategorije=x;
     });
   }
@@ -47,8 +49,8 @@ export class SuplementComponent implements OnInit {
 
 
   dodajNovu() {
-    console.log(this.noviSuplement.slika_suplementa_base63);
-    this.httpKlijent.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",this.noviSuplement,MojConfig.http_opcije()).subscribe((x:any)=>{
+    console.log(this.noviSuplement);
+    this.suplementiService.AddSuplement(this.noviSuplement).subscribe((x:any)=>{
       this.notificationService.showSuccess('Suplement uspješno dodan','Success')
       this.noviSuplement=null;
       this.ucitaj.emit();

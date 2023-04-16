@@ -12,33 +12,30 @@
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Stanje u korpi</span>
-          <span class="badge bg-primary rounded-pill">3</span>
+          <span class="badge bg-primary rounded-pill">{{this.Suplementi.length}}</span>
         </h4>
         <ul  class="list-group mb-3">
 
           <li  *ngFor="let item of this.Suplementi" class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">{{item.naziv}}</h6>
+              <h6 class="my-0">{{item.Name}}</h6>
               <small class="text-muted">{{item.opis}}</small>
             </div>
-            <span class="text-muted">{{item.cijena}}</span>
+            <span class="text-muted">{{item.Price}}KM</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Ukupno</span>
-            <strong>{{this.cartTotal}}</strong>
+            <strong>{{this.cartTotal}}KM</strong>
           </li>
         </ul>
       </div>
-      <!-- <div class="col-md-7 col-lg-8">
+      <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Vaši podaci</h4>
         <form class="needs-validation" novalidate="">
           <div class="row g-3">
             <div class="col-12">
               <label for="firstName" class="form-label">Ime</label>
               <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
-              <div class="invalid-feedback">
-                Valid first name is required.
-              </div>
             </div>
 
             <div class="col-12">
@@ -52,88 +49,51 @@
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-muted">(Opcionalno)</span></label>
               <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
             </div>
 
             <div class="col-12">
               <label for="address" class="form-label">Adresa</label>
               <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-          </div> -->
-
-          <hr class="my-4">
-
-          <h4 class="mb-3">Plaćanje</h4>
-
-          <!-- <div class="my-3">
-            <div class="form-check">
-              <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
-              <label class="form-check-label" for="credit">Karticom</label>
-            </div>
-            <div class="form-check">
-              <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
-              <label class="form-check-label" for="debit">Lično (u centru)</label>
             </div>
           </div>
 
+          <hr class="my-4">
+
+
           <div class="row gy-3">
-            <h4 class="mb-3">Vaši podaci</h4>
+            <h4 class="mb-3">Podaci o kartici</h4>
             <div class="col-12">
               <label for="cc-name" class="form-label">Ime</label>
               <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
             </div>
 
             <div class="col-12">
               <label for="cc-name" class="form-label">Prezime</label>
               <input type="text" class="form-control" id="cc-name" placeholder="" required="">
-              <div class="invalid-feedback">
-                Name on card is required
-              </div>
             </div>
 
             <div class="col-12">
               <label for="cc-number" class="form-label">Broj kreditne kartice</label>
               <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-              <div class="invalid-feedback">
-                Credit card number is required
-              </div>
             </div>
 
             <div class="col-md-3">
               <label for="cc-expiration" class="form-label">Datum isteka</label>
               <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-              <div class="invalid-feedback">
-                Expiration date required
-              </div>
             </div>
 
             <div class="col-md-3">
               <label for="cc-cvv" class="form-label">CVC</label>
               <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
-              <div class="invalid-feedback">
-                Security code required
-              </div>
             </div>
-          </div> -->
+          </div> 
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" (click)="createOrder()" type="submit">Potvrda</button>
-        <!-- </form>
+          <button class="my-3 w-100 btn btn-primary btn-lg" (click)="createOrder()" type="submit">Potvrda</button>
+        </form>
       </div>
     </div>
   </main>
 
-</div> -->
-
-<!--Footer-->
-
-
+</div>

@@ -5,6 +5,7 @@ import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {MojConfig} from "../moj-konfig";
 import { NotificationService } from '../notification.service';
+import { AuthService } from '../auth.service';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -19,7 +20,12 @@ export class LoginComponent implements  OnInit{
   txtKorisnickoIme: any;
   suplementi: any=[];
 
-  constructor(private httpKlijent: HttpClient, private router: Router, private notificationService : NotificationService) {
+  constructor(
+  private httpKlijent: HttpClient, 
+  private router: Router, 
+  private notificationService : NotificationService,
+  private authService : AuthService
+  ) {
   }
   ngOnInit(): void {
     this.fetchSuplemente();
@@ -30,7 +36,7 @@ export class LoginComponent implements  OnInit{
       korisnickoIme:this.txtKorisnickoIme,
       lozinka: this.txtLozinka
     };
-    this.httpKlijent.post<LoginInformacije>(MojConfig.adresa_servera+ "/Autentifikacija/Login/", saljemo)
+    this.authService.logIn(saljemo)
       .subscribe((x:LoginInformacije) =>{
         if (x.isLogiran) {
           AutentifikacijaHelper.setLoginInfo(x)

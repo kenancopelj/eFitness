@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MojConfig} from "../moj-konfig";
 import { NotificationService } from '../notification.service';
+import { ClanarineService } from '../clanarine/clanarine.service';
 
 @Component({
   selector: 'app-nova-clanarina',
@@ -12,14 +13,18 @@ export class NovaClanarinaComponent implements OnInit{
   @Input() novaClanarina:any;
   @Output() ucitaj = new EventEmitter<void>();
 
-  constructor(private httpKlijent : HttpClient, private notificationService : NotificationService) {
+  constructor(
+  private httpKlijent : HttpClient, 
+  private notificationService : NotificationService,
+  private clanarineService : ClanarineService
+  ) {
   }
 
   ngOnInit(): void {
   }
 
   spasiPromjene() {
-      this.httpKlijent.post(MojConfig.adresa_servera+"/VrstaClanarine/Add",this.novaClanarina,MojConfig.http_opcije()).subscribe((x:any)=>{
+      this.clanarineService.Add(this.novaClanarina).subscribe((x:any)=>{
         this.notificationService.showSuccess('Uspješno spašeno','Success')
         this.novaClanarina.prikazi=false;
         this.ucitaj.emit();

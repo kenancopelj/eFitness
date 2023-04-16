@@ -5,6 +5,8 @@ import {MojConfig} from "../moj-konfig";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import { NotificationService } from '../notification.service';
+import { KorisniciService } from '../korisnici-panel/korisnici.service';
+import { ClanarineService } from '../clanarine/clanarine.service';
 
 declare function porukaSuccess(a: string):any;
 declare function porukaError(a: string):any;
@@ -22,7 +24,9 @@ export class PostavkeProfilaComponent implements OnInit{
   constructor(
   private httpKlijent : HttpClient,
   private router : Router,
-  private notificationService : NotificationService
+  private notificationService : NotificationService,
+  private korisniciService : KorisniciService,
+  private clanarineService : ClanarineService
   ){}
   ngOnInit(): void {
     this.fetchTrenutnog();
@@ -30,7 +34,7 @@ export class PostavkeProfilaComponent implements OnInit{
   }
 
   getClanarine(){
-    this.httpKlijent.get(`${MojConfig.adresa_servera}/GetByKorisnik`,MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.clanarineService.getByKorisnik().subscribe((x:any)=>{
       this.clanarineKorisnika = x;
     },(err)=>this.notificationService.showInfo('Trenutno nemate aktivnih članarina','Info'))
   }
@@ -39,7 +43,7 @@ export class PostavkeProfilaComponent implements OnInit{
     return `${MojConfig.adresa_servera}/Korisnik/GetSlikaKorisnika/${x}`;
   }
   fetchTrenutnog() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/Korisnik/GetTrenutni",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.korisniciService.GetTrenutni().subscribe((x:any)=>{
         this.trenutniKorisnik=x;
     },(err)=>this.notificationService.showError(err.error,'Greška'));
   }

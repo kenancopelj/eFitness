@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
 import { NotificationService } from '../notification.service';
+import { GrupniTreningService } from './grupni-trening.service';
 
 declare function porukaSuccess(a:string):any;
 declare function porukaError(a:string):any;
@@ -23,9 +24,9 @@ export class GrupniTreningComponent implements OnInit{
   constructor(
     private httpKlijent: HttpClient,
     private router : Router,
-    private notificationService : NotificationService
-    )
-    {}
+    private notificationService : NotificationService,
+    private grupniTreningService : GrupniTreningService
+    ){}
   
   ngOnInit(): void {
     this.fetchKategorijeTreninga();
@@ -39,13 +40,14 @@ export class GrupniTreningComponent implements OnInit{
   }
 
   Prijava(trening_id : any) {
-    console.log(trening_id)
+
     const body = {
       korisnik_id : this.korisnikId,
       grupni_trening_id :  trening_id,
       datumPrijave : new Date()
     }
-    this.httpKlijent.post(MojConfig.adresa_servera+"/PrijavaGrupnihTreninga/Add",body,MojConfig.http_opcije()).subscribe((x:any)=>{
+
+    this.grupniTreningService.PrijavaNaTrening(body).subscribe((x:any)=>{
       this.notificationService.showSuccess('Uspješna prijava','Success')
    },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
@@ -60,17 +62,17 @@ export class GrupniTreningComponent implements OnInit{
   }
 
   fetchKategorijeTreninga() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/KategorijaTreninga/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.grupniTreningService.getKategorijeTreninga().subscribe((x:any)=>{
         this.kategorijeTreninga=x;
     },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }
 
   getSlikaById(x: number  ) {
-    return `${MojConfig.adresa_servera}/GrupniTrening/GetSlikaGrupnogTreninga/${x}`;
+    return this.grupniTreningService.getSlikaTreninga(x);
   }
 
   fetchGrupneTreninge() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/GrupniTrening/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+   this.grupniTreningService.GetAll().subscribe((x:any)=>{
       this.grupniTreninzi=x;
     },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }

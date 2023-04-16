@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {MojConfig} from "../moj-konfig";
+import { SuplementiService } from '../suplement/suplementi.service';
 
 @Component({
   selector: 'app-suplementi-panel',
@@ -11,15 +12,18 @@ import {MojConfig} from "../moj-konfig";
 export class SuplementiPanelComponent implements  OnInit{
   suplementiPodaci: any;
 
-  constructor(private httpKlijent : HttpClient, private router : Router) {
-  }
+  constructor(
+  private httpKlijent : HttpClient, 
+  private router : Router,
+  private suplementiService : SuplementiService
+  ){}
 
   ngOnInit(): void {
     this.getPodaci();
   }
 
    getPodaci() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.suplementiService.GetAll().subscribe((x:any)=>{
       this.suplementiPodaci=x;
     })
   }

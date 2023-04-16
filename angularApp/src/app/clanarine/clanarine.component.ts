@@ -5,6 +5,7 @@ import {MojConfig} from "../moj-konfig";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import { NotificationService } from '../notification.service';
+import { ClanarineService } from './clanarine.service';
 
 @Component({
   selector: 'app-clanarine',
@@ -18,9 +19,9 @@ export class ClanarineComponent implements OnInit{
   constructor(
     private router : Router,
     private httpKlijent : HttpClient,
-    private notificationService : NotificationService
-    )
-    {}
+    private notificationService : NotificationService,
+    private clanarineService : ClanarineService
+    ){}
   
   redirekcijaNaSuplemente() {
     this.router.navigateByUrl("/shop")
@@ -40,7 +41,7 @@ export class ClanarineComponent implements OnInit{
   }
 
   fetchVrsteClanarina() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/VrstaClanarine/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.clanarineService.getVrsteClanarina().subscribe((x:any)=>{
       this.vrsteClanarina = x;
     },(err)=>this.notificationService.showError(`${err.error}`,'Greška'));
   }

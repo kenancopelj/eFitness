@@ -12,31 +12,32 @@ import { KorpaServiceService } from '../korpa-service.service';
 export class KorpaComponent implements OnInit {
 
   Suplementi : any[] = [];
-  cartTotal : any;
-
-
-
+  cartTotal : any = 0;
 
   ngOnInit(): void {
-
+    this.izracunajTotal();
+  }
+  izracunajTotal() {
+    let suma = 0;
+    for(let i =0; i<this.Suplementi.length;i++){
+      suma+= this.Suplementi[i].Price;
+    }
+    this.cartTotal = suma;
   }
 
-  constructor(private httpKlijent:HttpClient, private notificationService:NotificationService, private KorpaService : KorpaServiceService){
+  constructor(
+  private httpKlijent:HttpClient, 
+  private notificationService:NotificationService, 
+  private KorpaService : KorpaServiceService)
+  {
     this.Suplementi = KorpaService.getItems();
   }
 
-
-
   createOrder() {
-
-    // Make a POST request to the backend to create the order
-    console.log("create ordre")
-
-    this.httpKlijent.post(MojConfig.adresa_servera+"/Narudzba/CreateOrder/placeorder", this.Suplementi, MojConfig.http_opcije())
+    this.KorpaService.createOrder(this.Suplementi)
       .subscribe(response => {
         console.log('Order created successfully!');
         this.notificationService.showSuccess("Uspjesno izvrsena narudzba","Success");
-        // Clear the cart
         this.KorpaService.clearCart();
       });
   }

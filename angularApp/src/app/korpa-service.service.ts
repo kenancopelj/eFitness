@@ -1,11 +1,13 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MojConfig } from './moj-konfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class KorpaServiceService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   items: any[] = [];
 
@@ -27,4 +29,9 @@ export class KorpaServiceService {
   clearCart() {
     this.items = [];
   }
+
+  createOrder(items : any){
+    return this.http.post(MojConfig.adresa_servera+"/Narudzba/CreateOrder/placeorder", items, MojConfig.http_opcije())
+  }
+
 }

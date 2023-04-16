@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MojConfig } from '../moj-konfig';
 import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 import { NotificationService } from '../notification.service';
+import { ClanarineService } from '../clanarine/clanarine.service';
 
 declare function porukaSuccess(a:string):any;
 declare function porukaError(a:string):any;
@@ -19,7 +20,8 @@ export class NovoUclanjenjeComponent implements OnInit {
   private router: Router,
   private route: ActivatedRoute,
   private httpKlijent : HttpClient,
-  private notificationService : NotificationService
+  private notificationService : NotificationService,
+  private clanarineService : ClanarineService
   ){}
   
   korisnikId: any;
@@ -29,14 +31,12 @@ export class NovoUclanjenjeComponent implements OnInit {
   
   ngOnInit(): void {
     this.clanarinaId = this.route.snapshot.paramMap.get('id');
-    console.log(this.clanarinaId)
     this.getVrstaClanarineById(this.clanarinaId);
     this.korisnikId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;
-    console.log(this.korisnikId)
   }
 
   getVrstaClanarineById(clanarinaId: any) {
-    this.httpKlijent.get(MojConfig.adresa_servera+`/VrstaClanarine/GetById/${clanarinaId}`,MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.clanarineService.GetVrstaById(clanarinaId).subscribe((x:any)=>{
       this.clanarinaNaziv = x.naziv;
       this.clanarinaCijena = x.cijena;
       console.log(x)
@@ -49,7 +49,7 @@ export class NovoUclanjenjeComponent implements OnInit {
       korisnik_id:this.korisnikId,
       datumIsteka : new Date(new Date().getFullYear(),new Date().getMonth()+1, new Date().getDay()),
     };
-    this.httpKlijent.post(`${MojConfig.adresa_servera}/Clanarina/Add`,novaClanarina,MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.clanarineService.novaClanarina(novaClanarina).subscribe((x:any)=>{
         this.notificationService.showSuccess("Uspješno učlanjenje",'Success')
         this.closeModal();
     },(err)=>this.notificationService.showError(err.error,'Greška'));

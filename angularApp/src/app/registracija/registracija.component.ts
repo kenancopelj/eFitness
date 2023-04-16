@@ -7,6 +7,8 @@ import {KorisnikVM} from "./novi-korisnik-vm";
 import {LoginInformacije} from "../_helpers/login-informacije";
 import {AutentifikacijaHelper} from "../_helpers/autentifikacija-helper";
 import { NotificationService } from '../notification.service';
+import { KorisniciService } from '../korisnici-panel/korisnici.service';
+import { AuthService } from '../auth.service';
 
 
 declare function porukaSuccess(a: string):any;
@@ -26,7 +28,9 @@ export class RegistracijaComponent implements OnInit{
   constructor(
   private httpKlijent : HttpClient,
   private router : Router,
-  private notificationService : NotificationService
+  private notificationService : NotificationService,
+  private korisnikService : KorisniciService,
+  private authService : AuthService
   ){}
   ngOnInit(): void {
     this.fetchKorisnici();
@@ -35,7 +39,7 @@ export class RegistracijaComponent implements OnInit{
   btnRegistracija() {
       if(this.Validiraj())
       {
-          this.httpKlijent.post<KorisnikVM>(MojConfig.adresa_servera+"/Korisnik/Add",this.noviKorisnik,MojConfig.http_opcije()).subscribe((x:any)=>{
+          this.korisnikService.Add(this.noviKorisnik).subscribe((x:any)=>{
             this.notificationService.showSuccess("Uspješna registracija!",'');
             this.LogirajSe(this.noviKorisnik);
           },(err)=>this.notificationService.showError(err.error,'Greška'));
@@ -47,8 +51,8 @@ export class RegistracijaComponent implements OnInit{
       korisnickoIme:noviKorisnik.korisnicko_ime,
       lozinka: noviKorisnik.lozinka
     };
-    this.httpKlijent.post<LoginInformacije>(MojConfig.adresa_servera+ "/Autentifikacija/Login/", saljemo)
-      .subscribe((x:LoginInformacije) =>{
+    
+      this.authService.logIn(saljemo).subscribe((x:LoginInformacije) =>{
           if (x.isLogiran) {
             AutentifikacijaHelper.setLoginInfo(x)
             this.router.navigateByUrl("/home");
@@ -93,7 +97,7 @@ export class RegistracijaComponent implements OnInit{
   }
 
   fetchKorisnici() {
-    this.httpKlijent.get(MojConfig.adresa_servera+"/Korisnik/GetAll",MojConfig.http_opcije()).subscribe((x:any)=>{
+    this.korisnikService.GetAll().subscribe((x:any)=>{
       this.korisnici=x;
     },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
