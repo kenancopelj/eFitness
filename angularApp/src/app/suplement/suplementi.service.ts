@@ -18,8 +18,12 @@ export class SuplementiService {
     return this.http.post<SuplementGetAllVm>(MojConfig.adresa_servera+"/Suplement/Add",body,MojConfig.http_opcije())
   }
 
-  GetAll(){
-    return this.http.get(MojConfig.adresa_servera+"/Suplement/GetAll",MojConfig.http_opcije());
+  GetAllOld(){
+    return this.http.get(MojConfig.adresa_servera+"/Suplement/GetAllOld",MojConfig.http_opcije());
+  }
+
+  GetAll(body){
+    return this.http.post(MojConfig.adresa_servera+"/Suplement/GetAll",body,MojConfig.http_opcije());
   }
 
   Delete(id:any){

@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { NotificationService } from '../notification.service';
 import { KorpaServiceService } from '../korpa-service.service';
 import { SuplementiService } from '../suplement/suplementi.service';
+import { GET_ALL_ON_PAGED_ENDPOINTS } from '../_helpers/config';
 
 @Component({
   selector: 'app-shop',
@@ -24,10 +25,10 @@ export class ShopComponent implements OnInit{
   items: any[] = [];
   cartTotal: number = 0;
 
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 7;
-  tableSizes: any = [3,6,9,12]
+  itemsPerPage = 12;
+  currentPage = 1;
+  totalItems = 0;
+
 
 
   constructor(
@@ -40,17 +41,6 @@ export class ShopComponent implements OnInit{
   ) {
     this.items = this.KorpaService.getItems();
 
-  }
-
-  onTableDataChange(event:any){
-    this.page = event;
-    this.getSuplementiPodaci()
-  }
-
-  onTableSizeChange(event:any):void{
-    this.tableSize = event.target.value;
-    this.page = 1;
-    this.getSuplementiPodaci();
   }
 
   AddItemToCart(item: any) {
@@ -81,11 +71,22 @@ export class ShopComponent implements OnInit{
     },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
 
-  fetchSuplementi() {
-    this.suplementiService.GetAll().subscribe((x:any)=>{
-      this.suplementi=x;
+  fetchSuplementi(body=null) {
+    this.suplementiService.GetAll(!body ? {
+      ...GET_ALL_ON_PAGED_ENDPOINTS,
+      itemsPerPage: this.itemsPerPage,
+      currentPage: this.currentPage
+    } : {
+      ...body,
+      itemsPerPage: this.itemsPerPage,
+      currentPage: this.currentPage
+    }).subscribe((x:any)=>{
+      this.suplementi=x.data;
+      this.totalItems = x.pagedResult.totalItems;
     },(err)=>this.notificationService.showError(err.error,'Greška'));
   }
+
+
 
   noviSuplementi(){
     this.odabraniSuplement={
@@ -113,5 +114,11 @@ export class ShopComponent implements OnInit{
 
   urediSuplementById(id) {
 
+  }
+
+  onPageChange(event) {
+    this.currentPage = event;
+
+     this.fetchSuplementi();
   }
 }

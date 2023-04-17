@@ -21,8 +21,8 @@ namespace eFitnessAPI.Controllers
 
 
 
-        [HttpGet]
-        public ActionResult GetAll()
+        [HttpPost]
+        public ActionResult GetAll([FromBody] SearchObject searchObject)
         {
             var podaci = dbContext.Suplement.
                 Select(x => new SuplementGetAllVM
@@ -35,10 +35,45 @@ namespace eFitnessAPI.Controllers
                     kategorija_id = x.kategorija_id,
                     kategorija=x.kategorija
                 })
+                .ApplyPagination(searchObject.Skip(), searchObject.PageSize)
                 .ToList();
 
+            var Items = podaci.Count();
+
+            var message = new Message()
+            {
+                IsValid = true,
+                Data = podaci,
+                PagedResult = new PagedResult
+                {
+                    TotalItems = Items,
+                    TotalPages = searchObject.CalculatePages(Items),
+                    CurrentPage = searchObject.Page,
+                }
+            };
+            return Ok(message);
+        }
+
+        [HttpGet]
+        public ActionResult GetAllOld()
+        {
+            var podaci = dbContext.Suplement.
+                Select(x => new SuplementGetAllVM
+                {
+                    id = x.id,
+                    naziv = x.naziv,
+                    rokTrajanja = x.rokTrajanja,
+                    opis = x.opis,
+                    cijena = x.cijena,
+                    kategorija_id = x.kategorija_id,
+                    kategorija = x.kategorija
+                })
+                .ToList();
+
+            
             return Ok(podaci);
         }
+
         [HttpGet]
         public ActionResult GetLastThree()
         {

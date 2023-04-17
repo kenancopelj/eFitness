@@ -13,7 +13,7 @@ export class SuplementiPanelComponent implements  OnInit{
   suplementiPodaci: any;
 
   constructor(
-  private httpKlijent : HttpClient, 
+  private httpKlijent : HttpClient,
   private router : Router,
   private suplementiService : SuplementiService
   ){}
@@ -23,7 +23,7 @@ export class SuplementiPanelComponent implements  OnInit{
   }
 
    getPodaci() {
-    this.suplementiService.GetAll().subscribe((x:any)=>{
+    this.suplementiService.GetAllOld().subscribe((x:any)=>{
       this.suplementiPodaci=x;
     })
   }
