@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CashboxDataSet" targetNamespace="http://tempuri.org/CashboxDataSet.xsd" xmlns:mstns="http://tempuri.org/CashboxDataSet.xsd" xmlns="http://tempuri.org/CashboxDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="KnokErpConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="KnokErpConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.KnokErpConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CashboxDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="CashboxDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CashboxDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Parameters" msprop:Generator_RowEvHandlerName="ParametersRowChangeEventHandler" msprop:Generator_RowDeletedName="ParametersRowDeleted" msprop:Generator_RowDeletingName="ParametersRowDeleting" msprop:Generator_RowEvArgName="ParametersRowChangeEvent" msprop:Generator_TablePropName="Parameters" msprop:Generator_RowChangedName="ParametersRowChanged" msprop:Generator_UserTableName="Parameters" msprop:Generator_RowChangingName="ParametersRowChanging" msprop:Generator_RowClassName="ParametersRow" msprop:Generator_TableClassName="ParametersDataTable" msprop:Generator_TableVarName="tableParameters">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DatumOd" msprop:Generator_ColumnPropNameInTable="DatumOdColumn" msprop:Generator_ColumnPropNameInRow="DatumOd" msprop:Generator_UserColumnName="DatumOd" msprop:Generator_ColumnVarNameInTable="columnDatumOd" type="xs:string" minOccurs="0" />
+              <xs:element name="Ukupno" msprop:Generator_ColumnPropNameInTable="UkupnoColumn" msprop:Generator_ColumnPropNameInRow="Ukupno" msprop:Generator_UserColumnName="Ukupno" msprop:Generator_ColumnVarNameInTable="columnUkupno" type="xs:string" minOccurs="0" />
+              <xs:element name="DatumDo" msprop:Generator_ColumnPropNameInTable="DatumDoColumn" msprop:Generator_ColumnPropNameInRow="DatumDo" msprop:Generator_UserColumnName="DatumDo" msprop:Generator_ColumnVarNameInTable="columnDatumDo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ReportData" msprop:Generator_RowEvHandlerName="ReportDataRowChangeEventHandler" msprop:Generator_RowDeletedName="ReportDataRowDeleted" msprop:Generator_RowDeletingName="ReportDataRowDeleting" msprop:Generator_RowEvArgName="ReportDataRowChangeEvent" msprop:Generator_TablePropName="ReportData" msprop:Generator_RowChangedName="ReportDataRowChanged" msprop:Generator_UserTableName="ReportData" msprop:Generator_RowChangingName="ReportDataRowChanging" msprop:Generator_RowClassName="ReportDataRow" msprop:Generator_TableClassName="ReportDataDataTable" msprop:Generator_TableVarName="tableReportData">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VrijemePravljenja" msprop:Generator_ColumnPropNameInTable="VrijemePravljenjaColumn" msprop:Generator_ColumnPropNameInRow="VrijemePravljenja" msprop:Generator_UserColumnName="VrijemePravljenja" msprop:Generator_ColumnVarNameInTable="columnVrijemePravljenja" type="xs:string" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_UserColumnName="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" type="xs:string" minOccurs="0" />
+              <xs:element name="Rb" msprop:Generator_ColumnPropNameInTable="RbColumn" msprop:Generator_ColumnPropNameInRow="Rb" msprop:Generator_UserColumnName="Rb" msprop:Generator_ColumnVarNameInTable="columnRb" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
