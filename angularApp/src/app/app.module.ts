@@ -30,6 +30,11 @@ import { LoaderComponent } from './loader/loader.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import  localeBs  from '@angular/common/locales/bs'
+import { registerLocaleData } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(localeBs);
 
 @NgModule({
   declarations: [
@@ -65,11 +70,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    NgxPaginationModule
-
+    NgxPaginationModule,
   ],
   providers: [
-    AutorizacijaLoginProvjera
+    AutorizacijaLoginProvjera,
+    {
+      provide: LOCALE_ID, useValue: 'bs'
+    }
   ],
   bootstrap: [AppComponent]
 })

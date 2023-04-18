@@ -5,6 +5,7 @@ using Hangfire.Dashboard.BasicAuthorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Text;
+using System.Globalization;
 
 var config = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false)
@@ -34,7 +35,9 @@ builder.Services.AddHangfire(configuration => configuration
 .UseRecommendedSerializerSettings());
 builder.Services.AddHangfireServer();
 
-
+var culture = new CultureInfo("bs-Latn-BA");
+Thread.CurrentThread.CurrentCulture = culture;
+Thread.CurrentThread.CurrentUICulture = culture;
 
 
 // Add services to the container.
