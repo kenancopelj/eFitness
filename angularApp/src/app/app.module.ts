@@ -30,11 +30,15 @@ import { LoaderComponent } from './loader/loader.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+<<<<<<< Updated upstream
 import  localeBs  from '@angular/common/locales/bs'
 import { registerLocaleData } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
 
 registerLocaleData(localeBs);
+=======
+import { ReportComponent } from './report/report.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -60,6 +64,7 @@ registerLocaleData(localeBs);
     LoaderComponent,
     SpinnerComponent,
     KontaktComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
