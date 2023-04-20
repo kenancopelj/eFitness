@@ -6,11 +6,26 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eFitnessAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class najnovija : Migration
+    public partial class stavkenarudzbe22 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Item",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Item", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "KategorijaSuplementa",
                 columns: table => new
@@ -195,27 +210,6 @@ namespace eFitnessAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Item",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    narudzbaID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Item", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Item_Narudzba_narudzbaID",
-                        column: x => x.narudzbaID,
-                        principalTable: "Narudzba",
-                        principalColumn: "narudzbaID");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Osoblje",
                 columns: table => new
                 {
@@ -266,6 +260,33 @@ namespace eFitnessAPI.Migrations
                         name: "FK_Clanarina_VrstaClanarine_vrsta_clanarine_id",
                         column: x => x.vrstaclanarineid,
                         principalTable: "VrstaClanarine",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StavkeNarudzbe",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    narudzbaid = table.Column<int>(name: "narudzba_id", type: "int", nullable: false),
+                    suplementid = table.Column<int>(name: "suplement_id", type: "int", nullable: false),
+                    kolicina = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StavkeNarudzbe", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_StavkeNarudzbe_Narudzba_narudzba_id",
+                        column: x => x.narudzbaid,
+                        principalTable: "Narudzba",
+                        principalColumn: "narudzbaID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StavkeNarudzbe_Suplement_suplement_id",
+                        column: x => x.suplementid,
+                        principalTable: "Suplement",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -399,11 +420,6 @@ namespace eFitnessAPI.Migrations
                 column: "kategorija_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Item_narudzbaID",
-                table: "Item",
-                column: "narudzbaID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ObjavaSuplementa_osoblje_id",
                 table: "ObjavaSuplementa",
                 column: "osoblje_id");
@@ -427,6 +443,16 @@ namespace eFitnessAPI.Migrations
                 name: "IX_PrijavaGrupniTrening_korisnik_id",
                 table: "PrijavaGrupniTrening",
                 column: "korisnik_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StavkeNarudzbe_narudzba_id",
+                table: "StavkeNarudzbe",
+                column: "narudzba_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StavkeNarudzbe_suplement_id",
+                table: "StavkeNarudzbe",
+                column: "suplement_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Suplement_kategorija_id",
@@ -461,6 +487,9 @@ namespace eFitnessAPI.Migrations
                 name: "PrijavaGrupniTrening");
 
             migrationBuilder.DropTable(
+                name: "StavkeNarudzbe");
+
+            migrationBuilder.DropTable(
                 name: "Trener");
 
             migrationBuilder.DropTable(
@@ -470,13 +499,13 @@ namespace eFitnessAPI.Migrations
                 name: "Vjezba");
 
             migrationBuilder.DropTable(
+                name: "GrupniTrening");
+
+            migrationBuilder.DropTable(
                 name: "Narudzba");
 
             migrationBuilder.DropTable(
                 name: "Suplement");
-
-            migrationBuilder.DropTable(
-                name: "GrupniTrening");
 
             migrationBuilder.DropTable(
                 name: "Osoblje");
@@ -485,10 +514,10 @@ namespace eFitnessAPI.Migrations
                 name: "KategorijaVjezbe");
 
             migrationBuilder.DropTable(
-                name: "KategorijaSuplementa");
+                name: "KategorijaTreninga");
 
             migrationBuilder.DropTable(
-                name: "KategorijaTreninga");
+                name: "KategorijaSuplementa");
 
             migrationBuilder.DropTable(
                 name: "Korisnik");

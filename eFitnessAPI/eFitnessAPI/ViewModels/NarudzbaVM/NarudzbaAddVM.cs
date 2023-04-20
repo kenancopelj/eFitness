@@ -1,18 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using eFitnessAPI.Class;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Reflection.Metadata.Ecma335;
 
-namespace eFitnessAPI.Class
+namespace eFitnessAPI.ViewModels.NarudzbaVM
 {
-    public class Narudzba
+    public class NarudzbaAddVM
     {
         public int narudzbaID { get; set; }
         public decimal Total { get; set; }
         public DateTime VrijemePravljenja { get; set; }
-        [ForeignKey(nameof(korisnik))]
         public int korisnik_id { get; set; }
-        public Korisnik korisnik { get; set; }
-
-
     }
 }

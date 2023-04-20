@@ -27,7 +27,7 @@ namespace eFitnessAPI.Controllers
             {
                 Total = tot,
                 VrijemePravljenja = DateTime.Now,
-                Suplementi = items
+               // Suplementi = items
             };
             // Save the order to the database
             dbContext.Narudzba.Add(Nar);
@@ -36,12 +36,28 @@ namespace eFitnessAPI.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IActionResult AddNarudzba([FromBody] NarudzbaAddVM x)
+        {
+            var nar = new Narudzba()
+            {
+                korisnik_id = x.korisnik_id,
+                VrijemePravljenja = DateTime.Now,
+            };
+
+            dbContext.Narudzba.Add(nar);
+            dbContext.SaveChanges();
+
+            return Ok();
+        }
+
+
         //[HttpGet("{id}")]
         //public IActionResult GetSuplementiByCategory(int id)
         //{
         //    var podaci = new List<Suplement>();
         //    var Narudzbe = dbContext.Narudzba.ToList();
-        //    for (int i = 0; i < Narudzbe.Count() ; i++)
+        //    for (int i = 0; i < Narudzbe.Count(); i++)
         //    {
         //        for (int j = 0; j < Narudzbe[i].Suplementi.Count(); j++)
         //        {
@@ -49,13 +65,13 @@ namespace eFitnessAPI.Controllers
 
         //        }
         //    }
-            
-            
-            
-
-        //    return Ok();
-        //}
 
 
-    }
+
+
+        //    //    return Ok();
+        //    //}
+
+
+        }
 }

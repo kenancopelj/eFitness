@@ -1,6 +1,7 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Controllers.Autentifikacija;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace eFitnessAPI.Data
 {
@@ -22,6 +23,7 @@ namespace eFitnessAPI.Data
         public DbSet<KategorijaSuplementa> KategorijaSuplementa { get; set; }
         public DbSet<ObjavaSuplementa> ObjavaSuplementa { get; set; }
         public DbSet<Narudzba> Narudzba { get; set; }
+        public DbSet<StavkeNarudzbe> StavkeNarudzbe { get; set; }
         public DbSet<Item> Item { get; set; }
 
 
