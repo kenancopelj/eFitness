@@ -25,6 +25,7 @@ namespace eFitnessAPI.Data
         public DbSet<Narudzba> Narudzba { get; set; }
         public DbSet<StavkeNarudzbe> StavkeNarudzbe { get; set; }
         public DbSet<Item> Item { get; set; }
+        public DbSet<AktivacijskiToken> AktivacijskiToken { get; set; }
 
 
 

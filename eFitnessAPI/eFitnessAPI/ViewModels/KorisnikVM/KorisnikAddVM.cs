@@ -8,5 +8,6 @@
         public string lozinka { get; set; }
         public string? slika_korisnika_base63 { get; set; }
         public bool isAdmin { get; set; }
+        public string email { get; set; }
     }
 }

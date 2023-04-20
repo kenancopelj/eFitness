@@ -1,8 +1,10 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
 using eFitnessAPI.Helper;
+using eFitnessAPI.Services;
 using eFitnessAPI.ViewModels;
 using eFitnessAPI.ViewModels.KorisnikVM;
+using FIT_Api_Examples.Helper;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using FIT_Api_Examples.Modul0_Autentifikacija.Controllers;
 using Microsoft.AspNetCore.Http;
@@ -15,9 +17,11 @@ namespace eFitnessAPI.Controllers
     public class KorisnikController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
-        public KorisnikController(ApplicationDbContext dbContext)
+        private readonly IMailService _mailService;
+        public KorisnikController(ApplicationDbContext dbContext, IMailService mailService)
         {
             this.dbContext = dbContext;
+            this._mailService = mailService;
         }
 
         [HttpGet]
@@ -27,7 +31,7 @@ namespace eFitnessAPI.Controllers
 
             return Ok(new
             {
-                id=trenutniKorisnik.id,
+                id = trenutniKorisnik.id,
                 korisnickoIme = trenutniKorisnik.korisnikoIme,
                 lozinka = trenutniKorisnik.lozinka,
             });
@@ -50,11 +54,11 @@ namespace eFitnessAPI.Controllers
             var podaci = dbContext.Korisnik
                 .Select(x => new KorisnikGetAllVM
                 {
-                    ime=x.Ime,
-                    prezime=x.Prezime,
-                    id=x.id,
-                    korisnicko_ime=x.korisnikoIme,
-                    slika=x.slika,
+                    ime = x.Ime,
+                    prezime = x.Prezime,
+                    id = x.id,
+                    korisnicko_ime = x.korisnikoIme,
+                    slika = x.slika,
                     is_admin = x.isAdmin
                 })
                 .ToList();
@@ -71,9 +75,18 @@ namespace eFitnessAPI.Controllers
                 korisnikoIme = x.korisnicko_ime,
                 lozinka = x.lozinka,
                 slika = x.slika_korisnika_base63,
-                isAdmin = x.isAdmin                
+                isAdmin = x.isAdmin
             };
 
+            var aktivacijskiToken = new AktivacijskiToken
+            {
+                Korisnik = x.korisnicko_ime,
+                Token = TokenGenerator.Generate(6)
+            };
+
+            _mailService.Posalji("kenancopelj@gmail.com", aktivacijskiToken.Token);
+
+            dbContext.AktivacijskiToken.Add(aktivacijskiToken);
             dbContext.Korisnik.Add(noviKorisnik);
             dbContext.SaveChanges();
 

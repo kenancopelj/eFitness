@@ -20,6 +20,11 @@ namespace eFitnessAPI.Class
         public Osoblje osoblje => this as Osoblje;
         public bool isOsoblje => osoblje != null;
         public bool isAdmin { get; set; }
+        public string email { get; set; }
+
+        public bool isAktiviran { get; set; }
+        public DateTime DatumAktivacije { get; set; }
+
     }
 
     
