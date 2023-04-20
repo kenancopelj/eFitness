@@ -26,6 +26,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddTransient<ISMSService,SMSService>();
+builder.Services.AddTransient<IMailService,MailService>();
 
 
 builder.Services.AddHangfire(configuration => configuration
