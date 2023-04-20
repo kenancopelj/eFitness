@@ -12,7 +12,12 @@ namespace eFitnessAPI.Class
         [ForeignKey(nameof(korisnik))]
         public int korisnik_id { get; set; }
         public Korisnik korisnik { get; set; }
+        public bool kupljeno { get; set; }
 
+        public Narudzba()
+        {
+            kupljeno = false;
+        }
 
     }
 }

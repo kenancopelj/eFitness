@@ -22,31 +22,62 @@ namespace eFitnessAPI.Controllers
         [HttpPost("placeorder")]
         public IActionResult CreateOrder([FromBody] List<Item> items)
         {
-            var tot = items.Sum(x => x.Price);
-            var Nar = new Narudzba()
-            {
-                Total = tot,
-                VrijemePravljenja = DateTime.Now,
-               // Suplementi = items
-            };
-            // Save the order to the database
-            dbContext.Narudzba.Add(Nar);
-            dbContext.SaveChanges();
+            //var tot = items.Sum(x => x.Price);
+            //var Nar = new Narudzba()
+            //{
+            //    Total = tot,
+            //    VrijemePravljenja = DateTime.Now,
+            //   // Suplementi = items
+            //};
+            //// Save the order to the database
+            //dbContext.Narudzba.Add(Nar);
+            //dbContext.SaveChanges();
 
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult AddNarudzba([FromBody] NarudzbaAddVM x)
+        [HttpPost("{korisnikid)")]
+        public IActionResult AddNarudzba([FromBody] NarudzbaAddVM x,int korisnikid)
         {
-            var nar = new Narudzba()
+            var Postojeca = dbContext.Narudzba.Where(x=>x.korisnik_id == korisnikid).FirstOrDefault();
+            if (Postojeca == null)
             {
-                korisnik_id = x.korisnik_id,
-                VrijemePravljenja = DateTime.Now,
-            };
+                var nar = new Narudzba()
+                {
+                    korisnik_id = x.korisnik_id,
+                    VrijemePravljenja = DateTime.Now,
+                };
 
-            dbContext.Narudzba.Add(nar);
+                dbContext.Narudzba.Add(nar);
+                dbContext.SaveChanges();
+            }
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteNarudzba(int id)
+        {
+            var nar = dbContext.Narudzba.Find(id);
+            if (nar != null)
+            {
+            dbContext.Narudzba.Remove(nar);
             dbContext.SaveChanges();
+            }
+            else
+                return BadRequest("pogresan ID");
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Kupljeno(int id)
+        {
+            var nar = dbContext.Narudzba.Find(id);
+            if (nar != null)
+            {
+                nar.kupljeno = true;
+                dbContext.SaveChanges();
+            }
 
             return Ok();
         }
@@ -73,5 +104,5 @@ namespace eFitnessAPI.Controllers
         //    //}
 
 
-        }
+    }
 }
