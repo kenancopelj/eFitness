@@ -314,11 +314,13 @@ namespace eFitnessReport.Report.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ParametersDataTable : global::System.Data.TypedTableBase<ParametersRow> {
             
-            private global::System.Data.DataColumn columnDatumOd;
+            private global::System.Data.DataColumn columnKorisnikIme;
             
             private global::System.Data.DataColumn columnUkupno;
             
-            private global::System.Data.DataColumn columnDatumDo;
+            private global::System.Data.DataColumn columnKorisnikPrezime;
+            
+            private global::System.Data.DataColumn columnVrijemePravljenja;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -355,9 +357,9 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DatumOdColumn {
+            public global::System.Data.DataColumn KorisnikImeColumn {
                 get {
-                    return this.columnDatumOd;
+                    return this.columnKorisnikIme;
                 }
             }
             
@@ -371,9 +373,17 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn DatumDoColumn {
+            public global::System.Data.DataColumn KorisnikPrezimeColumn {
                 get {
-                    return this.columnDatumDo;
+                    return this.columnKorisnikPrezime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn VrijemePravljenjaColumn {
+                get {
+                    return this.columnVrijemePravljenja;
                 }
             }
             
@@ -414,12 +424,13 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ParametersRow AddParametersRow(string DatumOd, string Ukupno, string DatumDo) {
+            public ParametersRow AddParametersRow(string KorisnikIme, string Ukupno, string KorisnikPrezime, string VrijemePravljenja) {
                 ParametersRow rowParametersRow = ((ParametersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DatumOd,
+                        KorisnikIme,
                         Ukupno,
-                        DatumDo};
+                        KorisnikPrezime,
+                        VrijemePravljenja};
                 rowParametersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowParametersRow);
                 return rowParametersRow;
@@ -442,20 +453,23 @@ namespace eFitnessReport.Report.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnDatumOd = base.Columns["DatumOd"];
+                this.columnKorisnikIme = base.Columns["KorisnikIme"];
                 this.columnUkupno = base.Columns["Ukupno"];
-                this.columnDatumDo = base.Columns["DatumDo"];
+                this.columnKorisnikPrezime = base.Columns["KorisnikPrezime"];
+                this.columnVrijemePravljenja = base.Columns["VrijemePravljenja"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnDatumOd = new global::System.Data.DataColumn("DatumOd", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDatumOd);
+                this.columnKorisnikIme = new global::System.Data.DataColumn("KorisnikIme", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKorisnikIme);
                 this.columnUkupno = new global::System.Data.DataColumn("Ukupno", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUkupno);
-                this.columnDatumDo = new global::System.Data.DataColumn("DatumDo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDatumDo);
+                this.columnKorisnikPrezime = new global::System.Data.DataColumn("KorisnikPrezime", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKorisnikPrezime);
+                this.columnVrijemePravljenja = new global::System.Data.DataColumn("VrijemePravljenja", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVrijemePravljenja);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -589,11 +603,13 @@ namespace eFitnessReport.Report.DataSet {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class ReportDataDataTable : global::System.Data.TypedTableBase<ReportDataRow> {
             
-            private global::System.Data.DataColumn columnVrijemePravljenja;
+            private global::System.Data.DataColumn columnNaziv;
             
-            private global::System.Data.DataColumn columnTotal;
+            private global::System.Data.DataColumn columnKolicina;
             
             private global::System.Data.DataColumn columnRb;
+            
+            private global::System.Data.DataColumn columnCijena;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -630,17 +646,17 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn VrijemePravljenjaColumn {
+            public global::System.Data.DataColumn NazivColumn {
                 get {
-                    return this.columnVrijemePravljenja;
+                    return this.columnNaziv;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TotalColumn {
+            public global::System.Data.DataColumn KolicinaColumn {
                 get {
-                    return this.columnTotal;
+                    return this.columnKolicina;
                 }
             }
             
@@ -649,6 +665,14 @@ namespace eFitnessReport.Report.DataSet {
             public global::System.Data.DataColumn RbColumn {
                 get {
                     return this.columnRb;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn CijenaColumn {
+                get {
+                    return this.columnCijena;
                 }
             }
             
@@ -689,12 +713,13 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ReportDataRow AddReportDataRow(string VrijemePravljenja, string Total, int Rb) {
+            public ReportDataRow AddReportDataRow(string Naziv, string Kolicina, int Rb, string Cijena) {
                 ReportDataRow rowReportDataRow = ((ReportDataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        VrijemePravljenja,
-                        Total,
-                        Rb};
+                        Naziv,
+                        Kolicina,
+                        Rb,
+                        Cijena};
                 rowReportDataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowReportDataRow);
                 return rowReportDataRow;
@@ -717,20 +742,23 @@ namespace eFitnessReport.Report.DataSet {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnVrijemePravljenja = base.Columns["VrijemePravljenja"];
-                this.columnTotal = base.Columns["Total"];
+                this.columnNaziv = base.Columns["Naziv"];
+                this.columnKolicina = base.Columns["Kolicina"];
                 this.columnRb = base.Columns["Rb"];
+                this.columnCijena = base.Columns["Cijena"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnVrijemePravljenja = new global::System.Data.DataColumn("VrijemePravljenja", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVrijemePravljenja);
-                this.columnTotal = new global::System.Data.DataColumn("Total", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotal);
+                this.columnNaziv = new global::System.Data.DataColumn("Naziv", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNaziv);
+                this.columnKolicina = new global::System.Data.DataColumn("Kolicina", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKolicina);
                 this.columnRb = new global::System.Data.DataColumn("Rb", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRb);
+                this.columnCijena = new global::System.Data.DataColumn("Cijena", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCijena);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -873,17 +901,17 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string DatumOd {
+            public string KorisnikIme {
                 get {
                     try {
-                        return ((string)(this[this.tableParameters.DatumOdColumn]));
+                        return ((string)(this[this.tableParameters.KorisnikImeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DatumOd\' in table \'Parameters\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'KorisnikIme\' in table \'Parameters\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableParameters.DatumOdColumn] = value;
+                    this[this.tableParameters.KorisnikImeColumn] = value;
                 }
             }
             
@@ -905,30 +933,46 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string DatumDo {
+            public string KorisnikPrezime {
                 get {
                     try {
-                        return ((string)(this[this.tableParameters.DatumDoColumn]));
+                        return ((string)(this[this.tableParameters.KorisnikPrezimeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DatumDo\' in table \'Parameters\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'KorisnikPrezime\' in table \'Parameters\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableParameters.DatumDoColumn] = value;
+                    this[this.tableParameters.KorisnikPrezimeColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsDatumOdNull() {
-                return this.IsNull(this.tableParameters.DatumOdColumn);
+            public string VrijemePravljenja {
+                get {
+                    try {
+                        return ((string)(this[this.tableParameters.VrijemePravljenjaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'VrijemePravljenja\' in table \'Parameters\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableParameters.VrijemePravljenjaColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetDatumOdNull() {
-                this[this.tableParameters.DatumOdColumn] = global::System.Convert.DBNull;
+            public bool IsKorisnikImeNull() {
+                return this.IsNull(this.tableParameters.KorisnikImeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetKorisnikImeNull() {
+                this[this.tableParameters.KorisnikImeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -945,14 +989,26 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsDatumDoNull() {
-                return this.IsNull(this.tableParameters.DatumDoColumn);
+            public bool IsKorisnikPrezimeNull() {
+                return this.IsNull(this.tableParameters.KorisnikPrezimeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetDatumDoNull() {
-                this[this.tableParameters.DatumDoColumn] = global::System.Convert.DBNull;
+            public void SetKorisnikPrezimeNull() {
+                this[this.tableParameters.KorisnikPrezimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsVrijemePravljenjaNull() {
+                return this.IsNull(this.tableParameters.VrijemePravljenjaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetVrijemePravljenjaNull() {
+                this[this.tableParameters.VrijemePravljenjaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -972,33 +1028,33 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string VrijemePravljenja {
+            public string Naziv {
                 get {
                     try {
-                        return ((string)(this[this.tableReportData.VrijemePravljenjaColumn]));
+                        return ((string)(this[this.tableReportData.NazivColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VrijemePravljenja\' in table \'ReportData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Naziv\' in table \'ReportData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableReportData.VrijemePravljenjaColumn] = value;
+                    this[this.tableReportData.NazivColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Total {
+            public string Kolicina {
                 get {
                     try {
-                        return ((string)(this[this.tableReportData.TotalColumn]));
+                        return ((string)(this[this.tableReportData.KolicinaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Total\' in table \'ReportData\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Kolicina\' in table \'ReportData\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableReportData.TotalColumn] = value;
+                    this[this.tableReportData.KolicinaColumn] = value;
                 }
             }
             
@@ -1020,26 +1076,42 @@ namespace eFitnessReport.Report.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsVrijemePravljenjaNull() {
-                return this.IsNull(this.tableReportData.VrijemePravljenjaColumn);
+            public string Cijena {
+                get {
+                    try {
+                        return ((string)(this[this.tableReportData.CijenaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Cijena\' in table \'ReportData\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableReportData.CijenaColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetVrijemePravljenjaNull() {
-                this[this.tableReportData.VrijemePravljenjaColumn] = global::System.Convert.DBNull;
+            public bool IsNazivNull() {
+                return this.IsNull(this.tableReportData.NazivColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTotalNull() {
-                return this.IsNull(this.tableReportData.TotalColumn);
+            public void SetNazivNull() {
+                this[this.tableReportData.NazivColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTotalNull() {
-                this[this.tableReportData.TotalColumn] = global::System.Convert.DBNull;
+            public bool IsKolicinaNull() {
+                return this.IsNull(this.tableReportData.KolicinaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetKolicinaNull() {
+                this[this.tableReportData.KolicinaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1052,6 +1124,18 @@ namespace eFitnessReport.Report.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetRbNull() {
                 this[this.tableReportData.RbColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsCijenaNull() {
+                return this.IsNull(this.tableReportData.CijenaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetCijenaNull() {
+                this[this.tableReportData.CijenaColumn] = global::System.Convert.DBNull;
             }
         }
         
