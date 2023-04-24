@@ -22,8 +22,7 @@ namespace eFitnessAPI.Class
         public bool isAdmin { get; set; }
         public string email { get; set; }
 
-        public bool isAktiviran { get; set; }
-        public DateTime DatumAktivacije { get; set; }
+        public string? aktivacijaToken { get; set; }
 
     }
 
