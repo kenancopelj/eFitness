@@ -22,6 +22,7 @@ namespace eFitnessAPI.Services
             email.CC.Add(sendMailFrom);
             email.Subject = mailSubject;
             email.Body = mailBody;
+            email.IsBodyHtml = true;
 
             smtpServer.Timeout = 5000;
             smtpServer.EnableSsl = true;
