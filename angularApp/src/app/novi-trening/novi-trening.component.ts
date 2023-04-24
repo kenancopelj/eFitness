@@ -47,7 +47,7 @@ export class NoviTreningComponent implements OnInit{
   }
 
   dodajNovi() {
-    this.treningService.Add(this.dodajNovi).subscribe((x:any)=>{
+    this.treningService.Add(this.napraviNovi).subscribe((x:any)=>{
       this.notificationService.showSuccess('Uspješno dodano','Success')
       this.napraviNovi=null;
       this.ucitajTreninge.emit();

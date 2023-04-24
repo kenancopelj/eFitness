@@ -5,6 +5,7 @@ using eFitnessAPI.Class;
 using eFitnessAPI.Controllers.Autentifikacija;
 using eFitnessAPI.Controllers.Autentifikacija.ViewModels;
 using eFitnessAPI.Data;
+using eFitnessAPI.Services;
 using FIT_Api_Examples.Helper;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,12 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
     public class AutentifikacijaController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;
+        private readonly IMailService _mailService;
 
-        public AutentifikacijaController(ApplicationDbContext dbContext)
+        public AutentifikacijaController(ApplicationDbContext dbContext, IMailService mailService)
         {
             this._dbContext = dbContext;
+            this._mailService = mailService;
         }
 
 
@@ -41,22 +44,34 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             }
 
             //2- generisati random string
-            string randomString = TokenGenerator.Generate(10);
+            string randomString = TokenGenerator.Generate(6);
 
-            //3- dodati novi zapis u tabelu AutentifikacijaToken za logiraniKorisnikId i randomString
-            var noviToken = new AutentifikacijaToken()
-            {
-                ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
-                vrijednost = randomString,
-                korisnickiNalog = logiraniKorisnik,
-                vrijemeEvidentiranja = DateTime.Now
-            };
+            logiraniKorisnik.aktivacijaToken = randomString;
 
-            _dbContext.Add(noviToken);
+            _mailService.Posalji(logiraniKorisnik.email, randomString);
+
             _dbContext.SaveChanges();
+            return Ok();
+        }
 
-            //4- vratiti token string
-            return new LoginInformacije(noviToken);
+        [HttpPost("{token}")]
+        public ActionResult<LoginInformacije> TwoWayAuth(string token)
+        {
+            var korisnik = _dbContext.Korisnik.FirstOrDefault(x => x.aktivacijaToken == token);
+            if (korisnik != null)
+            {
+                var noviToken = new AutentifikacijaToken()
+                {
+                    ipAdresa = Request.HttpContext.Connection.RemoteIpAddress?.ToString(),
+                    vrijednost = token,
+                    korisnickiNalog = korisnik,
+                    vrijemeEvidentiranja = DateTime.Now
+                };
+                _dbContext.Add(noviToken);
+                _dbContext.SaveChanges();
+                 return new LoginInformacije(noviToken);
+            }
+            return BadRequest("Pogrešan token");
         }
 
         [HttpPost]

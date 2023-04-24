@@ -1,107 +1,35 @@
-<!--<div class="row d-flex justify-content-center align-items-center h-100">
-  <div class="col-md-9 col-lg-6 col-xl-6 my-lg-5 py-lg-5">
-    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid" alt="Sample image">
-  </div>
-  <div class="col-md-8 col-lg-6 col-xl-5 offset-xl-1 my-lg-5 py-lg-5">
-    <form>
+<body class="text-center">
+  <form class="form-signin">
+    <img class="mb-4" src="assets/logo.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
+      [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone:true}">
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
+      [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone:true}">
+    <div class="checkbox mb-3">
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="btnLogin()">Login</button>
+  </form>
+</body>
 
-      &lt;!&ndash; Username input &ndash;&gt;
-      <div class="form-outline mb-3">
-       &lt;!&ndash;<label class="form-label" for="txtKorisnickoIme" style="margin-left: 0px;">Korisnicko ime</label>&ndash;&gt;
-        <input id="txtKorisnickoIme" [(ngModel)]="txtKorisnickoIme" class="form-control">
-        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 88.8px;"></div>
-          <div class="form-notch-trailing">
-
-          </div>
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel"
+  aria-modal="true" role="dialog" style="display: block" *ngIf="this.openModal==true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Two-way authentication</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="openModal=false"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Token</label>
+          <input class="form-control" type="text" placeholder="Unesite Vaš token" [(ngModel)]="token" />
         </div>
       </div>
-
-      &lt;!&ndash; Password input &ndash;&gt;
-      <div class="form-outline mb-3">
-        &lt;!&ndash;<label class="form-label" for="txtLozinka"  style="margin-left: 0px;">Lozinka</label>&ndash;&gt;
-        <input id="txtLozinka" [(ngModel)]="txtLozinka" class="form-control" type="password">
-        <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
-
-      <div class="text-center text-lg-start mt-4 pt-2">
-        <button type="button" (click)="btnLogin()" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
-        <p class="small fw-bold mt-2 pt-1 mb-0">Nemate account? <a href="#" class="link-danger"> Registruj se</a></p>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="openModal=false">Zatvori</button>
+        <button type="button" class="btn btn-primary" (click)="aktivacija()">Aktiviraj</button>
       </div>
-
-    </form>
-  </div>
-</div>-->
-
-<!--<p>login works!</p>
-
-<div class="mb-3 row">
-  <label for="txtKorisnickoIme" class="col-sm-2 col-form-label">Korisnicko ime</label>
-  <div class="col-sm-3">
-    <input id="txtKorisnickoIme" [(ngModel)]="txtKorisnickoIme" class="form-control">
+    </div>
   </div>
 </div>
-
-<div class="mb-3 row">
-  <label for="txtLozinka" class="col-sm-2 col-form-label">Lozinka</label>
-  <div class="col-sm-3">
-    <input id="txtLozinka" [(ngModel)]="txtLozinka" class="form-control" type="password">
-  </div>
-</div>
-
-
-<button class="btn btn-primary" (click)="btnLogin()">Logiraj se</button>
-<br>
-<a routerLink="/registracija">Registracija</a>-->
-<!--<body>
-<div class="center">
-  <h1>Login</h1>
-  <form method="post">
-    <div class="txt_field">
-      <input type="text" [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone: true}">
-      <span></span>
-      <label>Korisnicko ime</label>
-    </div>
-    <div class="txt_field">
-      <input type="password" [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone: true}">
-      <span></span>
-      <label>Lozinka</label>
-    </div>
-    <input type="submit" value="Login" (click)="btnLogin()">
-    <div class="signup_link">
-      Niste registrovani? <a href="#">Registrujte se!</a>
-    </div>
-  </form>
-</div>
-</body>-->
-<!--<div class="container d-flex justify-content-center ">
-<form class="needs-validation" novalidate="">
-  <div class="row">
-    <div class="col-12">
-      <label class="form-label">Korisnicko ime</label>
-      <input type="text" class="form-control" id="firstName" [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone:true}">
-    </div>
-
-    <div class="col-12">
-      <label class="form-label">Lozinka</label>
-      <input type="password" class="form-control" [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone:true}">
-    </div>
-  </div>
-
-  <hr class="my-4">
-
-  <button (click)="btnLogin()" class="w-50 btn btn-primary btn-lg" style="height: 50px;" type="submit">Potvrda</button>
-</form>
-</div>-->
-
-<body class="text-center">
-<form class="form-signin">
-  <img class="mb-4" src="assets/logo.png" alt="" width="72" height="72">
-  <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
-  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus=""
-         [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone:true}">
-  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required=""
-         [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone:true}">
-  <div class="checkbox mb-3">
-  </div>
-  <button class="btn btn-lg btn-primary btn-block"  type="submit" (click)="btnLogin()">Login</button>
-</form>
-</body>

@@ -10,5 +10,6 @@ namespace eFitnessAPI.ViewModels.KorisnikVM
         public string korisnicko_ime { get; set; }
         public string slika { get; set; }
         public bool is_admin { get; set; }
+        public string email { get; set; }
     }
 }

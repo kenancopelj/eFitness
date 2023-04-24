@@ -59,19 +59,12 @@ namespace eFitnessAPI.Controllers
                     id = x.id,
                     korisnicko_ime = x.korisnikoIme,
                     slika = x.slika,
-                    is_admin = x.isAdmin
+                    is_admin = x.isAdmin,
+                    email = x.email
                 })
                 .ToList();
             return Ok(podaci);
         }
-
-        [HttpGet("{token}")]
-        public IActionResult Aktivacija(string token)
-        {
-            var korisnik = dbContext.Korisnik.FirstOrDefault(x=>x.aktivacijaToken == token); 
-            return BadRequest("Pogrešan token");
-        }
-
 
         [HttpPost]
         public ActionResult Add([FromBody] KorisnikAddVM x)
@@ -83,14 +76,9 @@ namespace eFitnessAPI.Controllers
                 korisnikoIme = x.korisnicko_ime,
                 lozinka = x.lozinka,
                 slika = x.slika_korisnika_base63,
-                isAdmin = x.isAdmin
+                isAdmin = x.isAdmin,
+                email = x.email
             };
-
-            var token = TokenGenerator.Generate(6);
-
-            noviKorisnik.aktivacijaToken = token;
-
-            _mailService.Posalji("kenancopelj@gmail.com", token);
 
             dbContext.Korisnik.Add(noviKorisnik);
             dbContext.SaveChanges();
@@ -101,7 +89,7 @@ namespace eFitnessAPI.Controllers
                 Fajlovi.Snimi(nova_slika, "slikeKorisnika/" + noviKorisnik.id + ".png");
             }
 
-            return Ok(token);
+            return Ok(noviKorisnik);
         }
 
         [HttpPut("{id}")]
@@ -115,6 +103,7 @@ namespace eFitnessAPI.Controllers
                 korisnik.korisnikoIme = x.korisnicko_ime;
                 korisnik.lozinka = x.lozinka;
                 korisnik.slika = x.slika_korisnika_base63;
+                korisnik.email = x.email;
             }
 
 

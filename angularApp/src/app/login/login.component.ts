@@ -15,10 +15,12 @@ declare function porukaError(a: string):any;
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements  OnInit{
-
+  
   txtLozinka: any;
   txtKorisnickoIme: any;
   suplementi: any=[];
+  openModal: any = false;
+token: any;
 
   constructor(
   private httpKlijent: HttpClient, 
@@ -31,6 +33,23 @@ export class LoginComponent implements  OnInit{
     this.fetchSuplemente();
   }
 
+  aktivacija() {
+    this.authService.aktivacija(this.token).subscribe((x:LoginInformacije)=>{
+      if (x.isLogiran) {
+        AutentifikacijaHelper.setLoginInfo(x)
+        this.router.navigateByUrl("/home");
+        this.notificationService.showSuccess("Uspješan login",'Success');
+      }
+      else
+      {
+        AutentifikacijaHelper.setLoginInfo(null)
+
+      }
+    },
+    (err)=>this.notificationService.showError(err.error,'Error')
+  );
+  }
+
   btnLogin() {
     let saljemo = {
       korisnickoIme:this.txtKorisnickoIme,
@@ -38,13 +57,18 @@ export class LoginComponent implements  OnInit{
     };
     this.authService.logIn(saljemo)
       .subscribe((x:LoginInformacije) =>{
+
+        this.openModal = true;
+
         if (x.isLogiran) {
+          console.log("Proso")
           AutentifikacijaHelper.setLoginInfo(x)
           this.router.navigateByUrl("/home");
           this.notificationService.showSuccess("Uspješan login",'Success');
         }
         else
         {
+          console.log("Nije proso")
           AutentifikacijaHelper.setLoginInfo(null)
 
         }
@@ -52,6 +76,8 @@ export class LoginComponent implements  OnInit{
       },
         (err)=>this.notificationService.showError(err.error,'Error')
       );
+
+
 
   }
 

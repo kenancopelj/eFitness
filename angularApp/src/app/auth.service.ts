@@ -14,4 +14,8 @@ export class AuthService {
     return this.http.post<LoginInformacije>(`${MojConfig.adresa_servera}/Autentifikacija/Login/`,body);
   }
 
+  aktivacija(token:any){
+    return this.http.post(`${MojConfig.adresa_servera}/Autentifikacija/TwoWayAuth/${token}`,token);
+  }
+
 }
