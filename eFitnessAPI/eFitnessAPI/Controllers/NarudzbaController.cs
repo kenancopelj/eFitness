@@ -36,7 +36,7 @@ namespace eFitnessAPI.Controllers
             return Ok();
         }
 
-        [HttpPost("{korisnikid)")]
+        [HttpPost("{korisnikid}")]
         public IActionResult AddNarudzba([FromBody] NarudzbaAddVM x,int korisnikid)
         {
             var Postojeca = dbContext.Narudzba.Where(x=>x.korisnik_id == korisnikid).FirstOrDefault();

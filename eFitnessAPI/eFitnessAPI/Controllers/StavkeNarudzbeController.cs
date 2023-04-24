@@ -11,7 +11,7 @@ using System;
 
 namespace eFitnessAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class StavkeNarudzbeController : ControllerBase
     {

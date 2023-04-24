@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eFitnessAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class MailController : ControllerBase
     {
