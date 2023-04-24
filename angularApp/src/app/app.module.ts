@@ -26,7 +26,6 @@ import { FooterComponent } from './footer/footer.component';
 import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from './loader/loader.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
@@ -37,7 +36,6 @@ import { LOCALE_ID } from '@angular/core';
 
 registerLocaleData(localeBs);
 import { ReportComponent } from './report/report.component';
-import { NgbDateCustomParserFormatter } from './_helpers/NgbDateCustomParserFormatter';
 
 @NgModule({
   declarations: [
@@ -81,10 +79,7 @@ import { NgbDateCustomParserFormatter } from './_helpers/NgbDateCustomParserForm
     {
       provide: LOCALE_ID, useValue: 'bs'
     },
-    {
-      provide: NgbDateParserFormatter,
-      useFactory: () => { return new NgbDateCustomParserFormatter("DD.MM.YYYY") }
-    },
+
   ],
   bootstrap: [AppComponent]
 })
