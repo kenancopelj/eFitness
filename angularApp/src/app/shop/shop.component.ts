@@ -66,7 +66,6 @@ export class ShopComponent implements OnInit{
   NapraviNarudzbu() {
     var kId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog.id.toString();
     this.KorpaService.AddNarudzba(kId).subscribe((x=>{
-      this.notificationService.showSuccess("Uspješno kreirana Korpa",'Uspjeh');
     }),
     (err)=>this.notificationService.showError(err.error,'Greška'))
 
