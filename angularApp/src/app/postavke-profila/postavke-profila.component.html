@@ -1,44 +1,94 @@
 <div class="container d-flex">
-<div class="container py-5 w-25">
-  <img src="{{this.getSlikaById(trenutniKorisnik.id)}}" class="img-thumbnail" alt="..." width="400px" height="400px">
+
   <div class="container py-5">
-    <div class="container">
-    <label style="text-align: center">Promijenite profilnu sliku</label>
+    <label class="form-label">Korisničko ime</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon1">@</span>
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.korisnicko_ime"
+        placeholder="Korisničko ime" aria-label="Username" aria-describedby="basic-addon1">
     </div>
-    <div class="container pt-3">
-    <input class="form-control" id="slika-input" type="file"  accept="image/*"  />
-    <img  style="max-width: 100%; height: 200px"  src="">
+    <div class="input-group mb-3">
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.ime"
+        placeholder="Ime" aria-label="Firstname" aria-describedby="basic-addon1">
     </div>
+    <div class="input-group mb-3">
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.prezime"
+        placeholder="Prezime" aria-label="Lastname" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.email"
+        placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+
+    <label class="form-label">Lozinka</label>
+    <div class="input-group mb-3 d-flex">
+      <input disabled id="password" type="password" [value]="trenutniKorisnik.lozinka" class="form-control"
+        placeholder="Lozinka" aria-label="Recipient's username" aria-describedby="basic-addon2">
+      <a (click)="otkrijPassword()"><img src="assets/password-eye.png" width="30px" height="30px"
+          style="margin-left: 5px"></a>
+    </div>
+    <button type="button" class="btn btn-outline-primary"
+      (click)="odabraniKorisnik=this.trenutniKorisnik">Uredi</button>
   </div>
-</div>
-
-
-<div class="container py-5">
-  <label  class="form-label">Korisničko ime</label>
-  <div class="input-group mb-3">
-  <span class="input-group-text" id="basic-addon1">@</span>
-  <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.korisnickoIme" placeholder="Korisničko ime" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-
-  <label  class="form-label">Lozinka</label>
-<div class="input-group mb-3 d-flex">
-  <input disabled id="password" type="password" [value]="trenutniKorisnik.lozinka" class="form-control" placeholder="Lozinka"  aria-label="Recipient's username" aria-describedby="basic-addon2">
-    <a (click)="otkrijPassword()"><img src="assets/password-eye.png" width="30px" height="30px" style="margin-left: 5px"></a>
-</div>
-  <button type="button" class="btn btn-outline-primary" (click)="odabraniKorisnik" >Uredi</button>
-</div>
 </div>
 
 <div class="container">
   <div class="col-12">
-    <h4>Moje članarine</h4>
+    <h3>Moje članarine</h3>
+    <br>
     <div class="col-12" *ngIf="this.clanarineKorisnika == null">
       <app-loader></app-loader>
     </div>
     <div class="col-12" *ngIf="this.clanarineKorisnika != null">
-      <div class="mb-3 col-12">
-        <label class="form-label">Vrsta clanarine</label>
-        <input disabled [(ngModel)]="this.clanarineKorisnika" class="form-control" type="text"/>
+      <div class="mb-3 col-12" *ngFor="let item of clanarineKorisnika">
+        <div class="d-flex gap-2 w-100 justify-content-between">
+          <div style="margin-left:1rem;">
+            <h4 class="mb-0">{{item.vrstaClanarine.naziv}}</h4>
+            <p class="mb-0 opacity-75">Trajanje: {{item.datumKreiranja | date}} - {{item.datumIsteka | date}}</p>
+            <img [src]="calculateImage(item)" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel"
+  aria-modal="true" role="dialog" style="display: block" *ngIf="this.odabraniKorisnik!=null">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Uredi profil</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="odabraniKorisnik=null"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Ime</label>
+          <input class="form-control" type="text" placeholder="Korisničko ime" [(ngModel)]="odabraniKorisnik.ime" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Prezime</label>
+          <input class="form-control" type="text" placeholder="Korisničko ime" [(ngModel)]="odabraniKorisnik.prezime" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input class="form-control" type="text" placeholder="Korisničko ime" [(ngModel)]="odabraniKorisnik.email" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Lozinka</label>
+          <input class="form-control" type="password" placeholder="Lozinka" [(ngModel)]="odabraniKorisnik.lozinka" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Ponovljena lozinka</label>
+          <input class="form-control" type="password" placeholder="Potvrdite Vašu lozinku"
+            [(ngModel)]="potvrdjenaLozinka" />
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="odabraniKorisnik=null">Close</button>
+        <button type="button" class="btn btn-primary" (click)="Spasi()">Sačuvaj</button>
       </div>
     </div>
   </div>
@@ -46,5 +96,3 @@
 
 
 <!--Footer-->
-
-

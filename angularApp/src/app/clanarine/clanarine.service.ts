@@ -26,7 +26,7 @@ export class ClanarineService {
   }
 
   getByKorisnik(){
-    return this.http.get(`${MojConfig.adresa_servera}/GetByKorisnik`,MojConfig.http_opcije())
+    return this.http.get(`${MojConfig.adresa_servera}/Clanarina/GetByKorisnik`,MojConfig.http_opcije())
   }
 
 

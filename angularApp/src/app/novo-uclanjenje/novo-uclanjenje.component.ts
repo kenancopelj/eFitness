@@ -25,11 +25,14 @@ export class NovoUclanjenjeComponent implements OnInit {
   ){}
   
   korisnikId: any;
+  korisnikImePrezime:any;
   clanarinaId : any;
   clanarinaNaziv :any;
   clanarinaCijena :any;
   
   ngOnInit(): void {
+    var korisnik = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog;
+    this.korisnikImePrezime = `${korisnik.ime} ${korisnik.prezime}`;
     this.clanarinaId = this.route.snapshot.paramMap.get('id');
     this.getVrstaClanarineById(this.clanarinaId);
     this.korisnikId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;

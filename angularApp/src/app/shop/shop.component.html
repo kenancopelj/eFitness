@@ -19,7 +19,7 @@
 </div>
 
 <div class="container">
-  <button class="btn btn-primary" (click)="this.noviSuplementi()">Novi</button>
+  <button class="btn btn-primary" (click)="this.noviSuplementi()">Novi +</button>
 </div>
 
 
@@ -38,6 +38,13 @@
               <strong class="mb-1" >{{x.naziv_kategorije}}</strong>
             </div>
           </a>
+          <a (click)="this.kategorijaID=0" class="list-group-item list-group-item-action py-3 lh-tight" aria-current="true">
+            <div class="d-flex w-100 align-items-center justify-content-center">
+              <strong style="color: red;" class="mb-1" >Očisti filter</strong>
+              <img style="margin-left:1rem" width="16px" height="16px" src="../../assets/trash.png">
+            </div>
+          </a>
+
 
         </div>
       </div>

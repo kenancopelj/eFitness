@@ -18,6 +18,10 @@ export class KorisniciService {
     return this.http.put(`${MojConfig.adresa_servera}/Korisnik/UpdateKaoAdmin/${id}`,odabraniKorisnik,MojConfig.http_opcije());
   }
 
+  UpdateImage(id:any,body:any){
+    return this.http.put(`${MojConfig.adresa_servera}/Korisnik/UpdateSlikaKorisnika/${id}`,body,MojConfig.http_opcije());
+  }
+
   Delete(id:any){
     return this.http.delete(MojConfig.adresa_servera+"/Korisnik/Remove/"+id,MojConfig.http_opcije())
   }

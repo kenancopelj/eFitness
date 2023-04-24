@@ -30,7 +30,6 @@ token: any;
   ) {
   }
   ngOnInit(): void {
-    this.fetchSuplemente();
   }
 
   aktivacija() {

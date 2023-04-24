@@ -55,7 +55,10 @@ namespace eFitnessAPI.Controllers
 
             var korisnik = HttpContext.GetLoginInfo().korisnickiNalog;
 
-            var podaci = _dbContext.Clanarina.Where(x => x.korisnik_id == korisnik.id).ToList();
+            var podaci = _dbContext.Clanarina
+                .Include(x=>x.vrstaClanarine)
+                .Where(x => x.korisnik_id == korisnik.id)
+                .ToList();
 
             return Ok(podaci);
         }

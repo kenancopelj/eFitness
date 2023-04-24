@@ -32,8 +32,11 @@ namespace eFitnessAPI.Controllers
             return Ok(new
             {
                 id = trenutniKorisnik.id,
-                korisnickoIme = trenutniKorisnik.korisnikoIme,
+                korisnicko_ime = trenutniKorisnik.korisnikoIme,
                 lozinka = trenutniKorisnik.lozinka,
+                ime = trenutniKorisnik.Ime,
+                prezime = trenutniKorisnik.Prezime,
+                email = trenutniKorisnik.email
             });
         }
 
@@ -117,6 +120,18 @@ namespace eFitnessAPI.Controllers
 
             return Ok(korisnik);
         }
+        [HttpPut("{id}")]
+        public ActionResult UpdateSlikaKorisnika([FromBody]SlikaDto objekat,int id)
+        {
+            if (!string.IsNullOrEmpty(objekat.slika_korisnika_base63))
+            {
+                byte[] nova_slika = objekat.slika_korisnika_base63.parseBase64();
+                Fajlovi.Snimi(nova_slika, "slikeKorisnika/" + id + ".png");
+                return Ok("Slika uspješno spašena!");
+            }
+            return Ok("Došlo je do greške!");
+        }
+
 
         [HttpPut("{id}")]
         public ActionResult UpdateKaoAdmin([FromBody] KorisnikUpdateKaoAdminVM x, int id)
