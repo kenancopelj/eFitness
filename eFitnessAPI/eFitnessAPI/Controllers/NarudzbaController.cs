@@ -1,5 +1,6 @@
 ﻿using eFitnessAPI.Class;
 using eFitnessAPI.Data;
+using eFitnessAPI.ViewModels.GrupniTreningVM;
 using eFitnessAPI.ViewModels.NarudzbaVM;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,17 @@ namespace eFitnessAPI.Controllers
                 dbContext.SaveChanges();
             }
             return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult GetIdsOfNarudzba()
+        {
+            var podaci = dbContext.Narudzba
+                .Select(x => new 
+                {
+                    id = x.narudzbaID,
+                }).ToList();
+            return Ok(podaci);
         }
 
         [HttpDelete("{id}")]

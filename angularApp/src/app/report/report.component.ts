@@ -14,8 +14,7 @@ export class ReportComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const dateFromTransformed = this.datePipe.transform(new Date(), 'dd.MM.yyyy');
-    const dateToTransformed = this.datePipe.transform(new Date(), 'dd.MM.yyyy');
+
   }
 
   UcitajReport() {
