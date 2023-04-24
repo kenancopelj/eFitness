@@ -14,6 +14,7 @@ import {SuplementiPanelComponent} from "./suplementi-panel/suplementi-panel.comp
 import {TreninziPanelComponent} from "./treninzi-panel/treninzi-panel.component";
 import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
+import { ReportComponent } from './report/report.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path:'suplementi-panel',component:SuplementiPanelComponent},
   {path:'treninzi-panel',component:TreninziPanelComponent},
   {path:'novo-uclanjenje/:id',component:NovoUclanjenjeComponent},
-  {path:'kontakt',component:KontaktComponent}
+  {path:'kontakt',component:KontaktComponent},
+  {path:'report',component:ReportComponent}
 ];
 
 @NgModule({

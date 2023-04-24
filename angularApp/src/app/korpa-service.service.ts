@@ -34,4 +34,8 @@ export class KorpaServiceService {
     return this.http.post(MojConfig.adresa_servera+"/Narudzba/CreateOrder/placeorder", items, MojConfig.http_opcije())
   }
 
+  AddNarudzba(korisnikid : any){
+    return this.http.post(MojConfig.adresa_servera+"/Narudzba/AddNarudzba/"+korisnikid, MojConfig.http_opcije())
+  }
+
 }

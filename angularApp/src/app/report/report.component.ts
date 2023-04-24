@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
+import { MojConfig } from '../moj-konfig';
+import { ReportService } from './report.service';
+import { NotificationService } from '../notification.service';
 
 @Component({
   selector: 'app-report',
@@ -7,26 +10,43 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+  openModal : any = false;
+  racuni: any;
+  racuniDropdown: any;
+  odabraniRacun : any;
 
-  constructor(private datePipe:DatePipe){
+  constructor(private reportservice : ReportService, private notificationService:NotificationService){
 
   }
 
 
   ngOnInit(): void {
+    this.loadNarudzbe();
+  }
 
+
+
+
+  loadNarudzbe() {
+    this.reportservice.GetAllRacuni().subscribe((x:any)=>{
+      this.racuni = x;
+      console.log(this.racuni)
+    },(err)=>this.notificationService.showError("Došlo je do greške!","Greška"))
   }
 
   UcitajReport() {
+    this.openModal = true;
+    setTimeout(() => {
 
-    // const dateParser = new NgbDateCustomParserFormatter('DD.MM.YYYY');
-    // var dateFrom = new Date(dateParser.parse(this.filterForm.get('dateFrom').value).year, dateParser.parse(this.filterForm.get('dateFrom').value).month - 1, dateParser.parse(this.filterForm.get('dateFrom').value).day);
-    // var dateTo = new Date(dateParser.parse(this.filterForm.get('dateTo').value).year, dateParser.parse(this.filterForm.get('dateTo').value).month - 1, dateParser.parse(this.filterForm.get('dateTo').value).day);
+      var narId = this.odabraniRacun.id == null ? 1 : this.odabraniRacun.id;
+      var userID = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog.id.toString();
 
-    // var queryParams = "?df=" + dateFrom.toISOString() + "&dt=" + dateTo.toISOString();
-    // document.getElementById("reportViewer").setAttribute("src", "https://localhost:7148/report/Export_Data" + queryParams)
-    // this.servicesService.ucitajReport(queryParams).subscribe(res=>{
-    // });
+      var queryParams ="?u=" + userID + "&k=" + narId;
+      document.getElementById("reportViewer").setAttribute("src",
+          `${MojConfig.adresa_report}/report/Export_Data` + queryParams
+        );
+        console.log(`${MojConfig.adresa_report}/report/Export_Data${queryParams}`)
+    }, 500);
   }
 
 }
