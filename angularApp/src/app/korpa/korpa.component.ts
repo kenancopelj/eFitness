@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notification.service';
 import { MojConfig } from '../moj-konfig';
 import { KorpaServiceService } from '../korpa-service.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-korpa',
@@ -22,7 +22,8 @@ export class KorpaComponent implements OnInit {
   private httpKlijent:HttpClient,
   private route:ActivatedRoute,
   private notificationService:NotificationService,
-  private KorpaService : KorpaServiceService)
+  private KorpaService : KorpaServiceService,
+  private Router: Router)
   {
 
   }
@@ -61,6 +62,7 @@ export class KorpaComponent implements OnInit {
     this.KorpaService.Kupljeno(this.narudzbaID).subscribe((x:any)=>{
       this.notificationService.showSuccess("Uspjesno kupljeno","Success");
       this.GetStavkeUKorpi();
+      this.Router.navigateByUrl("/shop")
     },(err)=>this.notificationService.showError(err.error,'Greška'))
   }
 
