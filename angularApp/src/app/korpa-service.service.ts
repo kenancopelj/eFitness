@@ -38,4 +38,24 @@ export class KorpaServiceService {
     return this.http.post(MojConfig.adresa_servera+"/Narudzba/AddNarudzba/"+korisnikid, MojConfig.http_opcije())
   }
 
+  AddStavka(body:any , narID : any){
+    return this.http.post(MojConfig.adresa_servera+"/StavkeNarudzbe/Add/"+narID,body,MojConfig.http_opcije())
+  }
+
+  GetStavkeByNarudzbaId(narID : any){
+    return this.http.get(MojConfig.adresa_servera+"/StavkeNarudzbe/GetStavkeNarudzbeByNarudzbaId/"+narID, MojConfig.http_opcije())
+  }
+
+  DeleteStavkaFromNarudzba(itemId : any){
+    return this.http.delete(MojConfig.adresa_servera+"/StavkeNarudzbe/DeleteStavkaFromNarudzba/"+itemId, MojConfig.http_opcije())
+  }
+
+  UpdateKolicina(itemId : any){
+    return this.http.put(MojConfig.adresa_servera+"/StavkeNarudzbe/UpdateKolicina/"+itemId,MojConfig.http_opcije())
+  }
+
+  Kupljeno(itemId : any){
+    return this.http.put(MojConfig.adresa_servera+"/Narudzba/Kupljeno/"+itemId,MojConfig.http_opcije())
+  }
+
 }

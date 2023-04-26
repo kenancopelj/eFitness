@@ -1,8 +1,13 @@
-<div class="lista">
-<select [(ngModel)]="odabraniRacun">
-  <option *ngFor="let option of racuni" [value]="racuni.id">{{ racuni.id }}</option>
-</select>
-</div>
+
+
+
+<label class="form-label">Id Racuna</label>
+          <select class="form-control"  [(ngModel)]="odabraniRacun">
+            <option *ngFor="let racuni of this.racuni" value="{{racuni.id}}">{{racuni.id}}</option>
+          </select>
+
+
+
 <button style="display: flex; width: 90%; margin-left: 5%; justify-content: center; margin-top: 10px; background-color: rgb(37, 37, 182); color: white;" (click)="UcitajReport()">ucitaj Report</button>
 
 <div *ngIf="this.openModal == true" class="custom-modal-container">

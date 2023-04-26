@@ -12,16 +12,19 @@
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Stanje u korpi</span>
-          <span class="badge bg-primary rounded-pill">{{this.Suplementi.length}}</span>
+          <span class="badge bg-primary rounded-pill">{{this.korpa.length}}</span>
         </h4>
         <ul  class="list-group mb-3">
 
-          <li  *ngFor="let item of this.Suplementi" class="list-group-item d-flex justify-content-between lh-sm">
+          <li  *ngFor="let item of this.korpa" class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-              <h6 class="my-0">{{item.Name}}</h6>
-              <small class="text-muted">{{item.opis}}</small>
+              <h6 class="my-0">{{item.suplement.naziv}}</h6>
+              <h6 class="my-0">x{{item.kolicina}}</h6>
+
+              <small class="text-muted">{{item.suplement.opis}}</small>
+              <p style="margin: 0 !important; padding: 0 !important;"><button class="buttonUkloni" (click)="UkloniIzKorpe(item)" >Ukloni iz korpe</button></p>
             </div>
-            <span class="text-muted">{{item.Price}}KM</span>
+            <span class="text-muted">{{item.suplement.cijena}}KM</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
             <span>Ukupno</span>
@@ -86,7 +89,7 @@
               <label for="cc-cvv" class="form-label">CVC</label>
               <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
             </div>
-          </div> 
+          </div>
 
           <hr class="my-4">
 

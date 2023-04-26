@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from '../notification.service';
 import { MojConfig } from '../moj-konfig';
 import { KorpaServiceService } from '../korpa-service.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-korpa',
@@ -13,33 +14,54 @@ export class KorpaComponent implements OnInit {
 
   Suplementi : any[] = [];
   cartTotal : any = 0;
+  korpa : any[] = [];
+  narudzbaID;
+
+
+  constructor(
+  private httpKlijent:HttpClient,
+  private route:ActivatedRoute,
+  private notificationService:NotificationService,
+  private KorpaService : KorpaServiceService)
+  {
+
+  }
 
   ngOnInit(): void {
-    this.izracunajTotal();
+    this.narudzbaID = this.route.snapshot.paramMap.get('id');
+    this.GetStavkeUKorpi();
   }
+
+
+  GetStavkeUKorpi() {
+    this.KorpaService.GetStavkeByNarudzbaId(this.narudzbaID).subscribe((x:any)=>{
+      this.korpa = x;
+      this.izracunajTotal();
+    })
+  }
+
+
   izracunajTotal() {
     let suma = 0;
-    for(let i =0; i<this.Suplementi.length;i++){
-      suma+= this.Suplementi[i].Price;
+    for(let i =0; i<this.korpa.length;i++){
+      suma+= this.korpa[i].suplement.cijena * this.korpa[i].kolicina;
     }
     this.cartTotal = suma;
   }
 
-  constructor(
-  private httpKlijent:HttpClient, 
-  private notificationService:NotificationService, 
-  private KorpaService : KorpaServiceService)
-  {
-    this.Suplementi = KorpaService.getItems();
+  UkloniIzKorpe(item){
+    this.KorpaService.DeleteStavkaFromNarudzba(item.id).subscribe((x:any)=>{
+      this.notificationService.showSuccess("Uspjesno izbrisana stavka","Success");
+      this.GetStavkeUKorpi();
+    },(err)=>this.notificationService.showError(err.error,'Greška'))
   }
 
+
   createOrder() {
-    this.KorpaService.createOrder(this.Suplementi)
-      .subscribe(response => {
-        console.log('Order created successfully!');
-        this.notificationService.showSuccess("Uspjesno izvrsena narudzba","Success");
-        this.KorpaService.clearCart();
-      });
+    this.KorpaService.Kupljeno(this.narudzbaID).subscribe((x:any)=>{
+      this.notificationService.showSuccess("Uspjesno kupljeno","Success");
+      this.GetStavkeUKorpi();
+    },(err)=>this.notificationService.showError(err.error,'Greška'))
   }
 
 }

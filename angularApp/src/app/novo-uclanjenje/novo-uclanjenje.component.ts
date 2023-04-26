@@ -6,8 +6,7 @@ import { AutentifikacijaHelper } from '../_helpers/autentifikacija-helper';
 import { NotificationService } from '../notification.service';
 import { ClanarineService } from '../clanarine/clanarine.service';
 
-declare function porukaSuccess(a:string):any;
-declare function porukaError(a:string):any;
+
 
 @Component({
   selector: 'app-novo-uclanjenje',
@@ -15,7 +14,7 @@ declare function porukaError(a:string):any;
   styleUrls: ['./novo-uclanjenje.component.css']
 })
 export class NovoUclanjenjeComponent implements OnInit {
-  
+
   constructor(
   private router: Router,
   private route: ActivatedRoute,
@@ -23,13 +22,13 @@ export class NovoUclanjenjeComponent implements OnInit {
   private notificationService : NotificationService,
   private clanarineService : ClanarineService
   ){}
-  
+
   korisnikId: any;
   korisnikImePrezime:any;
   clanarinaId : any;
   clanarinaNaziv :any;
   clanarinaCijena :any;
-  
+
   ngOnInit(): void {
     var korisnik = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog;
     this.korisnikImePrezime = `${korisnik.ime} ${korisnik.prezime}`;

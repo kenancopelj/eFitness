@@ -40,7 +40,8 @@ namespace eFitnessAPI.Controllers
         [HttpPost("{korisnikid}")]
         public IActionResult AddNarudzba(int korisnikid)
         {
-            var Postojeca = dbContext.Narudzba.Where(x=>x.korisnik_id == korisnikid && x.kupljeno==false).FirstOrDefault();
+            var Postojeca = dbContext.Narudzba.Where(x=>x.korisnik.id == korisnikid && x.kupljeno==false).First();
+            var id=0;
             if (Postojeca == null)
             {
                 var nar = new Narudzba()
@@ -48,11 +49,29 @@ namespace eFitnessAPI.Controllers
                     korisnik_id = korisnikid,
                     VrijemePravljenja = DateTime.Now,
                 };
-
+                id = nar.narudzbaID;
                 dbContext.Narudzba.Add(nar);
                 dbContext.SaveChanges();
             }
-            return Ok();
+            else
+            {
+                id = Postojeca.narudzbaID;
+            }
+            return Ok(id);
+        }
+
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var podaci = dbContext.Narudzba
+               .Select(x => new
+               {
+                   id = x.narudzbaID,
+                   korisnik = x.korisnik_id,
+                   kupljeno = x.kupljeno
+
+               }).ToList();
+            return Ok(podaci);
         }
 
         [HttpGet]

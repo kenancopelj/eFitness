@@ -24,7 +24,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'clanarine',component:ClanarineComponent},
   {path:'grupniTrening',component:GrupniTreningComponent},
-  {path:'korpa',component:KorpaComponent},
+  {path:'korpa/:id',component:KorpaComponent},
   {path:'registracija',component:RegistracijaComponent},
   {path:'postavke-profila',component:PostavkeProfilaComponent},
   {path:'admin-panel',component:AdminPanelComponent},

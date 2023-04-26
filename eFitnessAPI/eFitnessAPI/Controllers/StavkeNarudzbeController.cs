@@ -54,13 +54,13 @@ namespace eFitnessAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateKolicina([FromBody] StavkeNarudzbeVM x, int id)
+        public ActionResult UpdateKolicina(int id)
         {
             var stavka = dbContext.StavkeNarudzbe.Find(id);
 
             if (stavka != null)
             {
-                stavka.kolicina = x.kolicina;
+                stavka.kolicina = stavka.kolicina+1;
 
                 dbContext.SaveChanges();
             }

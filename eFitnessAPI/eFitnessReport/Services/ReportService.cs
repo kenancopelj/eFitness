@@ -5,12 +5,12 @@ using System.Text;
 
 namespace eFitnessReport.Services
 {
-    public class ReportService
+    public class ReportService : IReportService
     {
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly ApplicationDbContext dBContext;
 
-        public ReportService(IWebHostEnvironment webHost, ApplicationDbContext _dbContext)
+        public ReportService(IWebHostEnvironment webHost, ApplicationDbContext _dbContext) 
         {
             webHostEnvironment = webHost;
             dBContext = _dbContext;
@@ -31,13 +31,14 @@ namespace eFitnessReport.Services
                         //var dateTimeToInString = queryString.TryGetValue("dt", out string dt) ? dt : DateTime.Now.ToString("dd.MM.yyyy");
                         //DateTime dateTimeTo = DateTime.TryParse(dateTimeToInString, out DateTime dTo) ? dTo : DateTime.Now;
                         
-                        long userId = queryString.TryGetValue("u", out var cuId) ? Convert.ToInt64(cuId) : 0;
-                        long narID = queryString.TryGetValue("k", out var kId) ? Convert.ToInt64(kId) : 0;
+                        int userId = queryString.TryGetValue("u", out var cuId) ? Convert.ToInt32(cuId) : 0;
+                        int narID = queryString.TryGetValue("k", out var kId) ? Convert.ToInt32(kId) : 0;
 
+            
                         List<object> l = new List<object>();
 
                         var podaci = await dBContext.StavkeNarudzbe.Include(x => x.narudzba).Include(x => x.suplement)
-                            .Where(x => x.narudzba_id == narID && x.narudzba.korisnik_id == userId)
+                            .Where(x => x.narudzba.narudzbaID == narID )
                             .ToListAsync();
 
                         var podaciNar = await dBContext.Narudzba.FindAsync(narID);
@@ -66,7 +67,7 @@ namespace eFitnessReport.Services
 
                         listOfParameters.Add(_parameters);
                         report.AddDataSource("Parameters", listOfParameters);
-                        report.AddDataSource("ReportData", l);
+                        report.AddDataSource("DataSet1", l);
 
             var result = report.Execute(RenderType.Pdf, 1);
             return result.MainStream;

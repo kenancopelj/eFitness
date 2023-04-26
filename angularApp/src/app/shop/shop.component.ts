@@ -25,6 +25,9 @@ export class ShopComponent implements OnInit{
   items: any[] = [];
   cartTotal: number = 0;
 
+  narudzbaId;
+  stavke: any[] = [];
+
   itemsPerPage = 12;
   currentPage = 1;
   totalItems = 0;
@@ -43,29 +46,54 @@ export class ShopComponent implements OnInit{
 
   }
 
-  AddItemToCart(item: any) {
-    const nova = {Name : item.naziv, Price: item.cijena, Quantity: 1}
-    this.KorpaService.addItem(nova);
-  }
-
-  prebaciNaKorpu() {
-    this.router.navigateByUrl("/korpa")
-  }
-
   ngOnInit(): void {
     this.fetchKategorijeSuplemenata();
     this.fetchSuplementi();
-    this.KorpaService.clearCart();
     this.items = [];
 
 
     this.NapraviNarudzbu();
+
   }
+
+  AddItemToCart(item: any):void {
+    const nova = {suplement_id : item.id , kolicina: 1}
+    for(let i = 0; i < this.stavke.length; i++){
+      if(nova.suplement_id == this.stavke[i].suplement.id && this.stavke[i].narudzba_id == this.narudzbaId){
+        this.KorpaService.UpdateKolicina(this.stavke[i].id).subscribe((x:any)=>{
+          this.notificationService.showSuccess('Suplement uspješno dodan','Success')
+          this.GetStavkeUKorpi();
+        },(err)=>this.notificationService.showError(err.error,'Greška'));
+
+        return;
+      }
+    }
+    this.KorpaService.AddStavka(nova,this.narudzbaId).subscribe((x:any)=>{
+      this.notificationService.showSuccess('Suplement uspješno dodan','Success')
+      this.GetStavkeUKorpi();
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
+
+  }
+
+  GetStavkeUKorpi() {
+    this.KorpaService.GetStavkeByNarudzbaId(this.narudzbaId).subscribe((x:any)=>{
+      this.stavke = x;
+    })
+  }
+
+  prebaciNaKorpu() {
+    console.log(this.narudzbaId)
+    this.router.navigate(["/korpa",this.narudzbaId])
+  }
+
 
 
   NapraviNarudzbu() {
     var kId = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog.id.toString();
     this.KorpaService.AddNarudzba(kId).subscribe((x=>{
+      this.narudzbaId = x;
+      console.log(this.narudzbaId);
+      this.GetStavkeUKorpi();
     }),
     (err)=>this.notificationService.showError(err.error,'Greška'))
 

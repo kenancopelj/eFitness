@@ -37,5 +37,13 @@ namespace eFitnessReport.Services
 
             return Ok();
         }
+        [HttpGet]
+        [Route("adin")]
+        public async Task<IActionResult> adin(CancellationToken cancellationToken)
+        {
+            
+            return Ok("s");
+        }
+
     }
 }
