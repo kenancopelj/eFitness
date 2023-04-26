@@ -14,7 +14,7 @@ declare function porukaError(a: string):any;
   styleUrls: ['./korisnici-panel.component.css']
 })
 export class KorisniciPanelComponent implements OnInit{
-  korisniciPodaci: any;
+  korisniciPodaci: any =[];
   odabraniKorisnik: any = null;
 
 
@@ -44,8 +44,6 @@ export class KorisniciPanelComponent implements OnInit{
   }
 
   Obrisi(x:any){
-    let id = x.id;
-    console.log(id);
     this.korisniciService.Delete(x).subscribe((x=>{
       this.notificationService.showSuccess("Uspješno izbrisan korisnik","Success");
       this.getPodaci();

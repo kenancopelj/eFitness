@@ -59,6 +59,8 @@ token: any;
 
         this.openModal = true;
 
+        this.notificationService.showInfo("Autentifikacijski token je poslan na Vaš mail!","Info");
+
         if (x.isLogiran) {
           console.log("Proso")
           AutentifikacijaHelper.setLoginInfo(x)

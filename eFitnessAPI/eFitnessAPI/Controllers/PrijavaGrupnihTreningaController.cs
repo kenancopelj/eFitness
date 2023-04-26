@@ -5,6 +5,7 @@ using eFitnessAPI.ViewModels.PrijavaGrupnihTreningaVM;
 using FIT_Api_Examples.Helper.AutentifikacijaAutorizacija;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eFitnessAPI.Controllers
 {
@@ -31,6 +32,33 @@ namespace eFitnessAPI.Controllers
                 .ToList();
 
             return Ok(podaci);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetPrijaveByKorisnik(int id)
+        {
+            if (!HttpContext.GetLoginInfo().isLogiran)
+                return BadRequest("Niste logirani!");
+
+            var prijave = dbContext.PrijavaGrupniTrening
+                .Include(x => x.korisnik)
+                .Include(x=>x.grupniTrening)
+                .Include(x=>x.grupniTrening.kategorija)
+                .Where(x => x.korisnik_id == id)
+                .Select(x => new
+                {
+                    prijavaId = x.Id,
+                    naziv = x.grupniTrening.kategorija.naziv,
+                    datum = x.grupniTrening.vrijemeOdrzavanja,
+                    aktivna = x.grupniTrening.vrijemeOdrzavanja < DateTime.Now ? false : true
+                })
+                .ToList();
+
+            if (prijave != null)
+            {
+                return Ok(prijave);
+            }
+            return Ok("Trenutno nemate aktivnih prijava!");
         }
 
 

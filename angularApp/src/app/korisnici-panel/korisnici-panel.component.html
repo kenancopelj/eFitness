@@ -34,15 +34,6 @@
 
 </div> -->
 
-<div class="container mb-4">
-  <div class="col-12">
-    <div class="button">
-      <h4>Dodaj novog</h4>
-      <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" >+</span>
-      <hr>
-    </div>
-  </div>
-</div>
 <div class="container" *ngIf="this.korisniciPodaci.length == 0  || this.korisniciPodaci == null">
   <app-loader></app-loader>
 </div>
@@ -51,7 +42,7 @@
   *ngFor="let x of korisniciPodaci; let i=index">
   <ul class="w3-ul w3-card-4" style="box-shadow:0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 2px 0 rgba(0,0,0,0.19)">
     <li class="w3-bar">
-      <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="Obrisi(x)">×</span>
+      <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="Obrisi(x.id)">×</span>
       <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="this.odabraniKorisnik = x">
         <img src="../../assets/edit-icon.png" alt="">
       </span>
@@ -62,37 +53,4 @@
       </div>
     </li>
   </ul>
-</div>
-
-<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel"
-  aria-modal="true" role="dialog" style="display: block" *ngIf="this.odabraniKorisnik!= null">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Nova članarina</h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="this.odabraniKorisnik = null"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label class="form-label">Ime</label>
-          <input class="form-control" type="text" placeholder="Ime" [(ngModel)]="odabraniKorisnik.ime" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Prezime</label>
-          <input class="form-control" type="text" placeholder="Prezime" [(ngModel)]="odabraniKorisnik.prezime" />
-        </div>
-        <div class="mb-3">
-          <label class="form-label">Korisnicko ime</label>
-          <input class="form-control" type="text" placeholder="Korisnicko ime"
-            [(ngModel)]="odabraniKorisnik.korisnicko_ime" />
-        </div>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" (click)="this.odabraniKorisnik = null">Close</button>
-        <button type="button" class="btn btn-primary" (click)="SpasiPromjene()">Save changes</button>
-      </div>
-    </div>
-  </div>
 </div>

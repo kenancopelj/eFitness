@@ -70,6 +70,21 @@ namespace eFitnessAPI.Controllers
             return Ok();
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Remove(int id)
+        {
+            var trening = dbContext.GrupniTrening.FirstOrDefault(x => x.id == id);
+
+            if (trening != null)
+            {
+                dbContext.GrupniTrening.Remove(trening);
+                dbContext.SaveChanges();
+                return Ok();
+            }
+            else
+                return BadRequest("Pogresan Id treninga!");
+        }
+
         [HttpGet("{treningID}")]
         public ActionResult GetSlikaGrupnogTreninga(int treningID)
         {

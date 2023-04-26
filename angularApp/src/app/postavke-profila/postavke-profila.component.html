@@ -8,16 +8,16 @@
         placeholder="Korisničko ime" aria-label="Username" aria-describedby="basic-addon1">
     </div>
     <div class="input-group mb-3">
-      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.ime"
-        placeholder="Ime" aria-label="Firstname" aria-describedby="basic-addon1">
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.ime" placeholder="Ime"
+        aria-label="Firstname" aria-describedby="basic-addon1">
     </div>
     <div class="input-group mb-3">
-      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.prezime"
-        placeholder="Prezime" aria-label="Lastname" aria-describedby="basic-addon1">
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.prezime" placeholder="Prezime"
+        aria-label="Lastname" aria-describedby="basic-addon1">
     </div>
     <div class="input-group mb-3">
-      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.email"
-        placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+      <input disabled type="text" class="form-control" [value]="this.trenutniKorisnik.email" placeholder="Email"
+        aria-label="Username" aria-describedby="basic-addon1">
     </div>
 
     <label class="form-label">Lozinka</label>
@@ -32,26 +32,49 @@
   </div>
 </div>
 
-<div class="container">
-  <div class="col-12">
-    <h3>Moje članarine</h3>
-    <br>
-    <div class="col-12" *ngIf="this.clanarineKorisnika == null">
-      <app-loader></app-loader>
-    </div>
-    <div class="col-12" *ngIf="this.clanarineKorisnika != null">
-      <div class="mb-3 col-12" *ngFor="let item of clanarineKorisnika">
-        <div class="d-flex gap-2 w-100 justify-content-between">
-          <div style="margin-left:1rem;">
-            <h4 class="mb-0">{{item.vrstaClanarine.naziv}}</h4>
-            <p class="mb-0 opacity-75">Trajanje: {{item.datumKreiranja | date}} - {{item.datumIsteka | date}}</p>
-            <img [src]="calculateImage(item)" alt="" srcset="">
+    <div class="container custom-container">
+    <div class="col-12">
+      <h3>Moje članarine</h3>
+      <br>
+      <div class="col-12" *ngIf="this.clanarineKorisnika.length == 0">
+        <app-loader></app-loader>
+      </div>
+      <div class="col-12" *ngIf="this.clanarineKorisnika != null">
+        <div class="mb-3 col-12" *ngFor="let item of clanarineKorisnika">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div style="margin-left:1rem;">
+              <h4 class="mb-0">{{item.vrstaClanarine.naziv}}</h4>
+              <p class="mb-0 opacity-75">Trajanje: {{item.datumKreiranja | date}} - {{item.datumIsteka | date}}</p>
+              <img [src]="calculateImage(item)" alt="" srcset="">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="container custom-container">
+    <div class="col-12">
+      <h3>Moje prijave</h3>
+      <br>
+      <div class="col-12" *ngIf="this.prijaveKorisnika.length == 0">
+        <app-loader></app-loader>
+      </div>
+      <div class="col-12" *ngIf="this.prijaveKorisnika != null">
+        <div class="mb-3 col-12" *ngFor="let item of prijaveKorisnika">
+          <div class="d-flex gap-2 w-100 justify-content-between">
+            <div style="margin-left:1rem;">
+              <h4 class="mb-0">{{item.naziv}}</h4>
+              <p class="mb-0 opacity-75">Datum treninga: {{item.datum | date}}</p>
+              <img [src]="calculateImage(item)" alt="" srcset="">
+            </div>
+            <div style="justify-content: flex-end; align-items: center;">
+              <img src="../../assets/trash.png" alt="" (click)="Odjava(item.prijavaId)">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel"

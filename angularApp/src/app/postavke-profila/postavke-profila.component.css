@@ -1,5 +1,14 @@
-.no-data{
+.no-data {
     height: 300px;
     background: url(../../assets/no-data.svg) no-repeat;
     background-size: 150px 150px;
+}
+
+.custom-container {
+    padding: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+img{
+    cursor: pointer !important;
 }

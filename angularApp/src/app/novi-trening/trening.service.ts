@@ -21,4 +21,16 @@ export class TreningService {
     return this.http.get(MojConfig.adresa_servera+"/GrupniTrening/GetAll",MojConfig.http_opcije());
   }
 
+  GetPrijavaByKorisnik(id:any){
+    return this.http.get(`${MojConfig.adresa_servera}/PrijavaGrupnihTreninga/GetPrijaveByKorisnik/${id}`,MojConfig.http_opcije());
+  }
+
+  OdjaviTrening(id:any){
+    return this.http.delete(`${MojConfig.adresa_servera}/PrijavaGrupnihTreninga/Remove/${id}`,MojConfig.http_opcije());
+  }
+
+  Remove(id:any){
+    return this.http.delete(`${MojConfig.adresa_servera}/GrupniTrening/Remove/${id}`,MojConfig.http_opcije());
+  }
+
 }

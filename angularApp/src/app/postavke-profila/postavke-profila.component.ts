@@ -7,6 +7,7 @@ import { AutentifikacijaHelper } from "../_helpers/autentifikacija-helper";
 import { NotificationService } from '../notification.service';
 import { KorisniciService } from '../korisnici-panel/korisnici.service';
 import { ClanarineService } from '../clanarine/clanarine.service';
+import { TreningService } from '../novi-trening/trening.service';
 
 declare function porukaSuccess(a: string): any;
 declare function porukaError(a: string): any;
@@ -19,20 +20,32 @@ declare function porukaError(a: string): any;
 export class PostavkeProfilaComponent implements OnInit {
   trenutniKorisnik: any = [];
   odabraniKorisnik: any;
-  clanarineKorisnika: any;
+  clanarineKorisnika: any =[];
   potvrdjenaLozinka: any;
   novaSlika:any;
+  prijaveKorisnika:any =[];
 
   constructor(
     private httpKlijent: HttpClient,
     private router: Router,
     private notificationService: NotificationService,
     private korisniciService: KorisniciService,
-    private clanarineService: ClanarineService
+    private clanarineService: ClanarineService,
+    private treningService : TreningService
   ) { }
   ngOnInit(): void {
     this.fetchTrenutnog();
     this.getClanarine();
+    this.getMojePrijave();
+  }
+
+  getMojePrijave() {
+    var id = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalogId;
+    console.log("Ulazak")
+    this.treningService.GetPrijavaByKorisnik(id).subscribe((x:any)=>{
+      this.prijaveKorisnika = x;
+      console.log(x)
+    },(err)=>this.notificationService.showError(err.err,'Greška!'));
   }
 
   generisi_preview() {
@@ -69,6 +82,13 @@ export class PostavkeProfilaComponent implements OnInit {
     let btn = document.getElementById("password");
     let tip = btn.getAttribute('type');
     tip == 'password' ? btn.setAttribute('type', 'text') : btn.setAttribute('type', 'password');
+  }
+
+  Odjava(prijavaId:any){
+    this.treningService.OdjaviTrening(prijavaId).subscribe((x:any)=>{
+      this.notificationService.showSuccess("Uspješno ste se odjavili sa treninga","Success!");
+      this.getMojePrijave();
+    },(err)=>this.notificationService.showError("Došlo je do greške!",'Greška'))
   }
 
   calculateImage(item): string {
