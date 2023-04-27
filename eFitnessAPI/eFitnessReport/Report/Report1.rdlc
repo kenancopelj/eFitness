@@ -23,7 +23,7 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.73766cm</Top>
-        <Left>3.64808cm</Left>
+        <Left>2.93371cm</Left>
         <Height>0.9175cm</Height>
         <Width>8.95583cm</Width>
         <Style>
@@ -43,13 +43,13 @@
               <Width>1.85208cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.82292cm</Width>
+              <Width>5.38396cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.06646cm</Width>
+              <Width>2.36771cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.45791cm</Width>
+              <Width>3.79645cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -499,7 +499,7 @@
         <Top>4.04495cm</Top>
         <Left>0.57891cm</Left>
         <Height>1.0677cm</Height>
-        <Width>15.19937cm</Width>
+        <Width>13.4002cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -514,7 +514,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Ime i prezime" +First(Fields!KorisnikIme.Value, "Parameters") + " " +First(Fields!KorisnikPrezime.Value, "Parameters")</Value>
+                <Value>="Ime i prezime: " +First(Fields!KorisnikIme.Value, "Parameters") + " " +First(Fields!KorisnikPrezime.Value, "Parameters")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -548,14 +548,16 @@
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
         <Top>5.73828cm</Top>
-        <Left>12.03474cm</Left>
+        <Left>10.89703cm</Left>
         <Height>0.6cm</Height>
-        <Width>3.74354cm</Width>
+        <Width>3.08208cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -578,14 +580,16 @@
                 <Style />
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
         <Top>3.03953cm</Top>
-        <Left>11.47974cm</Left>
+        <Left>8.33058cm</Left>
         <Height>0.67938cm</Height>
-        <Width>4.29854cm</Width>
+        <Width>5.64854cm</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -601,7 +605,7 @@
     <Height>2.6875in</Height>
     <Style />
   </Body>
-  <Width>6.38368in</Width>
+  <Width>5.85243in</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>18cm</PageWidth>
