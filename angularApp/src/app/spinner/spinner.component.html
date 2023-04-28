@@ -1,6 +1,5 @@
-<div class="lds-ellipsis">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
+<div *ngIf="isLoading | async">
+  <div class="overlay">
+    <span class="loader"></span>
+  </div>
 </div>

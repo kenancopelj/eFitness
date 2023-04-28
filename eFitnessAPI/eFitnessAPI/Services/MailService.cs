@@ -11,7 +11,7 @@ namespace eFitnessAPI.Services
 
             var sendMailFrom = "efitnessrs1@gmail.com";
             var sendMailTo = to;
-            var mailSubject = "";
+            var mailSubject = "Autentifikacijski token";
             var mailBody = message;
 
             var smtpServer = new SmtpClient("smtp.gmail.com", 587);
