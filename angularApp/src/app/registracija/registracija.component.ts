@@ -41,7 +41,7 @@ export class RegistracijaComponent implements OnInit{
       {
           this.korisnikService.Add(this.noviKorisnik).subscribe((x:any)=>{
             this.notificationService.showSuccess("Uspješna registracija!",'');
-            this.LogirajSe(this.noviKorisnik);
+            this.router.navigate(['/login']);
           },(err)=>this.notificationService.showError(err.error,'Greška'));
       }
   }

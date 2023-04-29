@@ -15,25 +15,27 @@ import {TreninziPanelComponent} from "./treninzi-panel/treninzi-panel.component"
 import { NovoUclanjenjeComponent } from './novo-uclanjenje/novo-uclanjenje.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { ReportComponent } from './report/report.component';
+import { AuthguardGuard } from './_guards/authguard.guard';
+import { AdminGuard } from './_guards/admin/admin.guard';
 
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
-  {path:'home',component:HomeComponent},
-  {path:'shop',component:ShopComponent},
+  {path:'home',component:HomeComponent,},
+  {path:'shop',component:ShopComponent,},
   {path:'login',component:LoginComponent},
-  {path:'clanarine',component:ClanarineComponent},
-  {path:'grupniTrening',component:GrupniTreningComponent},
-  {path:'korpa/:id',component:KorpaComponent},
+  {path:'clanarine',component:ClanarineComponent,},
+  {path:'grupniTrening',component:GrupniTreningComponent,},
+  {path:'korpa/:id',component:KorpaComponent, canActivate:[AuthguardGuard]},
   {path:'registracija',component:RegistracijaComponent},
-  {path:'postavke-profila',component:PostavkeProfilaComponent},
-  {path:'admin-panel',component:AdminPanelComponent},
-  {path:'korisnici-panel',component:KorisniciPanelComponent},
-  {path:'suplementi-panel',component:SuplementiPanelComponent},
-  {path:'treninzi-panel',component:TreninziPanelComponent},
-  {path:'novo-uclanjenje/:id',component:NovoUclanjenjeComponent},
+  {path:'postavke-profila',component:PostavkeProfilaComponent, canActivate:[AuthguardGuard]},
+  {path:'admin-panel',component:AdminPanelComponent, canActivate:[AdminGuard]},
+  {path:'korisnici-panel',component:KorisniciPanelComponent, canActivate:[AdminGuard]},
+  {path:'suplementi-panel',component:SuplementiPanelComponent, canActivate:[AdminGuard]},
+  {path:'treninzi-panel',component:TreninziPanelComponent, canActivate:[AdminGuard]},
+  {path:'novo-uclanjenje/:id',component:NovoUclanjenjeComponent, canActivate:[AuthguardGuard]},
   {path:'kontakt',component:KontaktComponent},
-  {path:'report',component:ReportComponent}
+  {path:'report',component:ReportComponent, canActivate:[AdminGuard]}
 ];
 
 @NgModule({

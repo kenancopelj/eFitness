@@ -10,6 +10,10 @@ export class KorisniciService {
 
   constructor(private http : HttpClient) { }
 
+  MakeAdmin(id){
+    return this.http.put(`${MojConfig.adresa_servera}/Korisnik/UpdateAdminRole/${id}`,MojConfig.http_opcije());
+  }
+
   GetAll(){
     return this.http.get(MojConfig.adresa_servera+"/Korisnik/GetAll",MojConfig.http_opcije());
   }

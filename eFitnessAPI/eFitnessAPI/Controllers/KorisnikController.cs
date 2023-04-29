@@ -79,7 +79,7 @@ namespace eFitnessAPI.Controllers
                 korisnikoIme = x.korisnicko_ime,
                 lozinka = x.lozinka,
                 slika = x.slika_korisnika_base63,
-                isAdmin = x.isAdmin,
+                isAdmin = false,
                 email = x.email
             };
 

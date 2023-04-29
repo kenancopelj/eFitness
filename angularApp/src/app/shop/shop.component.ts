@@ -32,6 +32,7 @@ export class ShopComponent implements OnInit{
   currentPage = 1;
   totalItems = 0;
 
+  logiran:any;
 
 
   constructor(
@@ -50,6 +51,7 @@ export class ShopComponent implements OnInit{
     this.fetchKategorijeSuplemenata();
     this.fetchSuplementi();
     this.items = [];
+    this.logiran = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog.isAdmin;
 
 
     this.NapraviNarudzbu();
@@ -57,6 +59,13 @@ export class ShopComponent implements OnInit{
   }
 
   AddItemToCart(item: any):void {
+
+    if (!AutentifikacijaHelper.getLoginInfo().isLogiran)
+      {
+        this.notificationService.showError("Niste logirani","Greška");
+        return;
+      }
+
     const nova = {suplement_id : item.id , kolicina: 1}
     for(let i = 0; i < this.stavke.length; i++){
       if(nova.suplement_id == this.stavke[i].suplement.id && this.stavke[i].narudzba_id == this.narudzbaId){
@@ -82,6 +91,13 @@ export class ShopComponent implements OnInit{
   }
 
   prebaciNaKorpu() {
+
+    if (!AutentifikacijaHelper.getLoginInfo().isLogiran)
+      {
+        this.notificationService.showError("Niste logirani","Greška");
+        return;
+      }
+
     console.log(this.narudzbaId)
     this.router.navigate(["/korpa",this.narudzbaId])
   }

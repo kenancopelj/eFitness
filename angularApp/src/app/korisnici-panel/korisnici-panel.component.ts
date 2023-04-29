@@ -35,6 +35,12 @@ export class KorisniciPanelComponent implements OnInit{
     }))
   }
 
+  Administrator(id){
+    this.korisniciService.MakeAdmin(id).subscribe((x:any)=>{
+      this.notificationService.showSuccess("Uspješno update-ovan korisnik!","Success");
+    },(err)=>this.notificationService.showError(err.error,'Greška'));
+  }
+
   SpasiPromjene() {
   this.korisniciService.Save(this.odabraniKorisnik.id,this.odabraniKorisnik).subscribe((x=>{
     this.odabraniKorisnik = null;
