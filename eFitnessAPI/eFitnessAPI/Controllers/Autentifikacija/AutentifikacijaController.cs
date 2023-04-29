@@ -51,7 +51,7 @@ namespace FIT_Api_Examples.Modul0_Autentifikacija.Controllers
             var message = $"<br><br><br>";
             message += $"<h4 style=\"text-align: center; font-weight: normal;\">Vaš autentifikacijski token je: <span style=\"font-weight: bold;\">{randomString}</span></h4>\r\n";
 
-            _mailService.Posalji(logiraniKorisnik.email, message);
+            _mailService.Posalji(logiraniKorisnik.email, message, "Autentifikacijski token");
 
             _dbContext.SaveChanges();
             return Ok();

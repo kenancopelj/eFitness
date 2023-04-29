@@ -2,6 +2,6 @@
 {
     public interface IMailService
     {
-        public bool Posalji(string to, string message);
+        public bool Posalji(string to, string message, string subject);
     }
 }

@@ -5,13 +5,13 @@ namespace eFitnessAPI.Services
 {
     public class MailService : IMailService
     {
-        public bool Posalji(string to, string message)
+        public bool Posalji(string to, string message, string subject)
         {
             var key = "ovmogyemxnryjfcm";
 
             var sendMailFrom = "efitnessrs1@gmail.com";
             var sendMailTo = to;
-            var mailSubject = "Autentifikacijski token";
+            var mailSubject = subject;
             var mailBody = message;
 
             var smtpServer = new SmtpClient("smtp.gmail.com", 587);

@@ -11,12 +11,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLiveLabel">Dodaj novi suplement</h5>
+        <h5 class="modal-title" id="exampleModalLiveLabel">Dodaj novi grupni trening</h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="napraviNovi=null"></button>
       </div>
       <div class="modal-body">
         <div class="mb-3">
-          <label class="form-label">Kategorija suplementa</label>
+          <label class="form-label">Kategorija grupnog treninga</label>
           <select class="form-control"  [(ngModel)]="napraviNovi.kategorija_id">
             <option *ngFor="let kategorija of this.kategorijeTreninga" value="{{kategorija.id}}">{{kategorija.naziv_kategorije}}</option>
           </select>
@@ -33,8 +33,8 @@
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn btn-secondary" (click)="napraviNovi=null">Close</button>
-        <button type="button" class="btn btn-primary" (click)="dodajNovi()">Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="napraviNovi=null">Zatvori</button>
+        <button type="button" class="btn btn-primary" (click)="dodajNovi()">Spasi</button>
       </div>
     </div>
   </div>

@@ -35,8 +35,15 @@ export class KorisniciPanelComponent implements OnInit{
     }))
   }
 
+  isAdmin(korisnik){
+    if(korisnik.is_admin)
+      return '../../assets/admin.png';
+    return '../../assets/user.png'
+  }
+
   Administrator(id){
     this.korisniciService.MakeAdmin(id).subscribe((x:any)=>{
+      this.getPodaci();
       this.notificationService.showSuccess("Uspješno update-ovan korisnik!","Success");
     },(err)=>this.notificationService.showError(err.error,'Greška'));
   }

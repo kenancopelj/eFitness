@@ -24,7 +24,7 @@ builder.Services.AddCors(options =>
         builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().Build();
     });
 });
-
+builder.Services.AddTransient<IService, Service>();
 builder.Services.AddTransient<ISMSService,SMSService>();
 builder.Services.AddTransient<IMailService,MailService>();
 

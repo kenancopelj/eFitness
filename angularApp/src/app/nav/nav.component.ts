@@ -16,7 +16,7 @@ declare function porukaError(a: string): any;
 })
 export class NavComponent implements OnInit {
   admin: any;
-
+  username: any;
   constructor(
     private httpKlijent: HttpClient,
     private router: Router,
@@ -26,7 +26,7 @@ export class NavComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
   JeLiAdmin() {
     this.admin = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog.isAdmin;
     if (this.admin)

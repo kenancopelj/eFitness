@@ -21,7 +21,7 @@ namespace eFitnessAPI.Controllers
         [HttpPost]
         public IActionResult SendMail([FromBody]MailDto mailDto)
         {
-            var message = _mailService.Posalji(mailDto.To, mailDto.Message);
+            var message = _mailService.Posalji(mailDto.To, mailDto.Message,"");
 
             if (message == true)
                 return Ok();

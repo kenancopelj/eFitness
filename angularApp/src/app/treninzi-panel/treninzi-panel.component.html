@@ -37,9 +37,6 @@
   <ul class="w3-ul w3-card-4" style="box-shadow:0 0px 0px 0 rgba(0,0,0,0.2), 0 0px 2px 0 rgba(0,0,0,0.19)">
     <li class="w3-bar">
       <span class="w3-bar-item w3-button w3-white w3-xlarge w3-right" (click)="Obrisi(x.id)">×</span>
-      <span  class="w3-bar-item w3-button w3-white w3-xlarge w3-right">
-        <img src="../../assets/edit-icon.png" alt="">
-      </span>
       <img [src]="getSlikaById(x.id)" class="w3-bar-item w3-hide-small" style="width:100px" height="70px">
       <div class="w3-bar-item">
         <span class="w3-large">{{x.naziv_kategorije}}</span><br>

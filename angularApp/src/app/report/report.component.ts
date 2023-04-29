@@ -15,6 +15,10 @@ export class ReportComponent implements OnInit {
   racuniDropdown: any;
   odabraniRacun : any;
 
+  disableDefaultOption: boolean = false;
+  placeholder: string = '';
+  preselectedValue:string = '';
+
   constructor(private reportservice : ReportService, private notificationService:NotificationService){
 
   }

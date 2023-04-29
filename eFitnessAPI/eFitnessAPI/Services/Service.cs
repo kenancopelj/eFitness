@@ -23,14 +23,17 @@ namespace eFitnessAPI.Services
 
             foreach (var item in clanarine)
             {
-                if ((item.datumIsteka - DateTime.Now).TotalDays <= 3)
+                if (item.aktivna)
                 {
-                    _mailService.Posalji(item.korisnik.email, "Vaša članarine ističe za manje od 3 dana!");
-                }
-                else if((item.datumIsteka - DateTime.Now).TotalDays == 0)
-                {
-                    item.aktivna = false;
-                    _mailService.Posalji(item.korisnik.email, "Vaša članarina je istekla!");
+                    if ((item.datumIsteka - DateTime.Now).TotalDays <= 3)
+                    {
+                        _mailService.Posalji(item.korisnik.email, "Vaša članarine ističe za manje od 3 dana!","Istek članarine");
+                    }
+                    else if ((item.datumIsteka - DateTime.Now).TotalDays == 0)
+                    {
+                        item.aktivna = false;
+                        _mailService.Posalji(item.korisnik.email, "Vaša članarina je istekla!","Istek članarine");
+                    }
                 }
             }
 
