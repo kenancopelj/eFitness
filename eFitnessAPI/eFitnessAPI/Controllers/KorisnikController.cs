@@ -134,24 +134,22 @@ namespace eFitnessAPI.Controllers
 
 
         [HttpPut("{id}")]
-        public ActionResult UpdateKaoAdmin([FromBody] KorisnikUpdateKaoAdminVM x, int id)
+        public ActionResult UpdateAdminRole(int id)
         {
             var korisnik = dbContext.Korisnik.Find(id);
             if (korisnik != null)
             {
-                korisnik.Ime = x.Ime;
-                korisnik.Prezime = x.Prezime;
-                korisnik.korisnikoIme = x.korisnicko_ime;
-                
+                if (korisnik.isAdmin)
+                    korisnik.isAdmin = false;
+                else
+                    korisnik.isAdmin = true;
             }
-
-
-            
-
             dbContext.SaveChanges();
 
             return Ok(korisnik);
         }
+
+
 
         [HttpDelete("{id}")]
         public ActionResult Remove(int id)
