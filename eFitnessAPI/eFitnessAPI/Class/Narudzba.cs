@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata.Ecma335;
 
 namespace eFitnessAPI.Class
 {
-    public class Narudzba
+    public  class Narudzba
     {
         public int narudzbaID { get; set; }
         public decimal Total { get; set; }
@@ -18,6 +19,10 @@ namespace eFitnessAPI.Class
         {
             kupljeno = false;
         }
+
+        
+
+        
 
     }
 }

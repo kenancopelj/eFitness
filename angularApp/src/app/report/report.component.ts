@@ -38,7 +38,7 @@ export class ReportComponent implements OnInit {
     this.openModal = true;
     setTimeout(() => {
 
-      var narId = this.odabraniRacun.id == null ? 1 : this.odabraniRacun.id;
+      var narId = this.odabraniRacun == null ? 1 : this.odabraniRacun;
       var userID = AutentifikacijaHelper.getLoginInfo().autentifikacijaToken.korisnickiNalog.id.toString();
 
       var queryParams ="?u=" + userID + "&k=" + narId;

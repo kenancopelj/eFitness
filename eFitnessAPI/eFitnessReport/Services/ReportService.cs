@@ -35,6 +35,7 @@ namespace eFitnessReport.Services
                         int narID = queryString.TryGetValue("k", out var kId) ? Convert.ToInt32(kId) : 0;
 
             
+            
                         List<object> l = new List<object>();
 
                         var podaci = await dBContext.StavkeNarudzbe.Include(x => x.narudzba).Include(x => x.suplement)

@@ -94,6 +94,7 @@ export class ShopComponent implements OnInit{
       this.narudzbaId = x;
       console.log(this.narudzbaId);
       this.GetStavkeUKorpi();
+
     }),
     (err)=>this.notificationService.showError(err.error,'Greška'))
 

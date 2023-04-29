@@ -40,7 +40,7 @@ namespace eFitnessAPI.Controllers
         [HttpPost("{korisnikid}")]
         public IActionResult AddNarudzba(int korisnikid)
         {
-            var Postojeca = dbContext.Narudzba.Where(x=>x.korisnik.id == korisnikid && x.kupljeno==false).First();
+            var Postojeca = dbContext.Narudzba.Where(x=>x.korisnik.id == korisnikid && x.kupljeno==false).FirstOrDefault();
             var id=0;
             if (Postojeca == null)
             {
@@ -49,9 +49,10 @@ namespace eFitnessAPI.Controllers
                     korisnik_id = korisnikid,
                     VrijemePravljenja = DateTime.Now,
                 };
-                id = nar.narudzbaID;
                 dbContext.Narudzba.Add(nar);
                 dbContext.SaveChanges();
+                id = nar.narudzbaID;
+                
             }
             else
             {

@@ -62,7 +62,7 @@ export class KorpaComponent implements OnInit {
     this.KorpaService.Kupljeno(this.narudzbaID).subscribe((x:any)=>{
       this.notificationService.showSuccess("Uspjesno kupljeno","Success");
       this.GetStavkeUKorpi();
-      this.Router.navigateByUrl("/shop")
+      setTimeout(()=>{this.Router.navigateByUrl("/shop")},500);
     },(err)=>this.notificationService.showError(err.error,'Greška'))
   }
 
