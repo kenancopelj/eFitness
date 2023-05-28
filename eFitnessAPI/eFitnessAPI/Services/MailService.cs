@@ -7,7 +7,7 @@ namespace eFitnessAPI.Services
     {
         public bool Posalji(string to, string message, string subject)
         {
-            var key = "ovmogyemxnryjfcm";
+            var key = "************";
 
             var sendMailFrom = "efitnessrs1@gmail.com";
             var sendMailTo = to;
