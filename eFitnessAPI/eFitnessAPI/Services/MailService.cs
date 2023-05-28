@@ -9,7 +9,7 @@ namespace eFitnessAPI.Services
         {
             var key = "************";
 
-            var sendMailFrom = "efitnessrs1@gmail.com";
+            var sendMailFrom = "******@gmail.com",
             var sendMailTo = to;
             var mailSubject = subject;
             var mailBody = message;
